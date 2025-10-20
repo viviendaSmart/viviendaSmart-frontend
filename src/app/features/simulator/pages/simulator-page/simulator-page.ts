@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import {SideBarComponent} from '../../../../shared/components/side-bar/side-bar.component'
+import {HeaderBarComponent} from '../../../../shared/components/header-bar/header-bar.component/header-bar.component';
 @Component({
   selector: 'app-simulator-page',
   imports: [
-    SideBarComponent
+    SideBarComponent,
+    HeaderBarComponent
   ],
   templateUrl: './simulator-page.html',
   styleUrl: './simulator-page.css'

@@ -1,0 +1,67 @@
+.content {
+  display: flex;
+  position: absolute;
+  width: 84vw;
+  z-index: 9;
+  padding: 2.8vh;
+  margin-left: 16vw;
+}
+
+/* Título y texto */
+.header-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  width: 100%;
+}
+
+.header-title h1 {
+  font-size: 1.5rem;
+  color: #080210;
+  text-align: left;
+}
+
+.header-title p {
+  margin: 0;
+  color: #6b6b6b;
+  text-align: left;
+}
+
+/* Info del usuario */
+.header-aux {
+  display: flex;
+  gap: 1rem;
+}
+
+.primary{
+  text-align: right;
+}
+.aux-description p .primary {
+  margin: 0;
+  font-size: 1rem;
+}
+.aux-description .second{
+  color: #6b6b6b;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.avatar-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #00A6CF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatar-container img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  filter: invert(100);
+  object-fit: cover;
+}
+

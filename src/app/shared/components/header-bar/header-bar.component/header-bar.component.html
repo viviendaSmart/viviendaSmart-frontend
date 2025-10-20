@@ -1,0 +1,17 @@
+<div class="content">
+  <div class="header-title">
+    <h1>{{ params.title }}</h1>
+    <p>{{ params.description}}</p>
+  </div>
+  @if (params.aux){
+  <div class="header-aux">
+    <div class="aux-description">
+      <p class="primary">{{ params.name }}</p>
+      <p class="second">Asesor Inmobiliario</p>
+    </div>
+    <div class="avatar-container">
+      <img src="/assets/img/usuario.png">
+    </div>
+  </div>
+  }
+</div>

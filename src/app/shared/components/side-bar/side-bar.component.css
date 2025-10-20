@@ -1,74 +1,139 @@
-/* NAVBAR */
-.side-bar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #080210;
-  width: 80px;
-  height: 100vh;
-  padding: 10px 0;
-  position: fixed;
-}
-
-.options {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.options .option:last-child {
-  margin-top: auto;
-}
-/* ELEMENTO DE OPCION */
-.option {
-  list-style: none;
+/* 🧭 NAVBAR GENERAL */
+.header-bar {
   width: 100%;
-  display: flex;
-  justify-content: center;
-
 }
 
-/* ESTILO BASE DE TODOS LOS BOTONES */
-.option button,
-.config-button {
+.header-title {
+  font-size: large;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #DD22EB;
+  gap: 1vw;
+  padding: 1vw;
+}
+
+.header-title img.logo {
+  width: 3.7vw;
+}
+
+.header-title p {
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #080210;
+  margin: 0;
+  text-align: left;
+}
+
+hr {
+  width: 100vw;
+  border: 1px solid #C4C4C4;
+}
+
+/* 📑 SIDEBAR CONTAINER */
+.side-bar {
+  flex-direction: column;
+  align-items: center;
+  width: 16vw;
+  height: 100vh;
+  border-right: 1px solid #C4C4C4;
+  position: absolute;
+  z-index: 10;
+}
+
+/* 📋 LISTA DE OPCIONES */
+.options,
+.logout{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 16vw;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+
+/* 🔘 ELEMENTO DE OPCIÓN */
+.option,
+.logout{
+  width: 14vw;
+  list-style: none;
+  border-radius: 0.8vw;
+  display: flex;
+  justify-content: center;
+}
+
+/* 🧩 BOTÓN BASE */
+.option button,
+.logout button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
   border: none;
-  transition: background-color 0.3s, border 0.3s;
-  box-shadow: 0 0 10px #DD22EB;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  transition: background-color 0.3s ease, color 0.3s ease, filter 0.3s ease;
 }
 
-/* EFECTO HOVER (COMPARTIDO) */
-.option button:hover,
-.config-button:hover {
-  background-color: #080210;
-  border: 3px solid #DD22EB;
-}
-
-/* ESTILO DE IMÁGENES EN BOTONES */
+/* 🖼️ ÍCONO */
 .option button img,
-.config-button img {
-  width: 50px;
-  height: 50px;
-}
-.option .inventory-button img,.option .profile-button img,.option .home-button img{
-  width: 60px;
-  height: 60px;
+.logout button img {
+  width: 1.6vw;
+  transition: filter 0.3s ease;
 }
 
-.option .wa-button img {
-  width: 31.25px;
-  height: 50px;
+/* ✨ TEXTO */
+.option button p,
+.logout button p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #080210;
+}
+
+/* 🖱️ EFECTO HOVER */
+.option button:hover {
+  background-color: #eef5ff;
+}
+.logout button:hover{
+  background-color: #ffeeee;
 }
 
 .option button:hover img,
-.config-button:hover img {
-  filter: invert(23%) sepia(99%) saturate(7452%) hue-rotate(285deg) brightness(130%) contrast(104%);
+.option button:hover p {
+  filter: invert(49%) sepia(73%) saturate(2598%) hue-rotate(164deg) brightness(95%) contrast(101%);
+}
+
+.logout button:hover p {
+  color: #f36d6d;
+}
+
+.logout button:hover img {
+  filter: invert(57%) sepia(78%) saturate(5243%) hue-rotate(335deg) brightness(104%) contrast(97%);
+}
+
+/* 🔵 ESTADO ACTIVO (routerLinkActive) */
+.option button.active {
+  background-color: #eef5ff;
+  color: white;
+}
+
+
+.option button.active img,
+.option button.active p {
+  filter: invert(49%) sepia(73%) saturate(2598%) hue-rotate(164deg) brightness(95%) contrast(101%);
+}
+
+.footer-bar hr{
+  width: 100%;
+}
+
+
+.footer-bar {
+  margin: 4rem
 }

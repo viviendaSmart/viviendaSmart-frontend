@@ -3,14 +3,14 @@ import {SideBarComponent} from "../../../../shared/components/side-bar/side-bar.
 import {HeaderBarComponent} from '../../../../shared/components/header-bar/header-bar.component/header-bar.component';
 
 @Component({
-  selector: 'app-config-page',
+  selector: 'app-user-page',
   imports: [
     SideBarComponent,
     HeaderBarComponent
   ],
-  templateUrl: './config-page.html',
-  styleUrl: './config-page.css'
+  templateUrl: './user-page.html',
+  styleUrl: './user-page.css'
 })
-export class ConfigPage {
+export class UserPage {
 
 }

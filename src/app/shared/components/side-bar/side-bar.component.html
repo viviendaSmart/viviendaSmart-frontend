@@ -1,7 +1,36 @@
 <nav class="side-bar">
+  <div class="header-bar">
+    <div class="header-title">
+      <img class="logo" src="/assets/img/logo.png">
+      <p>ViviendaSmart</p>
+    </div>
+    <hr>
+  </div>
+
   <ul class="options">
-    @for(option of options; track option.class){
-      <li class="option"><button class="{{option.class}}" [routerLink]="option.link" routerLinkActive="active"><img src="{{option.src}}" alt=""></button></li>
+    @for (option of options; track option.class) {
+      <li class="option">
+        <button
+          [routerLink]="option.link"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <img [src]="option.src" alt="">
+          <p>{{ option.class }}</p>
+        </button>
+      </li>
     }
+    <div class="footer-bar">
+      <hr>
+      <li class="logout">
+        <button
+          [routerLink]="['/login']"
+          routerLinkActive="active"
+        >
+          <img src="/assets/img/salida.svg">
+          <p>Cerrar Sesión</p>
+        </button>
+      </li>
+    </div>
   </ul>
 </nav>
