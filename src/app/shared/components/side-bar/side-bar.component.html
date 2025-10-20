@@ -1,0 +1,7 @@
+<nav class="side-bar">
+  <ul class="options">
+    @for(option of options; track option.class){
+      <li class="option"><button class="{{option.class}}" [routerLink]="option.link" routerLinkActive="active"><img src="{{option.src}}" alt=""></button></li>
+    }
+  </ul>
+</nav>

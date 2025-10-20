@@ -1,0 +1,74 @@
+/* NAVBAR */
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #080210;
+  width: 80px;
+  height: 100vh;
+  padding: 10px 0;
+  position: fixed;
+}
+
+.options {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.options .option:last-child {
+  margin-top: auto;
+}
+/* ELEMENTO DE OPCION */
+.option {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+/* ESTILO BASE DE TODOS LOS BOTONES */
+.option button,
+.config-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #DD22EB;
+  border: none;
+  transition: background-color 0.3s, border 0.3s;
+  box-shadow: 0 0 10px #DD22EB;
+}
+
+/* EFECTO HOVER (COMPARTIDO) */
+.option button:hover,
+.config-button:hover {
+  background-color: #080210;
+  border: 3px solid #DD22EB;
+}
+
+/* ESTILO DE IMÁGENES EN BOTONES */
+.option button img,
+.config-button img {
+  width: 50px;
+  height: 50px;
+}
+.option .inventory-button img,.option .profile-button img,.option .home-button img{
+  width: 60px;
+  height: 60px;
+}
+
+.option .wa-button img {
+  width: 31.25px;
+  height: 50px;
+}
+
+.option button:hover img,
+.config-button:hover img {
+  filter: invert(23%) sepia(99%) saturate(7452%) hue-rotate(285deg) brightness(130%) contrast(104%);
+}
