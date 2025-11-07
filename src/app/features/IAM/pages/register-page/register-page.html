@@ -1,0 +1,40 @@
+<div class="div-fondo">
+  <img src="/assets/img/layout.jpg" class="bg-img">
+
+  <div class="form" [formGroup]="form">
+
+    <div class="form-header">
+      <img src="/assets/img/logo.png">
+      <h1>ViviendaSmart</h1>
+      <p>Plataforma de gestión inmobiliaria</p>
+    </div>
+
+    <div class="form-body">
+      <div class="name">
+        <p>Nombres</p>
+        <input formControlName="firstName" placeholder="Juan Alberto">
+      </div>
+      <div class="surname">
+        <p>Apellidos</p>
+        <input formControlName="lastName" placeholder="Perez Roman">
+      </div>
+      <div class="email">
+        <p>Correo</p>
+        <input formControlName="email" type="email" placeholder="usuario@ejemplo.com">
+      </div>
+      <div class="password">
+        <p>Contraseña</p>
+        <input formControlName="password" type="password" placeholder="**********">
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <!-- ✅ Llama al método register() -->
+      <button (click)="register()" [disabled]="loading || form.invalid">
+        Registrarse
+      </button>
+      <a [routerLink]="['/authentication/login']">¿Ya tienes cuenta?</a>
+    </div>
+
+  </div>
+</div>
