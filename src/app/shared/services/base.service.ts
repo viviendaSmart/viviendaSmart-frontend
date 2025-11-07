@@ -19,9 +19,10 @@ export abstract class BaseService<T> {
     if (error.error instanceof ErrorEvent) {
       console.error(`An error occurred: ${error.error.message}`);
     } else {
-      console.error(`Backend returned code ${error.status}, body was: ${error.error}`);
+      console.error(`Backend returned code ${error.status}, body was:`, error.error);
     }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    // Propaga el error completo para poder mostrar el mensaje del backend en la UI
+    return throwError(() => error);
   }
 
 

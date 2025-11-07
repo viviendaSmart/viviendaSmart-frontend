@@ -1,4 +1,7 @@
 ﻿export const environment={
   production:true,
-  serverBaseUrl:'http://localhost:3000',
+  serverBaseUrl:'http://localhost:8080/api/v1',
+  usersEndpointPath:'/users',
+  registerEndpointPath:'/users/signup',
+  loginEndpointPath:'/users/signin',
 };

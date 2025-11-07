@@ -5,9 +5,8 @@ const PropertyPage = () => import("./features/property/pages/property-page/prope
 const SimulatorPage = () => import("./features/simulator/pages/simulator-page/simulator-page").then(m=>m.SimulatorPage);
 const ConfigPage =() => import("./features/config/pages/config-page/config-page").then(m=>m.ConfigPage);
 const ReportPage = () => import("./features/report/pages/report-page/report-page").then(m=>m.ReportPage);
-
 import {LoginPage} from './features/IAM/pages/login-page/login-page';
-
+const RegisterPage = () => import("./features/IAM/pages/register-page/register-page").then(m=>m.RegisterPage);
 export const routes: Routes = [
   {path: 'login', component: LoginPage},
   {path:'home',loadComponent:HomePage},
@@ -16,5 +15,6 @@ export const routes: Routes = [
   {path:'simulator',loadComponent:SimulatorPage},
   {path:'config',loadComponent:ConfigPage},
   {path:'report',loadComponent:ReportPage},
+  {path:'register',loadComponent:RegisterPage},
   {path:'**',component:LoginPage},
 ];
