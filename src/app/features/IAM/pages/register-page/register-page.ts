@@ -48,7 +48,7 @@ export class RegisterPage {
           this.userService.login({email, password}).subscribe({
             next: (loginResponse) => {
               this.authService.saveToken(loginResponse.token);
-              this.authService.saveUser({id: loginResponse.id, username: loginResponse.email});
+              this.authService.saveUser({username: loginResponse.user});
               this.router.navigate(['/home']);
               this.loading = false;
             },

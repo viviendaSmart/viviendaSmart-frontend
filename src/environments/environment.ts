@@ -4,4 +4,5 @@
   usersEndpointPath:'/users',
   registerEndpointPath:'/users/signup',
   loginEndpointPath:'/users/signin',
+  propertyEndpointPath:'/properties',
 };
