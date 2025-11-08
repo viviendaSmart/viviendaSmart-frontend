@@ -13,7 +13,7 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 export class SideBarComponent {
   options = [
     { class: 'Inicio', link: '/home', src: '../assets/img/hogar.png' },
-    { class: 'Usuario', link: '/user', src: '/assets/img/usuarios.png' },
+    { class: 'Clientes', link: '/client', src: '/assets/img/usuarios.png' },
     { class: 'Inmuebles', link: '/property', src: '/assets/img/edificio.png' },
     { class: 'Simulación', link: '/simulator', src: '/assets/img/computadora.png' },
     { class: 'Configuracion', link: '/config', src: '/assets/img/ajustes.png' },
