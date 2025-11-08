@@ -18,7 +18,7 @@ export class UserService extends BaseService<User> {
     this.resourceEndpoint = environment.usersEndpointPath;
   }
 
-  register(userPayload: {
+    register(userPayload: {
     firstName: string;
     lastName: string;
     email: string;
@@ -45,7 +45,7 @@ export class UserService extends BaseService<User> {
     const url = `${this.serverBaseUrl}${environment.loginEndpointPath}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.post<{ token: string; id: number; email: string }>(
+    return this.http.post<{ token: string; user: User}>(
       url,
       credentials,
       { headers, context: new HttpContext().set(SKIP_AUTH, true) } // 👈 idem
