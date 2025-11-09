@@ -84,3 +84,13 @@
 .input {
   font-size:16px;
 }
+
+:host ::ng-deep app-classic-button.delete-button button{
+  background-color: #d32626;
+  outline: 3px #d32626 solid;
+}
+
+:host ::ng-deep app-classic-button.delete-button button:hover{
+  background-color: #F3F3F5;
+  color: #d32626;
+}

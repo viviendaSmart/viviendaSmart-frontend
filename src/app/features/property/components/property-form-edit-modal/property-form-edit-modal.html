@@ -1,0 +1,25 @@
+<div class="modal-backdrop" (click)="close()"></div>
+<div class="modal">
+  <form class="form" [formGroup]="form2" (ngSubmit)="editForm($event)" >
+    <h2 class="form-title">Editar Propiedad</h2>
+    <div class="inputs-container">
+      <label>
+        <input class="input" type="text" placeholder="" required formControlName="address">
+        <span>Direccion</span>
+      </label>
+
+      <label>
+        <input class="input" type="text" placeholder="" required formControlName="size">
+        <span>Area</span>
+      </label>
+
+      <label>
+        <input class="input" type="text" placeholder="" required formControlName="price">
+        <span>Precio</span>
+      </label>
+    </div>
+    <app-classic-button [disabled]="form2.invalid">Editar</app-classic-button>
+    <app-classic-button (click)="close()" type="button" >Cancelar</app-classic-button>
+    <app-classic-button (click)="deleteForm($event)" class="delete-button" type="button">Eliminar</app-classic-button>
+  </form>
+</div>

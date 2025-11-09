@@ -9,8 +9,9 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class PropertyService extends BaseService<Property>{
+export class PropertyService extends BaseService<Property> {
   public authService: AuthService = inject(AuthService);
+
   constructor() {
     super();
     this.resourceEndpoint = `${this.serverBaseUrl}${environment.propertyEndpointPath}`;
@@ -23,4 +24,13 @@ export class PropertyService extends BaseService<Property>{
   postProperty(property: Property): Observable<Property> {
     return this.http.post<Property>(this.resourceEndpoint, property);
   }
+
+  putProperty(property: Property): Observable<Property> {
+    return this.http.put<Property>(`${this.resourceEndpoint}/${property.id}`, property);
+  }
+
+  deleteProperty(property: Property): Observable<Property> {
+    return this.http.delete<Property>(`${this.resourceEndpoint}/${property.id}`);
+  }
+
 }

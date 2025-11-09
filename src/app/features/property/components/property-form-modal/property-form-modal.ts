@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PropertyService} from '../../services/property.service';
 import {Property} from '../../models/property.entity';
 import {Router} from '@angular/router';
@@ -20,6 +20,7 @@ import {AuthService} from '../../../../shared/services/authentication.service';
 export class PropertyFormModal implements OnInit {
   @Output() formSubmitted = new EventEmitter<any>();
   @Output() modalClosed = new EventEmitter<void>();
+  @Input() properties: Array<Property> = [];
   form!: FormGroup;
 
   constructor(private fb: FormBuilder,

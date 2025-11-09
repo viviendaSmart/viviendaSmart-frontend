@@ -14,12 +14,19 @@
 
 </app-header-bar>
 
-
-
-
 <app-property-list
   [properties]=properties
+  (editProperty)="openEditModal($event)"
+
 />
+
+<app-property-form-edit-modal
+  *ngIf="showEditModal"
+  [property]="selectedProperty"
+  (modalClosed)="onModalClosed()"
+  (formEdited)="onFormEdited($event)"
+  (onDelete)="onDeleteProperty($event)"
+></app-property-form-edit-modal>
 
 <app-property-form-modal
   *ngIf="showModal"
