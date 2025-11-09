@@ -1,13 +1,20 @@
 <app-side-bar></app-side-bar>
 
+
 <app-header-bar
     [params]="{
     title: 'Registro de Inmueble',
     description: 'Gestiona la información del inmueble',
     name: 'Juan Pérez',
-    aux: false
-  }">
+    aux: false,
+    aux2: true
+  }"
+  (openModal)="openModal()"
+>
+
 </app-header-bar>
+
+
 
 
 <app-property-list
