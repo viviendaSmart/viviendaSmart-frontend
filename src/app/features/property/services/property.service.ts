@@ -19,4 +19,8 @@ export class PropertyService extends BaseService<Property>{
   getByOwnerId(ownerId: number): Observable<Property[]> {
     return this.http.get<Property[]>(`${this.resourceEndpoint}?ownerId=${ownerId}`);
   }
+
+  postProperty(property: Property): Observable<Property> {
+    return this.http.post<Property>(this.resourceEndpoint, property);
+  }
 }

@@ -4,22 +4,32 @@ import {HeaderBarComponent} from '../../../../shared/components/header-bar/heade
 import {Property} from '../../models/property.entity';
 import {PropertyService} from '../../services/property.service';
 import {UserService} from '../../../IAM/services/user.service';
+import {PropertyList} from '../../components/property-list/property-list';
+import {PropertyFormModal} from '../../components/property-form-modal/property-form-modal';
+import {NgIf} from '@angular/common';
+import {AuthService} from '../../../../shared/services/authentication.service';
+import {ClassicButtonComponent} from '../../../../shared/components/classic-button/classic-button.component';
 
 @Component({
   selector: 'app-property-page',
   imports: [
     SideBarComponent,
-    HeaderBarComponent
+    HeaderBarComponent,
+    PropertyList,
+    PropertyFormModal,
+    NgIf,
+    ClassicButtonComponent
   ],
   templateUrl: './property-page.html',
   styleUrl: './property-page.css'
 })
 export class PropertyPage implements OnInit {
-  showModal = false;
+  showModal = true;
   properties: Property[] = [];
 
   constructor(private propertyService: PropertyService,
               private userService: UserService,
+              private authService: AuthService,
               ) {}
   ngOnInit() {
     this.loadProperties();
@@ -39,6 +49,31 @@ export class PropertyPage implements OnInit {
       }
     });
 
+  }
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  onFormSubmitted(formValue: any) {
+    const user = this.authService.getUser();
+    const newProperty: Property = {
+      ...formValue,
+      ownerId: user.id
+    }
+
+    this.propertyService.postProperty(newProperty).subscribe({
+      next: () => {
+        console.log('Formulario enviado:', formValue);
+        this.loadProperties();
+        this.showModal = false;
+      },
+      error: (err) => console.error('Error al crear propiedad', err)
+    });
+  }
+
+  onModalClosed() {
+    this.showModal = false;
   }
 
 }

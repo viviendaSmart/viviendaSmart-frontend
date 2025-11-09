@@ -1,10 +1,12 @@
 .content {
   display: flex;
-  position: absolute;
+  position: fixed;
   width: 84vw;
   z-index: 9;
   padding: 2.8vh;
   margin-left: 16vw;
+  background-color: #FAF9FD;
+  height: 5.7rem;
 }
 
 /* Título y texto */
@@ -65,3 +67,20 @@
   object-fit: cover;
 }
 
+.aux2-wrapper {
+  margin-right: 3vw;
+  align-self: center;
+
+}
+
+:host ::ng-deep app-classic-button.button-aux2 button {
+  width: 10rem;
+  margin: 0;
+  background-color: #027daa;
+  outline: 2px #027daa solid;
+  padding: 10px;
+}
+
+:host ::ng-deep app-classic-button.button-aux2 button:hover {
+  background-color: white;
+}

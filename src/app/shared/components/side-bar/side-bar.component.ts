@@ -17,6 +17,6 @@ export class SideBarComponent {
     { class: 'Inmuebles', link: '/property', src: '/assets/img/edificio.png' },
     { class: 'Simulación', link: '/simulator', src: '/assets/img/computadora.png' },
     { class: 'Configuracion', link: '/config', src: '/assets/img/ajustes.png' },
-    { class: 'Reportes', link: '/report', src: '../../assets/img/estadisticas.png' },
+    //{ class: 'Reportes', link: '/report', src: '../../assets/img/estadisticas.png' },
   ]
 }

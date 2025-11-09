@@ -1,3 +1,15 @@
+/* 📑 SIDEBAR CONTAINER */
+.side-bar {
+  flex-direction: column;
+  align-items: center;
+  width: 16vw;
+  position: fixed;
+  height: 100vh;
+  border-right: 1px solid #C4C4C4;
+  z-index: 10;
+}
+
+
 /* 🧭 NAVBAR GENERAL */
 .header-bar {
   width: 100%;
@@ -29,16 +41,7 @@ hr {
   border: 1px solid #C4C4C4;
 }
 
-/* 📑 SIDEBAR CONTAINER */
-.side-bar {
-  flex-direction: column;
-  align-items: center;
-  width: 16vw;
-  height: 100vh;
-  border-right: 1px solid #C4C4C4;
-  position: absolute;
-  z-index: 10;
-}
+
 
 /* 📋 LISTA DE OPCIONES */
 .options,
@@ -135,5 +138,5 @@ hr {
 
 
 .footer-bar {
-  margin: 4rem
+  margin-top: 12rem
 }
