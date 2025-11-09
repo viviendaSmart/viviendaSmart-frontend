@@ -1,1 +1,20 @@
-<p>property-list works!</p>
+
+<div class="property-cards-container">
+  <div *ngFor="let property of properties; let i  = index" class="property-card">
+    <mat-card class="card">
+      <div class="card-header">
+        <img class="body-img" src="{{property.photo}}" (error)="onImageError($event)">
+        <h3 class="body-title">{{ property.address }}</h3>
+        <p class="body-text">Area: {{ property.size  }} m²</p>
+        <p class="body-text">Precio: {{ property.price }}</p>
+      </div>
+      <div class="card-footer">
+        <mat-card-actions class="card-actions">
+            <app-classic-button>Ver Propiedad</app-classic-button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+
+</div>
+

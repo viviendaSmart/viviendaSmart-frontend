@@ -1,0 +1,7 @@
+:host ::ng-deep app-classic-button.add-property button{
+  display: flex;
+  width: 10vw;
+  margin-left: 85vw;
+}
+
+

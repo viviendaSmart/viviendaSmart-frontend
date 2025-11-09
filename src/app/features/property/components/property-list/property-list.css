@@ -1,0 +1,52 @@
+.card{
+  text-align: center;
+  background-color: #f4f4f4 !important;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
+
+.body-title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 37px;
+  color: #080210;
+}
+
+.body-text {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 19px;
+  color: #080210;
+}
+
+.body-img{
+  width: 100%;
+  height: 18vh;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+.property-cards-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; /* Esto permite que las tarjetas se ajusten automáticamente */
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+  gap: 2rem; /* Espacio entre las tarjetas */
+  padding-left: 200px;
+  padding-top: 7rem;
+}
+
+.property-card {
+  width: 16vw;
+  margin: 1vh;
+  display: flex;
+  flex-direction: column;
+}
+
