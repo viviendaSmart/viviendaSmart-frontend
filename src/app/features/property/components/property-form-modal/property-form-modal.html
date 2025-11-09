@@ -1,1 +1,24 @@
-<p>property-form-modal works!</p>
+<div class="modal-backdrop" (click)="close()"></div>
+<div class="modal">
+  <form class="form" [formGroup]="form" (ngSubmit)="submitForm($event)" >
+    <h2 class="form-title">Agregar Propiedad</h2>
+    <div class="inputs-container">
+      <label>
+        <input class="input" type="text" placeholder="" required formControlName="address">
+        <span>Direccion</span>
+      </label>
+
+      <label>
+        <input class="input" type="text" placeholder="" required formControlName="size">
+        <span>Area</span>
+      </label>
+
+      <label>
+        <input class="input" type="text" placeholder="" required formControlName="price">
+        <span>Precio</span>
+      </label>
+    </div>
+    <app-classic-button [disabled]="form.invalid" >Confirmar</app-classic-button>
+    <app-classic-button (click)="close()" type="button" >Cancelar</app-classic-button>
+  </form>
+</div>

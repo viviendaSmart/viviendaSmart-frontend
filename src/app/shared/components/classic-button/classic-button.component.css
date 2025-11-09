@@ -1,0 +1,21 @@
+.submit {
+  font-weight: 500;
+  font-size: 15px;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  transition: 400ms;
+  background-color: #00A6CF;
+  outline: 3px #00A6CF solid;
+  cursor:pointer;
+  margin: 5px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.submit:hover {
+  background-color: transparent;
+  color: #00A6CF;
+}

@@ -1,0 +1,86 @@
+
+.modal{
+  position: absolute;
+  top: 7vw;
+  left: 15vw;
+  display: flex;
+  height: 80vh;
+  width: 75vw;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.form {
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  padding: 15px 20px;
+  border-radius: 30px;
+  position: relative;
+  background-color: #ffffff;
+  z-index: 0;
+  line-height: 19px;
+  gap: 10px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.form-title {
+  font-size: 34px;
+  font-weight: 700;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  text-align: center;
+  line-height: 50px;
+}
+
+
+.inputs-container{
+  display: flex;
+  flex-direction: column;
+  gap:3vh;
+}
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  background-color: #F3F3F5;
+  color: #8e8e8e;
+  width: 100%;
+  padding: 20px 0 05px 10px;
+  outline: 0;
+  border: 0;
+  border-radius: 10px;
+}
+
+.form label .input + span {
+  color: #8e8e8e;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 12.5px;
+  font-size: 14px;
+}
+
+.form label .input:focus + span,.form label .input:valid + span {
+  color: #00A6CF;
+  top: 3px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.input {
+  font-size:16px;
+}
