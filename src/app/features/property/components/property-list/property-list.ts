@@ -22,7 +22,6 @@ import {PropertyFormEditModal} from '../property-form-edit-modal/property-form-e
 export class PropertyList {
   @Input() properties: Array<Property> = [];
   @Output() editProperty = new EventEmitter<Property>();
-  @Output() deleteProperty = new EventEmitter<Property>();
 
   constructor(private router: Router) {}
   defaultImages = [

@@ -1,0 +1,23 @@
+
+<div class="client-cards-container">
+  <div *ngFor="let client of clients; let i  = index" class="client-card">
+    <mat-card class="card">
+      <div class="card-header">
+        <div class="img-wrapper">
+          <img class="body-img" src="/assets/img/client.png" alt="cient">
+        </div>
+        <div class="body">
+          <h3 class="body-title">{{ client.name }} {{client.surname}}</h3>
+          <p class="body-text">🪪 Dni: {{ client.dni  }}</p>
+          <p class="body-text">✆ Celular: {{ client.phoneNumber }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <mat-card-actions class="card-actions">
+          <app-classic-button (click)="onShowEditForm(client)">Ver Cliente</app-classic-button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
