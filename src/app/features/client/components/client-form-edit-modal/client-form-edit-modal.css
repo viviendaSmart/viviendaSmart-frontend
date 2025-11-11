@@ -1,0 +1,176 @@
+
+.modal{
+  position: fixed;
+  top: 7vw;
+  left: 15vw;
+  display: flex;
+  height: 80vh;
+  width: 75vw;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.form {
+  width: 25vw;
+  height: 83vh;
+  font-weight: 200;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: 30px;
+  position: relative;
+  background-color: #ffffff;
+  z-index: 0;
+  line-height: 19px;
+  gap: 10px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.form-title {
+  font-size: 25px;
+  font-weight: 700;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 40px;
+}
+
+
+.inputs-container{
+  display: flex;
+  flex-direction: column;
+  gap:2vh;
+}
+
+.inputs-first {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.inputs-second {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.inputs-third {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.inputs-fourth {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.form label {
+  position: relative;
+  width: 100%;
+}
+
+.form p{
+  font-size: 13px;
+}
+
+.support-label{
+  display: flex;
+  flex-direction: row;
+
+}
+.support-label-1{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.support-label-2{
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+}
+
+.history-label{
+  display: flex;
+  flex-direction: row;
+}
+.history-label-1{
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.history-label-2{
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+}
+
+.form label .input {
+  background-color: #F3F3F5;
+  color: #8e8e8e;
+  width: 100%;
+  padding: 20px 0 05px 8px;
+  outline: 0;
+  border: 0;
+  border-radius: 10px;
+}
+
+.form label .input + span {
+  color: #8e8e8e;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 10px;
+  font-size: 12px;
+}
+
+.form label .input:focus + span,.form label .input:valid + span {
+  color: #00A6CF;
+  top: 2px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.input {
+  font-size:13px;
+}
+
+:host ::ng-deep app-classic-button.cancel-button button{
+  padding: 0.2rem;
+  font-size: 0.8rem;
+  background-color: #026d95;
+  outline: 3px #026d95 solid;
+}
+
+:host ::ng-deep app-classic-button.cancel-button button:hover{
+  padding: 0.2rem;
+  font-size: 0.8rem;
+  color: #026d95;
+  background-color: #F3F3F5;
+}
+
+:host ::ng-deep app-classic-button.edit-button button{
+  padding: 0.2rem;
+  font-size: 0.8rem;
+}
+
+:host ::ng-deep app-classic-button.delete-button button:hover{
+  padding: 0.2rem;
+  font-size: 0.8rem;
+  color: #d22626;
+  background-color: #F3F3F5;
+}
+
+:host ::ng-deep app-classic-button.delete-button button{
+  padding: 0.2rem;
+  font-size: 0.8rem;
+  background-color: #d22626;
+  outline: 3px #d22626 solid;
+}

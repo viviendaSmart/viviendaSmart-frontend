@@ -1,0 +1,107 @@
+<div class="modal-backdrop" (click)="close()"></div>
+<div class="modal">
+  <form class="form" [formGroup]="form2" (ngSubmit)="editForm($event)" >
+    <h2 class="form-title">Editar Cliente</h2>
+    <div class="inputs-container">
+      <div class="inputs-first">
+        <label>
+          <input class="input" type="text" placeholder="" required formControlName="name">
+          <span>Nombres</span>
+        </label>
+        <label>
+          <input class="input" type="text" placeholder="" required formControlName="surname">
+          <span>Apellidos</span>
+        </label>
+      </div>
+      <div class="inputs-second">
+        <label>
+          <input class="input" type="text" placeholder="" required formControlName="dni">
+          <span>Dni</span>
+        </label>
+        <label>
+          <input class="input" type="number" value="0.0" step="any" pattern="[0-9,.]+" placeholder="" required formControlName="monthlyIncome">
+          <span>Ingreso mensual</span>
+        </label>
+      </div>
+      <div class="inputs-third">
+        <label>
+          <input class="input" type="text" placeholder="" required formControlName="ocupation">
+          <span>Ocupacion</span>
+        </label>
+        <label>
+          <input class="input" type="text" placeholder="" required formControlName="business">
+          <span>Empresa/Negocio</span>
+        </label>
+      </div>
+      <div class="inputs-fourth">
+        <label>
+          <input class="input" type="text" placeholder="" required formControlName="phoneNumber">
+          <span>Celular</span>
+        </label>
+        <label>
+          <input class="input" type="text" placeholder="" required formControlName="earningtype">
+          <span>Tipo de ingreso</span>
+        </label>
+      </div>
+      <label>
+        <input class="input" type="text" placeholder="" required formControlName="address">
+        <span>Direccion</span>
+      </label>
+      <label>
+        <p>¿Tiene historial crediticio positivo?</p>
+        <div class="history-label">
+          <label class="history-label-1">
+            <input type="radio" formControlName="credithistory" [value]="true" />
+            <p>Sí</p>
+          </label>
+
+          <label class="history-label-2">
+            <input type="radio" formControlName="credithistory" [value]="false" />
+            <p>No</p>
+          </label>
+        </div>
+      </label>
+      <label>
+        <p>¿Ha recibido otro bono/apoyo habitacional?</p>
+        <div class="support-label">
+          <label class="support-label-1">
+            <input type="radio" formControlName="support" [value]="true" />
+            <p>Sí</p>
+          </label>
+
+          <label class="support-label-2">
+            <input type="radio" formControlName="support" [value]="false" />
+            <p>No</p>
+          </label>
+        </div>
+      </label>
+      <label>
+        <p>Estado Civil</p>
+        <div class="support-label">
+          <label class="support-label-1">
+            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="0" />
+            <p>Soltero</p>
+          </label>
+
+          <label class="support-label-1">
+            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="1" />
+            <p>Casado</p>
+          </label>
+
+          <label class="support-label-1">
+            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="2" />
+            <p>Viudo</p>
+          </label>
+
+          <label class="support-label-2">
+            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="3" />
+            <p>Divorciado</p>
+          </label>
+        </div>
+      </label>
+    </div>
+    <app-classic-button [disabled]="form2.invalid" class="edit-button">Editar</app-classic-button>
+    <app-classic-button (click)="close()" type="button" class="cancel-button">Cancelar</app-classic-button>
+    <app-classic-button (click)="deleteForm($event)" type="button" class="delete-button" >Eliminar</app-classic-button>
+  </form>
+</div>

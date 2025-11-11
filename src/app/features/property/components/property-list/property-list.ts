@@ -28,7 +28,13 @@ export class PropertyList {
     '/assets/img/house1.jpg',
     '/assets/img/house2.jpg',
     '/assets/img/house3.jpg',
-    '/assets/img/house4.jpg'
+    '/assets/img/house4.jpg',
+    '/assets/img/house5.jpg',
+    '/assets/img/house6.jpg',
+    '/assets/img/house7.jpg',
+    '/assets/img/house8.jpg',
+    '/assets/img/house9.jpg',
+    '/assets/img/house10.jpg'
   ];
 
 

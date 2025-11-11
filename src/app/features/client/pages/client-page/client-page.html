@@ -1,14 +1,34 @@
 <app-side-bar></app-side-bar>
 <app-header-bar
   [params]="{
-  title: 'Registro de Cliente',
-  description: 'Gestiona la información de clientes',
-  name: 'Juan Pérez',
-  aux: false,
-  aux2: false,
-}">
+    title: 'Registro de Cliente',
+    description: 'Gestiona la información de clientes',
+    name: 'Juan Pérez',
+    aux: false,
+    aux2: true,
+  }"
+  (openModal)="openModal()"
+>
 </app-header-bar>
 
 <app-client-list
-  [clients]="clients"
-></app-client-list>
+  [clients]=clients
+  (editClient)="openEditModal($event)"
+/>
+
+<app-client-form-modal
+  *ngIf="showModal"
+  (modalClosed)="closeModal()"
+  (formSubmitted)="onFormSubmitted($event)"
+>
+</app-client-form-modal>
+
+<app-client-form-edit-modal
+  *ngIf="showEditModal"
+  (modalClosed)="closeModal()"
+  (onDelete)="onDeleteClient($event)"
+  [client]="selectedClient"
+  (formEdited)="onFormEdited($event)"
+
+>
+</app-client-form-edit-modal>
