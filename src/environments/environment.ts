@@ -6,5 +6,5 @@
   loginEndpointPath:'/users/signin',
   propertyEndpointPath:'/properties',
   clientEndpointPath:'/clients',
-
+  configEndpointPath:'/config'
 };

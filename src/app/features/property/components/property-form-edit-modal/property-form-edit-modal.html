@@ -15,11 +15,11 @@
 
       <label>
         <input class="input" type="text" placeholder="" required formControlName="price">
-        <span>Precio</span>
+        <span>Precio (soles)</span>
       </label>
     </div>
-    <app-classic-button [disabled]="form2.invalid">Editar</app-classic-button>
-    <app-classic-button (click)="close()" type="button" >Cancelar</app-classic-button>
-    <app-classic-button (click)="deleteForm($event)" class="delete-button" type="button">Eliminar</app-classic-button>
+      <app-classic-button [disabled]="form2.invalid" class="edit-button">Editar</app-classic-button>
+      <app-classic-button (click)="close()" type="button" class="cancel-button">Cancelar</app-classic-button>
+      <app-classic-button (click)="deleteForm($event)" class="delete-button" type="button">Eliminar</app-classic-button>
   </form>
 </div>

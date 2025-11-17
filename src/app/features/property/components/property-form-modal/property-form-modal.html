@@ -15,10 +15,10 @@
 
       <label>
         <input class="input" type="text" placeholder="" required formControlName="price">
-        <span>Precio</span>
+        <span>Precio (soles)</span>
       </label>
     </div>
-    <app-classic-button [disabled]="form.invalid" >Confirmar</app-classic-button>
+    <app-classic-button [disabled]="form.invalid" class="submit-button" >Confirmar</app-classic-button>
     <app-classic-button (click)="close()" class="cancel-button" type="button" >Cancelar</app-classic-button>
   </form>
 </div>

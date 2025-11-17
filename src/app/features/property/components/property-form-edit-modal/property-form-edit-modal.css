@@ -16,20 +16,21 @@
   font-weight: 300;
   display: flex;
   flex-direction: column;
-  max-width: 500px;
-  padding: 1.8rem;
+  width: 20vw;
+  padding: 1rem;
   border-radius: 30px;
   position: relative;
   background-color: #ffffff;
   z-index: 0;
   line-height: 19px;
   gap: 10px;
+  align-items: center;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
 }
 
 
 .form-title {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
   position: relative;
   display: flex;
@@ -42,8 +43,9 @@
 .inputs-container{
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
   gap:4vh;
+  width: 85%;
+  margin: 10px;
 }
 
 .form label {
@@ -70,8 +72,8 @@
 }
 
 .form label .input:placeholder-shown + span {
-  top: 12.5px;
-  font-size: 14px;
+  top: 12px;
+  font-size: 12px;
 }
 
 .form label .input:focus + span,.form label .input:valid + span {
@@ -82,15 +84,32 @@
 }
 
 .input {
-  font-size:16px;
+  font-size:15px;
+
 }
 
 :host ::ng-deep app-classic-button.delete-button button{
   background-color: #d32626;
   outline: 3px #d32626 solid;
+  width: 15vw;
 }
 
 :host ::ng-deep app-classic-button.delete-button button:hover{
   background-color: #F3F3F5;
   color: #d32626;
+}
+
+:host ::ng-deep app-classic-button.edit-button button{
+  width: 15vw;
+}
+
+:host ::ng-deep app-classic-button.cancel-button button{
+  width: 15vw;
+  background-color: #026d94;
+  outline: 3px #026d94 solid;
+}
+
+:host ::ng-deep app-classic-button.cancel-button button:hover{
+  background-color: #F3F3F5;
+  color: #026d94;
 }

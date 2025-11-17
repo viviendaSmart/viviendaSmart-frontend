@@ -1,11 +1,9 @@
 .card{
   text-align: center;
-
   background: linear-gradient(to bottom, #FAF9FD, #f5f5f6);
 }
 
 .card-header {
-
   display: flex;
   flex-direction: column;
   gap: 2px;

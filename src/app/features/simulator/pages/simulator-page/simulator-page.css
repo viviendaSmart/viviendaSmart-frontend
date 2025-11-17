@@ -1,3 +1,34 @@
 .p{
   color: black;
 }
+
+
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* ajusta al ancho real de tu sidebar */
+app-side-bar {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* si tu header es fijo, aquí podrías darle z-index, etc. */
+.main-header {
+  flex-shrink: 0;
+}
+
+/* ESTE es el espacio que hace que el componente “baje” */
+.main-content {
+  flex: 1;   /* separa del header y de los bordes */
+  padding-top: 8rem;    /* puedes ajustar esta altura */
+  padding-left: 25rem;
+  box-sizing: border-box;
+}

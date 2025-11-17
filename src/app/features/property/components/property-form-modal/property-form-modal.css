@@ -29,8 +29,8 @@
 
 
 .form-title {
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 25px;
+  font-weight: 600;
   position: relative;
   display: flex;
   justify-content: center;
@@ -53,11 +53,12 @@
 .form label .input {
   background-color: #F3F3F5;
   color: #8e8e8e;
-  width: 100%;
+  width: 15vw;
   padding: 20px 0 05px 10px;
   outline: 0;
   border: 0;
   border-radius: 10px;
+  font-size: 13px;
 }
 
 .form label .input + span {
@@ -86,7 +87,7 @@
 }
 
 
-:host ::ng-deep app-classic-button.cancel-button button{
+:host ::ng-deep app-classic-button.cancel-button button {
   background-color: #026d95;
   outline: 3px #026d95 solid;
 }

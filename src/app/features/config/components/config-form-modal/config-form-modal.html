@@ -1,0 +1,147 @@
+
+<div class="modal">
+  <form class="form" [formGroup]="form" (ngSubmit)="submitForm($event)">
+    <h2 class="form-title">Configuración de crédito</h2>
+
+    <div class="inputs-container">
+      <!-- Fila 1: Tasa y tipo de tasa -->
+      <div class="inputs-first">
+        <p class="input-title">Tipo de tasa</p>
+        <label>
+          <div class="radio-row-1">
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TEA'">
+              <p>TEA</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TES'">
+              <p>TES</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TET'">
+              <p>TET</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TEB'">
+              <p>TEB</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TEM'">
+              <p>TEM</p>
+            </label>
+          </div>
+          <div class="radio-row-1-5">
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TNA'">
+              <p>TNA</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TNS'">
+              <p>TNS</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TNT'">
+              <p>TNT</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TNB'">
+              <p>TNB</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="rateType" [value]="'TNM'">
+              <p>TNM</p>
+            </label>
+          </div>
+
+
+        </label>
+
+        <label>
+          <input
+            class="input"
+            type="number"
+            step="0.01"
+            placeholder=""
+            required
+            formControlName="rate"
+          >
+          <span>Tasa (%)</span>
+        </label>
+
+
+      </div>
+
+      <!-- Fila 2: Moneda -->
+      <div class="inputs-second">
+        <label>
+          <p class="input-title">Moneda</p>
+          <div class="radio-row-2">
+            <label class="radio-option">
+              <input type="radio" formControlName="exchange" [value]="'SOLES'">
+              <p>Soles (PEN)</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="exchange" [value]="'DOLARES'">
+              <p>Dólares (USD)</p>
+            </label>
+
+          </div>
+        </label>
+      </div>
+
+      <!-- Fila 3: Plazo y tipo de plazo -->
+      <div class="inputs-third">
+        <label>
+          <p class="input-title">Periodo de Gracia</p>
+          <div class="radio-row-3">
+            <label class="radio-option">
+              <input type="radio" formControlName="termtype" [value]="'PARCIAL'">
+              <p>Parcial</p>
+            </label>
+
+            <label class="radio-option">
+              <input type="radio" formControlName="termtype" [value]="'TOTAL'">
+              <p>Total</p>
+            </label>
+          </div>
+        </label>
+
+        <label>
+
+          <input
+            class="input"
+            type="number"
+            min="1"
+            placeholder=""
+            required
+            formControlName="term"
+          >
+          <span>Plazo</span>
+        </label>
+      </div>
+
+      <small class="helper-text">
+        * Esta configuración se aplica solo a tu usuario y se usa para la simulación de crédito. *
+      </small>
+    </div>
+
+    <div class="buttons-wrapper">
+      <app-classic-button
+        [disabled]="form.invalid"
+        class="submit-button"
+      >
+        Guardar configuración
+      </app-classic-button>
+    </div>
+
+  </form>
+</div>
