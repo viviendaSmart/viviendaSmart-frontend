@@ -5,6 +5,7 @@ import {Property} from '../../../property/models/property.entity';
 import {Client} from '../../models/client.entity';
 import {AuthService} from '../../../../shared/services/authentication.service';
 import {UserService} from '../../../IAM/services/user.service';
+import {Config} from '../../../config/models/config.entity';
 
 @Component({
   selector: 'app-client-form-modal',

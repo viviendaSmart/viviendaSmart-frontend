@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="selection-card" [formGroup]="form">
+    <div class="selection-card-header">
+      <span class="selection-card-title">Selección de Datos</span>
+    </div>
+
+    <div class="selection-card-row">
+      <!-- Vivienda seleccionada -->
+      <label class="field">
+        <span class="field-label">Vivienda seleccionada 🏠</span>
+        <select class="field-input" formControlName="address">
+          <option [ngValue]="null">-- Selecciona una vivienda --</option>
+          <option *ngFor="let v of viviendas" [ngValue]="v.address">
+            {{ v.address }}
+          </option>
+        </select>
+      </label>
+
+      <!-- Cliente seleccionado -->
+      <label class="field">
+        <span class="field-label">Cliente seleccionado 👤</span>
+        <select class="field-input" formControlName="dni">
+          <option [ngValue]="null">-- Selecciona un cliente --</option>
+          <option *ngFor="let c of clientes" [ngValue]="c.dni">
+            {{ c.dni }}
+          </option>
+        </select>
+      </label>
+    </div>
+  </div>
+</div>

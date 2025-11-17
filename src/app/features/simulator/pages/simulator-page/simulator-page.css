@@ -30,5 +30,8 @@ app-side-bar {
   flex: 1;   /* separa del header y de los bordes */
   padding-top: 8rem;    /* puedes ajustar esta altura */
   padding-left: 25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   box-sizing: border-box;
 }

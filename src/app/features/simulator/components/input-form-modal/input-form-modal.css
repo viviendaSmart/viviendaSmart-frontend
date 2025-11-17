@@ -1,0 +1,64 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 15vw;
+}
+
+.selection-card {
+  width: 80%;
+  border-radius: 10px;
+  background: rgba(0, 165, 206, 0.71);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.selection-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+
+.selection-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 0.5rem;
+}
+
+.selection-card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* dos columnas en una fila */
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field-input {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #c0dfee;
+  font-size: 0.9rem;
+  outline: none;
+  font-family: Bahnschrift, sans-serif;
+  background: #ffffff;
+}
+
+.field-input:focus {
+  border-color: #00A6CF;
+  box-shadow: 0 0 0 2px rgba(0, 166, 207, 0.2);
+}

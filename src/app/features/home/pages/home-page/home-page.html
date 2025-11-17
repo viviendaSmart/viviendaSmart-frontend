@@ -2,8 +2,8 @@
 <app-header-bar
   [params]="{
   title: 'Dashboard',
-  description: 'Bienvenido, Juan Pérez (Asesor)',
-  name: 'Juan Pérez',
+  description: 'Bienvenido, ' + loadFullName(),
+  name: loadFullName(),
   aux: true,
   aux2: false
 }">

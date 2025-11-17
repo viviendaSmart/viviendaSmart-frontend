@@ -5,6 +5,7 @@ import {Property} from '../../../property/models/property.entity';
 import {Client} from '../../models/client.entity';
 import {PropertyService} from '../../../property/services/property.service';
 import {AuthService} from '../../../../shared/services/authentication.service';
+import {Config} from '../../../config/models/config.entity';
 
 @Component({
   selector: 'app-client-form-edit-modal',
@@ -27,21 +28,28 @@ export class ClientFormEditModal implements OnInit {
               private authService: AuthService,) {}
 
   ngOnInit() {
-    this.form2 = this.fb.group({
-      dni: [this.client?.dni || '', Validators.required],
-      monthlyIncome: [ this.client?.monthlyIncome || '',Validators.required],
-      ocupation: [this.client?.ocupation || '', Validators.required],
-      name: [this.client?.name || '', Validators.required],
-      surname: [this.client?.surname || '', Validators.required],
-      business: [this.client?.business || '', Validators.required],
-      earningtype: [this.client?.earningtype || '', Validators.required],
-      credithistory: [this.client?.credithistory || '', Validators.required],
-      support: [this.client?.support || '', Validators.required],
-      address: [this.client?.address || '', Validators.required],
-      maritalStatus: [this.client?.maritalStatus || '', Validators.required],
-      phoneNumber: [this.client?.phoneNumber || '', Validators.required],
-    })
+    this.buildForm()
+
   }
+
+  private buildForm() {
+    this.form2 = this.fb.group({
+      dni: [this.client ? (this.client as any).dni : '', [Validators.required, Validators.min(0)]],
+      monthlyIncome: [this.client ? (this.client as any).monthlyIncome : '', Validators.required],
+      ocupation: [this.client ? (this.client as any).ocupation : '', Validators.required],
+      business: [this.client ? (this.client as any).business : '', [Validators.required, Validators.min(1)]],
+      name: [this.client ? (this.client as any).name : '', [Validators.required, Validators.min(1)]],
+      surname: [this.client ? (this.client as any).surname : '', Validators.required],
+      earningtype: [this.client ? (this.client as any).earningtype : '', Validators.required],
+      credithistory: [this.client ? (this.client as any).credithistory : '', [Validators.required, Validators.min(1)]],
+      support: [this.client ? (this.client as any).support : '', Validators.required],
+      address: [this.client ? (this.client as any).address : '', Validators.required],
+      maritalStatus: [this.client ? (this.client as any).maritalStatus : '', [Validators.required, Validators.min(1)]],
+      phoneNumber: [this.client ? (this.client as any).phoneNumber : '', Validators.required],
+    });
+  }
+
+
   editForm(event: Event): void {
     event.preventDefault();
     if (this.form2.valid) {

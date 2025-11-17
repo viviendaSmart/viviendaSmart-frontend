@@ -9,13 +9,13 @@
       <!-- Precio Vivienda -->
       <label class="field">
         <span class="field-label">Precio Vivienda (S/)</span>
-        <input type="number" class="field-input" formControlName="precioVivienda" />
+        <input type="number" class="field-input" formControlName="price" />
       </label>
 
       <!-- Aporte Inicial -->
       <label class="field">
         <span class="field-label">Aporte Inicial (S/)</span>
-        <input type="number" class="field-input" formControlName="aporteInicial" />
+        <input type="number" class="field-input" formControlName="initalPayment" />
       </label>
 
       <!-- Bono -->
@@ -27,23 +27,24 @@
       <!-- Tipo de Tasa -->
       <label class="field">
         <span class="field-label">Tipo de Tasa</span>
-        <select class="field-input" formControlName="tipoTasa">
+        <select class="field-input" formControlName="rateType">
           <option value="TEA">TEA</option>
+          <option value="TES">TES</option>
+          <option value="TET">TET</option>
+          <option value="TEB">TEB</option>
           <option value="TEM">TEM</option>
-          <option value="TN">Tasa Nominal</option>
+          <option value="TNA">TNA</option>
+          <option value="TNS">TNS</option>
+          <option value="TNT">TNT</option>
+          <option value="TNB">TNB</option>
+          <option value="TNM">TNM</option>
         </select>
       </label>
 
       <!-- Tasa Anual -->
       <label class="field">
         <span class="field-label">Tasa (%)</span>
-        <input type="number" class="field-input" formControlName="tasaAnual" />
-      </label>
-
-      <!-- Capitalizaciones/Año -->
-      <label class="field">
-        <span class="field-label">Capitalizaciones/Año</span>
-        <input type="number" class="field-input" formControlName="capsAnuales" />
+        <input type="number" class="field-input" formControlName="rate" />
       </label>
 
       <!-- Plazo (meses) -->
@@ -55,8 +56,7 @@
       <!-- Tipo de Gracia -->
       <label class="field">
         <span class="field-label">Tipo de Gracia</span>
-        <select class="field-input" formControlName="tipoGracia">
-          <option value="NINGUNO">Ninguno</option>
+        <select class="field-input" formControlName="termtype">
           <option value="PARCIAL">Parcial</option>
           <option value="TOTAL">Total</option>
         </select>
@@ -64,24 +64,19 @@
 
       <!-- Meses de Gracia -->
       <label class="field">
-        <span class="field-label">Meses de Gracia</span>
-        <input type="number" class="field-input" formControlName="mesesGracia" />
+        <span class="field-label">Días de Gracia</span>
+        <input type="number" class="field-input" formControlName="term" />
       </label>
 
       <!-- Moneda -->
       <label class="field">
         <span class="field-label">Moneda</span>
-        <select class="field-input" formControlName="moneda">
-          <option value="PEN">Soles (S/)</option>
-          <option value="USD">Dólares ($)</option>
+        <select class="field-input" formControlName="exchange">
+          <option value="SOLES">Soles (S/)</option>
+          <option value="DOLARES">Dólares ($)</option>
         </select>
       </label>
 
-      <!-- Tasa Descuento -->
-      <label class="field">
-        <span class="field-label">Tasa Descuento (%)</span>
-        <input type="number" class="field-input" formControlName="tasaDescuento" />
-      </label>
     </div>
   </div>
 </div>
