@@ -3,13 +3,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 15vw;
 }
 
 .selection-card {
-  width: 80%;
+  width: 100%;
   border-radius: 10px;
-  background: rgba(0, 165, 206, 0.71);
+  background: linear-gradient(to bottom, #4fb5cd, #0590c3);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: column;
@@ -43,7 +42,7 @@
 }
 
 .field-label {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 

@@ -8,6 +8,8 @@ import {Property} from '../../../property/models/property.entity';
 import {PropertyService} from '../../../property/services/property.service';
 import {ClientService} from '../../../client/services/client.service';
 import {Client} from '../../../client/models/client.entity';
+import {SimulationRequest} from '../../models/simulation-request';
+import {SimulatorService} from '../../services/simulator.service';
 @Component({
   selector: 'app-simulator-page',
   imports: [
@@ -20,22 +22,40 @@ import {Client} from '../../../client/models/client.entity';
   styleUrl: './simulator-page.css'
 })
 export class SimulatorPage implements OnInit {
+  plazo!: number;
 
+  selectedProperty: Property | null = null;
+  selectedClient: Client | null = null;
   constructor(private authService: AuthService,
               private propertyService: PropertyService,
-              private clientService: ClientService,) { }
+              private clientService: ClientService,
+              private simulatorService: SimulatorService) { }
   properties: Property[] = [];
   clients: Client[] = [];
+
   ngOnInit() {
     this.loadClientsAndProperties()
   }
 
+  onSelectionChange(selection: { address: string | null; dni: string | null }) {
+    const { address, dni } = selection;
+
+    this.selectedProperty = this.properties.find(p => p.address === address) ?? null;
+    console.log(this.selectedProperty);
+    this.selectedClient   = this.clients.find(c => c.dni === dni) ?? null;
+    console.log(this.selectedClient);
+  }
+
+  onPlazoChange(plazo: number) {
+    this.plazo = plazo;
+    console.log('Plazo recibido desde CreditData:', this.plazo);
+  }
 
   loadClientsAndProperties() {
     const user = JSON.parse(localStorage.getItem('user')|| '{}');
     const userId = user.id;
+
     // Cargar Clientes
-    console.log(userId);
     this.clientService.getByUserId(userId).subscribe({
       next: (clients: Client[]) => {
         this.clients = clients;
@@ -58,6 +78,20 @@ export class SimulatorPage implements OnInit {
       }
     });
 
+  }
+
+  onSimulate(request: SimulationRequest) {
+    console.log('SimulationRequest que llega del hijo:', request);
+
+    this.simulatorService.simulate(request).subscribe({
+      next: (response) => {
+        console.log('Resultado simulación:', response);
+        // aquí luego guardas en una variable y lo muestras en pantalla
+      },
+      error: (err) => {
+        console.error('Error en simulación:', err);
+      }
+    });
   }
 
 }

@@ -1,83 +1,72 @@
 <div class="container">
   <div class="loan-card" [formGroup]="form">
     <div class="loan-card-header">
-      <span class="loan-card-icon">$</span>
-      <span class="loan-card-title">Datos del Préstamo</span>
+      <span class="loan-card-title">DATOS DEL CRÉDITO</span>
     </div>
 
     <div class="loan-card-grid">
       <!-- Precio Vivienda -->
       <label class="field">
         <span class="field-label">Precio Vivienda (S/)</span>
-        <input type="number" class="field-input" formControlName="price" />
-      </label>
-
-      <!-- Aporte Inicial -->
-      <label class="field">
-        <span class="field-label">Aporte Inicial (S/)</span>
-        <input type="number" class="field-input" formControlName="initalPayment" />
+        <input type="number" class="field-input" formControlName="price" readonly />
       </label>
 
       <!-- Bono -->
       <label class="field">
-        <span class="field-label">Bono (S/)</span>
-        <input type="number" class="field-input" formControlName="bono" />
+        <span class="field-label">Bono (BFH)</span>
+        <select class="field-input" formControlName="bono">
+          <option
+            *ngFor="let b of bonos"
+            [ngValue]="b.value"
+            [disabled]="!availableBonos.has(b.value)">
+            {{ b.label }}
+          </option>
+        </select>
       </label>
 
       <!-- Tipo de Tasa -->
       <label class="field">
         <span class="field-label">Tipo de Tasa</span>
-        <select class="field-input" formControlName="rateType">
-          <option value="TEA">TEA</option>
-          <option value="TES">TES</option>
-          <option value="TET">TET</option>
-          <option value="TEB">TEB</option>
-          <option value="TEM">TEM</option>
-          <option value="TNA">TNA</option>
-          <option value="TNS">TNS</option>
-          <option value="TNT">TNT</option>
-          <option value="TNB">TNB</option>
-          <option value="TNM">TNM</option>
-        </select>
+        <input class="field-input" formControlName="rateType" readonly>
       </label>
 
       <!-- Tasa Anual -->
       <label class="field">
         <span class="field-label">Tasa (%)</span>
-        <input type="number" class="field-input" formControlName="rate" />
+        <input type="number" class="field-input" formControlName="rate" readonly />
       </label>
 
       <!-- Plazo (meses) -->
       <label class="field">
-        <span class="field-label">Plazo (meses)</span>
+        <span class="field-label">Plazo de pago (meses)</span>
         <input type="number" class="field-input" formControlName="plazo" />
       </label>
 
       <!-- Tipo de Gracia -->
       <label class="field">
         <span class="field-label">Tipo de Gracia</span>
-        <select class="field-input" formControlName="termtype">
-          <option value="PARCIAL">Parcial</option>
-          <option value="TOTAL">Total</option>
-        </select>
+        <input class="field-input" formControlName="termtype" readonly>
       </label>
 
-      <!-- Meses de Gracia -->
+      <!-- Días de Gracia -->
       <label class="field">
         <span class="field-label">Días de Gracia</span>
-        <input type="number" class="field-input" formControlName="term" />
+        <input type="number" class="field-input" formControlName="term" readonly/>
       </label>
 
       <!-- Moneda -->
       <label class="field">
         <span class="field-label">Moneda</span>
-        <select class="field-input" formControlName="exchange">
-          <option value="SOLES">Soles (S/)</option>
-          <option value="DOLARES">Dólares ($)</option>
-        </select>
+        <input class="field-input" formControlName="exchange" readonly>
       </label>
 
     </div>
+    <button
+      type="button"
+      (click)="onSimulate()"
+      [disabled]="form.invalid">
+      Simular crédito
+    </button>
   </div>
 </div>
 

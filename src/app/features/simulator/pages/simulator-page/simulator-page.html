@@ -10,15 +10,24 @@
 </app-header-bar>
 
 <div class="main-content">
-  <app-input-form-modal
-  [viviendas]="properties"
-  [clientes]="clients"
-  >
+  <div class="data-select">
+    <app-input-form-modal
+      [viviendas]="properties"
+      [clientes]="clients"
+      (selectionChange)="onSelectionChange($event)"
+    >
+    </app-input-form-modal>
+  </div>
 
 
-  </app-input-form-modal>
+
 
   <app-credit-data
+    (plazoChange)="onPlazoChange($event)"
+    [selectedProperty]="selectedProperty"
+    [selectedClient]="selectedClient"
+    (simulate)="onSimulate($event)"
+  >
 
   ></app-credit-data>
 </div>

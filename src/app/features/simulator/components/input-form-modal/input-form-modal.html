@@ -1,13 +1,13 @@
 <div class="container">
   <div class="selection-card" [formGroup]="form">
     <div class="selection-card-header">
-      <span class="selection-card-title">Selección de Datos</span>
+      <span class="selection-card-title">SELECCIÓN DE DATOS</span>
     </div>
 
     <div class="selection-card-row">
       <!-- Vivienda seleccionada -->
       <label class="field">
-        <span class="field-label">Vivienda seleccionada 🏠</span>
+        <span class="field-label">Inmueble seleccionado 🏠</span>
         <select class="field-input" formControlName="address">
           <option [ngValue]="null">-- Selecciona una vivienda --</option>
           <option *ngFor="let v of viviendas" [ngValue]="v.address">
