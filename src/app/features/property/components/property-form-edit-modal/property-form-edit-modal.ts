@@ -40,7 +40,6 @@ export class PropertyFormEditModal implements OnInit{
   }
 
   editForm(event: Event): void {
-
     event.preventDefault();
     if (this.form2.valid) {
       this.formEdited.emit(this.form2.value);

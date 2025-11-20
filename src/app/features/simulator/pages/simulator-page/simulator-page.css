@@ -18,11 +18,12 @@ app-side-bar {
   margin-left: 320px;
   padding-top: 7rem;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;  /* que las cards se peguen a la izquierda */
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1.5rem;
   padding-bottom: 1.5rem;
   box-sizing: border-box;
 }
+
 

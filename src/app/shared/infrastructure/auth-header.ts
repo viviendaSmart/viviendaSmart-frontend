@@ -19,7 +19,7 @@ export const AuthHeader: HttpInterceptorFn = (req, next) => {
     const authReq = req.clone({
       headers: req.headers.set(`Authorization`, `Bearer ${token}`)
     });
-    console.log('✅ Token agregado:', authReq.headers.get('Authorization')); // Debug
+    //console.log('✅ Token agregado:', authReq.headers.get('Authorization')); // Debug
     return next(authReq);
   }
   return next(req);

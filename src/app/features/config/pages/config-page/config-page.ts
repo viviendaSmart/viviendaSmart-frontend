@@ -27,12 +27,12 @@ export class ConfigPage implements OnInit {
     this.loadConfig();
   }
   loadConfig() {
-    const user = JSON.parse(localStorage.getItem('user')|| '{}')
+    const user = this.authService.getUser();
     const userId = user.id;
     this.configService.getByUserId(userId).subscribe({
       next: (config: Config) => {
         this.selectedConfig = config;
-        console.log('Config cargada:', this.selectedConfig);
+        //console.log('Config cargada:', this.selectedConfig);
       },
       error: (err) => {
         console.error('Error al obtener la config:', err);
@@ -50,7 +50,7 @@ export class ConfigPage implements OnInit {
       };
       this.configService.postConfig(newConfig).subscribe({
         next: (created) => {
-          console.log('✅ Config creada:', created);
+          //console.log('✅ Config creada:', created);
           this.selectedConfig = created;   // guarda la nueva config en memoria
           this.loadConfig();       // opcional: recargar por si el backend modifica algo
         },
@@ -66,7 +66,7 @@ export class ConfigPage implements OnInit {
 
       this.configService.putConfig(updatedConfig).subscribe({
         next: (updated) => {
-          console.log('✅ Config actualizada:', updated);
+          //console.log('✅ Config actualizada:', updated);
           this.selectedConfig = updated;
           this.loadConfig();       // opcional
         },

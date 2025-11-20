@@ -17,15 +17,19 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 12px;
 }
-
 
 .loan-card-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.loan-card-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px 16px;
 }
 
@@ -50,4 +54,13 @@
   font-size: 0.8rem;
   background: #f9f9f9;
   font-family: Bahnschrift, sans-serif;
+}
+
+:host ::ng-deep app-classic-button.clean-button button {
+  background-color: #d22626;
+  outline: 3px #d22626 solid;
+}
+:host ::ng-deep app-classic-button.clean-button button:hover {
+  color: #d22626;
+  background-color: #F3F3F5;
 }

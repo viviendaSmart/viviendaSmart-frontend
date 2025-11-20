@@ -6,6 +6,7 @@ import {
   Output
 } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -15,7 +16,10 @@ import { NgForOf } from '@angular/common';
 import { ConfigService } from '../../../config/services/config.service';
 import { Property } from '../../../property/models/property.entity';
 import {Client} from '../../../client/models/client.entity';
-import {SimulationRequest} from '../../models/simulation-request'; // ajusta la ruta según tu proyecto
+import {SimulationRequest} from '../../models/simulation-request';
+import {AuthService} from '../../../../shared/services/authentication.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ClassicButtonComponent} from '../../../../shared/components/classic-button/classic-button.component'; // ajusta la ruta según tu proyecto
 
 // TIPOS DE BONOS
 type BonoType = 'NONE' | 'AVN' | 'CSP' | 'MV';
@@ -27,7 +31,7 @@ interface BonoOption {
 
 @Component({
   selector: 'app-credit-data',
-  imports: [ReactiveFormsModule, NgForOf],
+  imports: [ReactiveFormsModule, NgForOf, ClassicButtonComponent],
   templateUrl: './credit-data.html',
   styleUrl: './credit-data.css'
 })
@@ -39,6 +43,7 @@ export class CreditData implements OnInit {
 
   @Output() plazoChange = new EventEmitter<number>();
   @Output() simulate = new EventEmitter<SimulationRequest>();
+  @Output() clearSimulate = new EventEmitter<void>();
 
   @Input()
   set selectedProperty(value: Property | null) {
@@ -68,20 +73,34 @@ export class CreditData implements OnInit {
 
   availableBonos = new Set<BonoType>(['NONE']);
 
+  initialCostDefinitions = [
+    { label: 'Costos Notariales (S/)',  type: 'INITIAL',  periodNumber: null },
+    { label: 'Costos Registrales (S/)', type: 'INITIAL',  periodNumber: null },
+    { label: 'Comisión Estudio (%)',   type: 'INITIAL', periodNumber: null },
+    { label: 'Comisión Activación (%)',type: 'INITIAL', periodNumber: null },
+  ];
+
+  periodicCostDefinitions = [
+    { label: 'Comisión Periódica (S/)',    type: 'PERIODIC', periodNumber: null },
+    { label: 'Portes (S/)',                type: 'PERIODIC', periodNumber: null },
+    { label: 'Gasto Administración (S/)',  type: 'PERIODIC', periodNumber: null },
+    { label: 'Seguro Desgravamen (%)',     type: 'PERIODIC', periodNumber: null },
+  ];
+
+
   constructor(
     private fb: FormBuilder,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private authService: AuthService,
+    private _snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
     this.buildForm();
     this.loadConfigAndPatchForm();
-    this.listenPlazoChanges();
     if (this._selectedProperty) {
       this.form.get('price')?.setValue(this._selectedProperty.price, { emitEvent: true });
     }
-    this.form.valueChanges.subscribe(() => this.updateAvailableBonos());
-    this.updateAvailableBonos();
   }
 
   // --------- Métodos privados --------- //
@@ -95,12 +114,27 @@ export class CreditData implements OnInit {
       plazo: [null, [Validators.required, Validators.min(1)]],
       termtype: ['', Validators.required],
       term: [null, [Validators.required, Validators.min(0)]],
-      exchange: ['', Validators.required]
+      exchange: ['', Validators.required],
+      initialPayment: [null, [Validators.required, Validators.min(0)]],
+
+      initialCosts: this.fb.array(this.initialCostDefinitions.map(() => this.fb.control(0))),
+      periodicCosts: this.fb.array(this.periodicCostDefinitions.map(() => this.fb.control(0))),
+
+      cokRateType: ['', Validators.required],
+      cokRate: [null, [Validators.required, Validators.min(0)]],
     });
   }
 
+  get initialCostsArray(): FormArray {
+    return this.form.get('initialCosts') as FormArray;
+  }
+
+  get periodicCostsArray(): FormArray {
+    return this.form.get('periodicCosts') as FormArray;
+  }
+
   private loadConfigAndPatchForm(): void {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const user = this.authService.getUser();
     const userId = user.id;
     if (!userId) return;
 
@@ -120,36 +154,48 @@ export class CreditData implements OnInit {
     });
   }
 
-  private listenPlazoChanges(): void {
-    this.form.get('plazo')?.valueChanges.subscribe((value: number) => {
-      this.plazoChange.emit(value);
-    });
-  }
-
   private updateAvailableBonos(): void {
     const allowed = new Set<BonoType>(['NONE']);
 
-    const credithistory = this.selectedClient?.credithistory;  // boolean
-    const support       = this.selectedClient?.support;        // boolean
-    const monthlyIncome = this.selectedClient?.monthlyIncome;  // número
+    const credithistory = this._selectedClient?.credithistory;  // boolean
+    const support       = this._selectedClient?.support;        // boolean
+    const monthlyIncome = this._selectedClient?.monthlyIncome;  // número
     const size          = this._selectedProperty?.size;        // número
 
-    // Validar historial / soporte
-    if (!credithistory || !support) {
-      console.info(`${this.selectedClient?.dni} no califica al bono por historial crediticio o requisitos de soporte.`);
+    if(this._selectedClient == null || this._selectedProperty == null){
+      return;
+    }
+
+    if (credithistory == false) {
+      this.showError(`El usuario con DNI ${this._selectedClient?.dni} no califica a ningún bono por historial crediticio negativo`);
       this.availableBonos = allowed;
       this.ensureCurrentBonoIsValid(allowed);
       return;
     }
 
-    // Reglas de negocio (solo si pasó los filtros anteriores)
-    if (monthlyIncome && monthlyIncome<= 3715 && size && size< 140) {
-      allowed.add('AVN');
+    if (support == true) {
+      this.showError(`El usuario con DNI ${this._selectedClient?.dni} no califica a ningún bono por haber recibido otro bono/ayuda habitacional`);
+      this.availableBonos = allowed;
+      this.ensureCurrentBonoIsValid(allowed);
+      return;
+    }
+
+    if (size && size< 140) {
+      if (monthlyIncome && monthlyIncome<= 3715) {
+        allowed.add('AVN');
+
+      } else {
+        this.showError(` El usuario con DNI ${this._selectedClient?.dni} no califica al bono AVN por tener un ingreso mensual superior a 3715 soles`);
+      }
+    } else{
+      this.showError(` El usuario con DNI ${this._selectedClient?.dni} no califica al bono AVN por que la vivienda tiene un área mayor o igual a 140 m²`);
     }
 
     if (monthlyIncome && monthlyIncome <= 2706) {
       allowed.add('MV');
       allowed.add('CSP');
+    } else{
+      this.showError(` El usuario con DNI ${this._selectedClient?.dni} no califica a los bonos MV y CSP por tener un ingreso superior a 2706 soles`);
     }
 
     this.availableBonos = allowed;
@@ -163,42 +209,83 @@ export class CreditData implements OnInit {
     }
   }
 
-  onSimulate(): void {
-    if (!this.form.valid) {
-      this.form.markAllAsTouched();
-      return;
-    }
+  private buildCostsArray(): any[] {
+    const costs: any[] = [];
 
-    if (!this._selectedClient || !this._selectedProperty) {
-      console.warn('Falta seleccionar cliente y propiedad para simular');
-      return;
-    }
+    this.initialCostsArray.controls.forEach((ctrl, index) => {
+      const amount = ctrl.value;
+      if (!amount || amount <= 0) return; // si es 0 o vacío no lo mandamos
 
-    const v = this.form.value;
+      const def = this.initialCostDefinitions[index];
 
-    // mapear el bono a bonusType del backend
-    const bono = v.bono as 'NONE' | 'AVN' | 'CSP' | 'MV';
-    const bonusType = bono === 'NONE' ? null : bono;
+      costs.push({
+        type: def.type,              // INITIAL o PERIODIC
+        amount: amount,              // monto
+        periodNumber: def.periodNumber // null en tu caso
+      });
+    });
+    this.periodicCostsArray.controls.forEach((ctrl, index) => {
+      const amount = ctrl.value;
+      if (!amount || amount <= 0) return; // si es 0 o vacío no lo mandamos
 
-    const request = new SimulationRequest({
-      clientId: this._selectedClient.id!,          // asumiendo que id existe
-      propertyId: this._selectedProperty.id!,      // idem
-      bonusId: null,                               // por ahora
+      const def = this.periodicCostDefinitions[index];
 
-      initialPayment: 0,                           // luego lo puedes sacar del form
-      termMonths: v.plazo,
-      rate: v.rate,
-      rateType: v.rateType,
-      exchange: v.exchange,
+      costs.push({
+        type: def.type,              // INITIAL o PERIODIC
+        amount: amount,              // monto
+        periodNumber: def.periodNumber // null en tu caso
+      });
+    });
+    return costs;
+  }
 
-      graceType: null,                             // por ahora
-      term: v.term ? String(v.term) : null,        // días de gracia como string
+   onSimulate(): void {
+     if (!this.form.valid) {
+       this.form.markAllAsTouched();
+       return;
+     }
 
-      bonusType: bonusType,
-      costs: []                                    // más adelante llenas costos
+     if (!this._selectedClient || !this._selectedProperty) {
+       console.warn('Falta seleccionar cliente y propiedad para simular');
+       return;
+     }
+
+     const v = this.form.value;
+
+     // mapear el bono a bonusType del backend
+     const bono = v.bono as 'NONE' | 'AVN' | 'CSP' | 'MV';
+     const bonusType = bono === 'NONE' ? null : bono;
+
+        const request = new SimulationRequest({
+
+          clientId: this._selectedClient.id!,
+          propertyId: this._selectedProperty.id!,
+
+          initialPayment: v.initialPayment,
+          termMonths: v.plazo,
+          rate: v.rate,
+          rateType: v.rateType,
+          exchange: v.exchange,
+
+          graceType: v.termtype,
+          term: v.term ? String(v.term) : null,
+          bonusType: v.bono,
+
+          cokRate: v.cokRate ? Number(v.cokRate) : 0,
+          cokRateType: v.cokRateType ? String(v.cokRateType) : '',
+          costs: this.buildCostsArray()
+
+
     });
 
     this.simulate.emit(request);
   }
 
+  cleanSimulate(){
+    this.clearSimulate.emit();
+  }
+
+  private showError(message: string): void {
+    this._snackBar.open(message, '', {duration: 5000});
+  }
 }

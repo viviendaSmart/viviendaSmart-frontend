@@ -46,7 +46,7 @@ export class PropertyList {
     const randomIndex = Math.floor(Math.random() * this.defaultImages.length);
     img.src = this.defaultImages[randomIndex];
 
-    console.warn(`⚠️ Imagen no encontrada, Usando ${img.src}`);
+    //console.warn(`⚠️ Imagen no encontrada, Usando ${img.src}`);
   }
   onShowEditForm(property: Property){
     //console.log('👉 Clic en editar:', property);

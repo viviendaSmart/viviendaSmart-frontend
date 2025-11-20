@@ -38,7 +38,7 @@
 
       <!-- Plazo (meses) -->
       <label class="field">
-        <span class="field-label">Plazo de pago (meses)</span>
+        <span class="field-label">Plazo en meses</span>
         <input type="number" class="field-input" formControlName="plazo" />
       </label>
 
@@ -60,13 +60,93 @@
         <input class="field-input" formControlName="exchange" readonly>
       </label>
 
+      <!-- Tipo de Tasa COK -->
+      <label class="field">
+        <span class="field-label">Tipo de Tasa COK</span>
+        <select class="field-input" formControlName="cokRateType">
+          <option [ngValue]="null" disabled selected>Seleccione tipo de tasa</option>
+          <option value="TEA">TEA</option>
+          <option value="TES">TES</option>
+          <option value="TET">TET</option>
+          <option value="TEB">TEB</option>
+          <option value="TEM">TEM</option>
+        </select>
+      </label>
+
+      <!-- Tasa COK -->
+      <label class="field">
+        <span class="field-label">Tasa COK (%)</span>
+        <input type="number" class="field-input" formControlName="cokRate" />
+      </label>
+
     </div>
-    <button
+
+    <div class="loan-card-header">
+      <span class="loan-card-title">COSTOS INICIALES</span>
+    </div>
+
+    <div class="loan-card-grid-2">
+      <!-- Cuota Inicial -->
+      <label class="field">
+        <span class="field-label">Cuota Inicial (%)</span>
+        <input type="number" class="field-input" min="3" formControlName="initialPayment" />
+      </label>
+      <ng-container formArrayName="initialCosts">
+        <label
+          class="field"
+          *ngFor="let ctrl of initialCostsArray.controls; let i = index"
+        >
+          <span class="field-label">
+            {{ initialCostDefinitions[i].label }}
+          </span>
+          <input
+            type="number"
+            class="field-input"
+            [formControlName]="i"
+          />
+        </label>
+      </ng-container>
+    </div>
+
+
+    <div class="loan-card-header">
+      <span class="loan-card-title">COSTOS PERIODICOS</span>
+    </div>
+
+    <div class="loan-card-grid-2">
+      <ng-container formArrayName="periodicCosts">
+        <label
+          class="field"
+          *ngFor="let ctrl of periodicCostsArray.controls; let i = index"
+        >
+          <span class="field-label">
+            {{ periodicCostDefinitions[i].label }}
+          </span>
+          <input
+            type="number"
+            class="field-input"
+            [formControlName]="i"
+          />
+        </label>
+      </ng-container>
+    </div>
+
+    <app-classic-button
       type="button"
       (click)="onSimulate()"
       [disabled]="form.invalid">
       Simular crédito
-    </button>
+    </app-classic-button>
+
+    <app-classic-button
+      type="button"
+      class="clean-button"
+      (click)="cleanSimulate()"
+    >
+      Limpiar Simulacion
+    </app-classic-button>
+
+
   </div>
 </div>
 

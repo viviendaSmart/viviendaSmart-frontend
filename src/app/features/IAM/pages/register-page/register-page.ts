@@ -49,7 +49,7 @@ export class RegisterPage {
             next: (loginResponse) => {
               this.authService.saveToken(loginResponse.token);
               this.authService.saveUser({username: loginResponse.user});
-              this.router.navigate(['/home']);
+              this.router.navigate(['/login']);
               this.loading = false;
             },
             error: () => this.showError('Error al hacer login después del registro')

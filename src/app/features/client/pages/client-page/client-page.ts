@@ -40,13 +40,13 @@ export class ClientPage implements OnInit {
     this.loadClients();
   }
   loadClients() {
-    const user = JSON.parse(localStorage.getItem('user')|| '{}');
+    const user = this.authService.getUser();
     const userId = user.id;
-    console.log(userId);
+    //console.log(userId);
     this.clientService.getByUserId(userId).subscribe({
       next: (clients: Client[]) => {
         this.clients = clients;
-        console.log(this.clients);
+        //console.log(this.clients);
       },
       error: (error) => {
         console.log("Error al cargar clientes",error);
@@ -67,6 +67,7 @@ export class ClientPage implements OnInit {
   closeModal() {
     this.showModal = false;
     this.showEditModal = false;
+    this.selectedClient = null;
   }
 
   onFormSubmitted(formValue: any) {
@@ -78,7 +79,7 @@ export class ClientPage implements OnInit {
 
     this.clientService.postClient(newClient).subscribe({
       next: () => {
-        console.log('Formulario enviado:', newClient);
+        //console.log('Formulario enviado:', newClient);
         this.loadClients();
         this.showModal = false;
       },
@@ -102,7 +103,7 @@ export class ClientPage implements OnInit {
 
     this.clientService.putClient(updatedClient).subscribe({
       next: () => {
-        console.log('✅ Cliente Actualizado:', updatedClient);
+        //console.log('✅ Cliente Actualizado:', updatedClient);
         this.loadClients();   // recarga la lista
         this.showEditModal = false;
         this.selectedClient = null;
@@ -116,7 +117,7 @@ export class ClientPage implements OnInit {
 
     this.clientService.deleteClient(client).subscribe({
       next: () => {
-        console.log('🗑️ Cliente eliminado:', client);
+        //console.log('🗑️ Cliente eliminado:', client);
         this.loadClients();   // recarga la lista
         this.closeModal();    // cierra modal y limpia selectedClient
       },

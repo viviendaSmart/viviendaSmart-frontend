@@ -1,0 +1,250 @@
+<div class="container" *ngIf="simulationResult as sim">
+  <div class="selection-card">
+    <!-- ENCABEZADO -->
+    <div class="selection-card-header">
+      <span class="selection-card-title">RESULTADO DE LA SIMULACIÓN</span>
+    </div>
+
+    <!-- RESUMEN DEL CRÉDITO -->
+    <div class="selection-card-header">
+      <span class="selection-card-title">Resumen del crédito</span>
+    </div>
+
+    <div class="selection-card-row">
+      <label class="field">
+        <span class="field-label">Saldo a financiar del activo (S/)</span>
+        <span class="field-input">
+          {{ sim.financedBalance | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Bono BFH (S/)</span>
+        <span class="field-input">
+          {{ sim.bonusAmount | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Monto del préstamo (S/)</span>
+        <span class="field-input">
+          {{ sim.loanAmount | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Tasa efectiva mensual (i)</span>
+        <span class="field-input">
+          {{ sim.monthlyRate | percent:'1.4-4' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Cuota mensual (S/)</span>
+        <span class="field-input">
+          {{ sim.monthlyInstallment | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">N° total de cuotas</span>
+        <span class="field-input">
+          {{ sim.termMonths }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">N° cuotas por año</span>
+        <span class="field-input">
+          {{ sim.installmentsPerYear }}
+        </span>
+      </label>
+    </div>
+
+    <!-- TASAS DE SEGUROS POR PERIODO -->
+    <div class="selection-card-header">
+      <span class="selection-card-title">Tasas de seguros por periodo</span>
+    </div>
+
+    <div class="selection-card-row">
+      <label class="field">
+        <span class="field-label">Seguro desgravamen período (TSD)</span>
+        <span class="field-input">
+          {{ sim.lifeInsuranceRatePeriod | percent:'1.4-4' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Seguro riesgo período (TSR)</span>
+        <span class="field-input">
+          {{ sim.riskInsuranceRatePeriod | percent:'1.4-4' }}
+        </span>
+      </label>
+    </div>
+
+    <!-- TOTALES DEL PRÉSTAMO -->
+    <div class="selection-card-header">
+      <span class="selection-card-title">Totales del préstamo</span>
+    </div>
+
+    <div class="selection-card-row">
+      <label class="field">
+        <span class="field-label">Intereses totales (S/)</span>
+        <span class="field-input">
+          {{ sim.totalInterest | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Total pagado en cuotas (S/)</span>
+        <span class="field-input">
+          {{ sim.totalAmountPaid | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Amortización total de capital (S/)</span>
+        <span class="field-input">
+          {{ sim.totalPrincipalAmortization | number:'1.2-2' }}
+        </span>
+      </label>
+    </div>
+
+    <!-- TOTALES DE COSTOS -->
+    <div class="selection-card-header">
+      <span class="selection-card-title">Costos y gastos</span>
+    </div>
+
+    <div class="selection-card-row">
+      <label class="field">
+        <span class="field-label">Total seguro desgravamen (S/)</span>
+        <span class="field-input">
+          {{ sim.totalLifeInsurance | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Total seguro de riesgo (S/)</span>
+        <span class="field-input">
+          {{ sim.totalRiskInsurance | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Total comisiones periódicas (S/)</span>
+        <span class="field-input">
+          {{ sim.totalPeriodicCommissions | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Total portes (S/)</span>
+        <span class="field-input">
+          {{ sim.totalPortes | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Total costos iniciales (S/)</span>
+        <span class="field-input">
+          {{ sim.totalInitialCosts | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Total costos periódicos (S/)</span>
+        <span class="field-input">
+          {{ sim.totalPeriodicCosts | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Costo total de la operación (S/)</span>
+        <span class="field-input" style="font-weight: 700;">
+          {{ sim.totalCost | number:'1.2-2' }}
+        </span>
+      </label>
+    </div>
+
+    <!-- INDICADORES FINANCIEROS -->
+    <div class="selection-card-header">
+      <span class="selection-card-title">Indicadores financieros</span>
+    </div>
+
+    <div class="selection-card-row">
+      <label class="field">
+        <span class="field-label">Tasa descuento por periodo (COK)</span>
+        <span class="field-input">
+          {{ sim.discountRatePeriod | percent:'1.4-4' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">VAN (S/)</span>
+        <span class="field-input">
+          {{ sim.van | number:'1.2-2' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">TIR (mensual)</span>
+        <span class="field-input">
+          {{ sim.tir | percent:'1.4-4' }}
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field-label">TCEA</span>
+        <span class="field-input">
+          {{ sim.tcea | percent:'1.4-4' }}
+        </span>
+      </label>
+    </div>
+
+    <!-- TABLA DE AMORTIZACIÓN -->
+    <div class="selection-card-header">
+      <span class="selection-card-title">Tabla de amortización</span>
+    </div>
+
+    <div class="table-wrapper" *ngIf="sim.schedule?.length">
+      <table class="amortization-table">
+        <thead>
+        <tr>
+          <th>Periodo</th>
+          <th>Saldo inicial</th>
+          <th>Cuota</th>
+          <th>Interés</th>
+          <th>Amortización</th>
+          <th>Costos periódicos</th>
+          <th>Total periodo</th>
+          <th>Saldo final</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of sim.schedule">
+          <td>{{ row.period }}</td>
+          <td>{{ row.beginningBalance | number:'1.2-2' }}</td>
+          <td>{{ row.installment | number:'1.2-2' }}</td>
+          <td>{{ row.interest | number:'1.2-2' }}</td>
+          <td>{{ row.principal | number:'1.2-2' }}</td>
+          <td>{{ row.periodicCosts | number:'1.2-2' }}</td>
+          <td>{{ row.totalPeriodCost | number:'1.2-2' }}</td>
+          <td>{{ row.endingBalance | number:'1.2-2' }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div class="container" *ngIf="!simulationResult">
+  <div class="selection-card">
+    <div class="selection-card-header">
+      <span class="selection-card-title">SIN RESULTADOS</span>
+    </div>
+    <p style="padding: 1rem;">
+      Aún no hay una simulación para mostrar. Realiza una simulación primero.
+    </p>
+  </div>
+</div>

@@ -19,7 +19,6 @@ import {PropertyFormEditModal} from '../../components/property-form-edit-modal/p
     PropertyList,
     PropertyFormModal,
     NgIf,
-    ClassicButtonComponent,
     PropertyFormEditModal
   ],
   templateUrl: './property-page.html',
@@ -40,12 +39,12 @@ export class PropertyPage implements OnInit {
 
   }
   loadProperties() {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const user = this.authService.getUser();
     const ownerId = user.id;
     this.propertyService.getByOwnerId(ownerId).subscribe({
       next: (properties: Property[]) => {
         this.properties = properties;
-        console.log(this.properties)
+        //console.log(this.properties)
       },
       error: (error) => {
         console.log('Error al obtener propiedades', error);
@@ -61,7 +60,7 @@ export class PropertyPage implements OnInit {
   openEditModal(property: Property) {
     this.showEditModal = true;
     this.selectedProperty = property;
-    //console.log('📦 Recibida en PropertyPage:', property);
+
   }
 
   onFormSubmitted(formValue: any) {
@@ -70,10 +69,9 @@ export class PropertyPage implements OnInit {
       ...formValue,
       ownerId: user.id
     }
-
     this.propertyService.postProperty(newProperty).subscribe({
       next: () => {
-        console.log('Formulario enviado:', formValue);
+        //console.log('Formulario enviado:', formValue);
         this.loadProperties();
         this.showModal = false;
       },
@@ -94,7 +92,7 @@ export class PropertyPage implements OnInit {
 
     this.propertyService.putProperty(updatedProperty).subscribe({
       next: () => {
-        console.log('✅ Propiedad actualizada:', updatedProperty);
+        //console.log('✅ Propiedad actualizada:', updatedProperty);
         this.loadProperties();   // recarga la lista
         this.showEditModal = false;
         this.selectedProperty = null;
@@ -108,7 +106,7 @@ export class PropertyPage implements OnInit {
 
     this.propertyService.deleteProperty(property).subscribe({
       next: () => {
-        console.log('🗑️ Propiedad eliminada:', property);
+        //console.log('🗑️ Propiedad eliminada:', property);
         this.loadProperties();   // recarga la lista
         this.onModalClosed();    // cierra modal y limpia selectedProperty
       },

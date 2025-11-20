@@ -19,15 +19,18 @@
     </app-input-form-modal>
   </div>
 
-
-
-
   <app-credit-data
     (plazoChange)="onPlazoChange($event)"
     [selectedProperty]="selectedProperty"
     [selectedClient]="selectedClient"
     (simulate)="onSimulate($event)"
+    (clearSimulate)="onCleanSimulate()"
   >
 
-  ></app-credit-data>
+  </app-credit-data>
+
+  <app-response-form-modal
+    [simulationResult]="simulationResult">
+  ></app-response-form-modal>
+
 </div>
