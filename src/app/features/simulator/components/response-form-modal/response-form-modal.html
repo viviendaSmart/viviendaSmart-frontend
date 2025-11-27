@@ -40,23 +40,16 @@
       </label>
 
       <label class="field">
-        <span class="field-label">Cuota mensual (S/)</span>
+        <span class="field-label">N° cuotas por año</span>
         <span class="field-input">
-          {{ sim.monthlyInstallment | number:'1.2-2' }}
+          {{ sim.installmentsPerYear }}
         </span>
       </label>
 
       <label class="field">
         <span class="field-label">N° total de cuotas</span>
         <span class="field-input">
-          {{ sim.termMonths }}
-        </span>
-      </label>
-
-      <label class="field">
-        <span class="field-label">N° cuotas por año</span>
-        <span class="field-input">
-          {{ sim.installmentsPerYear }}
+          {{ sim.totalTerm }}
         </span>
       </label>
     </div>

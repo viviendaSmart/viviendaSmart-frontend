@@ -14,14 +14,14 @@ export class CostItem {
   code!: string;               // "NOTARIAL", "REGISTRAL", "DESGRAVAMEN", etc.
   calcMode!: CostCalcMode;     // FIXED_AMOUNT o PERCENTAGE
   amount!: number;             // BigDecimal -> number (soles o % según calcMode)
-  periodNumber?: number;       // undefined = aplica a todos los periodos (PERIODIC)
+  periodNumber?: number | null;       // undefined = aplica a todos los periodos (PERIODIC)
 
   constructor(cost: {
     type: CostType;
     code: string;
     calcMode: CostCalcMode;
     amount: number;
-    periodNumber?: number;
+    periodNumber?: number | null;
   }) {
     this.type = cost.type;
     this.code = cost.code ?? '';
@@ -40,7 +40,8 @@ export class SimulationRequest {
 
   // Parámetros del crédito
   initialPayment!: number;   // cuota inicial en %
-  termMonths!: number;       // plazo de pago en meses
+  termYears!: number;       // plazo de pago en meses
+  frequency!: number;       // Frecuencia de pago
   rate!: number;             // valor de la tasa del préstamo
   rateType!: string;         // "TEA", "TNA", etc.
   exchange!: string;         // "PEN", "USD", etc.
@@ -60,7 +61,8 @@ export class SimulationRequest {
     propertyId: number;
 
     initialPayment: number;
-    termMonths: number;
+    termYears: number;
+    frequency: number;
     rate: number;
     rateType: string;
     exchange: string;
@@ -77,7 +79,8 @@ export class SimulationRequest {
     this.propertyId = sim.propertyId;
 
     this.initialPayment = sim.initialPayment ?? 0;
-    this.termMonths = sim.termMonths ?? 0;
+    this.termYears = sim.termYears ?? 0;
+    this.frequency = sim.frequency ?? 0;
     this.rate = sim.rate ?? 0;
     this.rateType = sim.rateType ?? '';
     this.exchange = sim.exchange ?? '';

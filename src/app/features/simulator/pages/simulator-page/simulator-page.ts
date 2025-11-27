@@ -83,7 +83,7 @@ export class SimulatorPage implements OnInit {
     this.propertyService.getByOwnerId(ownerId).subscribe({
       next: (properties: Property[]) => {
         this.properties = properties;
-        //console.log(this.properties)
+
       },
       error: (error) => {
         console.log('Error al obtener propiedades', error);

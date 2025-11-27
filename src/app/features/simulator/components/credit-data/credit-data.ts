@@ -16,7 +16,12 @@ import { NgForOf } from '@angular/common';
 import { ConfigService } from '../../../config/services/config.service';
 import { Property } from '../../../property/models/property.entity';
 import {Client} from '../../../client/models/client.entity';
-import {SimulationRequest} from '../../models/simulation-request';
+import {
+  SimulationRequest,
+  CostItem,
+  CostType,
+  CostCalcMode
+} from '../../models/simulation-request';
 import {AuthService} from '../../../../shared/services/authentication.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ClassicButtonComponent} from '../../../../shared/components/classic-button/classic-button.component'; // ajusta la ruta según tu proyecto
@@ -74,17 +79,72 @@ export class CreditData implements OnInit {
   availableBonos = new Set<BonoType>(['NONE']);
 
   initialCostDefinitions = [
-    { label: 'Costos Notariales (S/)',  type: 'INITIAL',  periodNumber: null },
-    { label: 'Costos Registrales (S/)', type: 'INITIAL',  periodNumber: null },
-    { label: 'Comisión Estudio (%)',   type: 'INITIAL', periodNumber: null },
-    { label: 'Comisión Activación (%)',type: 'INITIAL', periodNumber: null },
+    {
+      label: 'Costos Notariales (S/)',
+      type: CostType.INITIAL,
+      code: 'NOTARIAL',
+      calcMode: CostCalcMode.FIXED_AMOUNT,
+      periodNumber: null
+    },
+    {
+      label: 'Costos Registrales (S/)',
+      type: CostType.INITIAL,
+      code: 'REGISTRAL',
+      calcMode: CostCalcMode.FIXED_AMOUNT,
+      periodNumber: null
+    },
+    {
+      label: 'Comisión Estudio (%)',
+      type: CostType.INITIAL,
+      code: 'COMISION_ESTUDIO',
+      calcMode: CostCalcMode.PERCENTAGE,   // 🔹 porcentaje sobre saldo a financiar
+      periodNumber: null
+    },
+    {
+      label: 'Comisión Activación (%)',
+      type: CostType.INITIAL,
+      code: 'COMISION_ACTIVACION',
+      calcMode: CostCalcMode.PERCENTAGE,   // 🔹 porcentaje sobre saldo a financiar
+      periodNumber: null
+    }
   ];
 
   periodicCostDefinitions = [
-    { label: 'Comisión Periódica (S/)',    type: 'PERIODIC', periodNumber: null },
-    { label: 'Portes (S/)',                type: 'PERIODIC', periodNumber: null },
-    { label: 'Gasto Administración (S/)',  type: 'PERIODIC', periodNumber: null },
-    { label: 'Seguro Desgravamen (%)',     type: 'PERIODIC', periodNumber: null },
+    {
+      label: 'Comisión Periódica (%)',
+      type: CostType.PERIODIC,
+      code: 'COMISION_PERIODICA',
+      calcMode: CostCalcMode.FIXED_AMOUNT, // monto fijo mensual
+      periodNumber: null
+    },
+    {
+      label: 'Portes (S/)',
+      type: CostType.PERIODIC,
+      code: 'PORTES',
+      calcMode: CostCalcMode.FIXED_AMOUNT,
+      periodNumber: null
+    },
+    {
+      label: 'Gasto Administración (S/)',
+      type: CostType.PERIODIC,
+      code: 'GASTOS_ADMIN',
+      calcMode: CostCalcMode.FIXED_AMOUNT,
+      periodNumber: null
+    },
+    {
+      label: 'Seguro Desgravamen (%)',
+      type: CostType.PERIODIC,
+      code: 'SEGURO_DESGRAVAMEN',
+      calcMode: CostCalcMode.PERCENTAGE,   // si luego lo quieres como % del saldo
+      periodNumber: null
+    },
+    {
+      label: 'Seguro de Reisgo (%)',
+      type: CostType.PERIODIC,
+      code: 'SEGURO_RIESGO',
+      calcMode: CostCalcMode.PERCENTAGE,   // si luego lo quieres como % del saldo
+      periodNumber: null
+    }
   ];
 
 
@@ -116,6 +176,7 @@ export class CreditData implements OnInit {
       term: [null, [Validators.required, Validators.min(0)]],
       exchange: ['', Validators.required],
       initialPayment: [null, [Validators.required, Validators.min(0)]],
+      frequency: [30, [Validators.required, Validators.min(1)]],
 
       initialCosts: this.fb.array(this.initialCostDefinitions.map(() => this.fb.control(0))),
       periodicCosts: this.fb.array(this.periodicCostDefinitions.map(() => this.fb.control(0))),
@@ -209,37 +270,46 @@ export class CreditData implements OnInit {
     }
   }
 
-  private buildCostsArray(): any[] {
-    const costs: any[] = [];
+  private buildCostsArray(): CostItem[] {
+    const costs: CostItem[] = [];
 
+    // Costos iniciales
     this.initialCostsArray.controls.forEach((ctrl, index) => {
       const amount = ctrl.value;
       if (!amount || amount <= 0) return; // si es 0 o vacío no lo mandamos
 
       const def = this.initialCostDefinitions[index];
 
-      costs.push({
-        type: def.type,              // INITIAL o PERIODIC
-        amount: amount,              // monto
-        periodNumber: def.periodNumber // null en tu caso
-      });
+      costs.push(new CostItem({
+        type: def.type,                   // CostType.INITIAL
+        code: def.code,                   // "NOTARIAL", "COMISION_ESTUDIO", etc.
+        calcMode: def.calcMode,           // FIXED_AMOUNT o PERCENTAGE
+        amount: amount,                   // número (S/ o %)
+        periodNumber: def.periodNumber    // null en tu caso
+      }));
     });
+
+    // Costos periódicos
     this.periodicCostsArray.controls.forEach((ctrl, index) => {
       const amount = ctrl.value;
-      if (!amount || amount <= 0) return; // si es 0 o vacío no lo mandamos
+      if (!amount || amount <= 0) return;
 
       const def = this.periodicCostDefinitions[index];
 
-      costs.push({
-        type: def.type,              // INITIAL o PERIODIC
-        amount: amount,              // monto
-        periodNumber: def.periodNumber // null en tu caso
-      });
+      costs.push(new CostItem({
+        type: def.type,                   // CostType.PERIODIC
+        code: def.code,                   // "COMISION_PERIODICA", "PORTES", etc.
+        calcMode: def.calcMode,
+        amount: amount,
+        periodNumber: def.periodNumber
+      }));
     });
+
     return costs;
   }
 
-   onSimulate(): void {
+
+  onSimulate(): void {
      if (!this.form.valid) {
        this.form.markAllAsTouched();
        return;
@@ -262,7 +332,8 @@ export class CreditData implements OnInit {
           propertyId: this._selectedProperty.id!,
 
           initialPayment: v.initialPayment,
-          termMonths: v.plazo,
+          termYears: v.plazo,
+          frequency: v.frequency,
           rate: v.rate,
           rateType: v.rateType,
           exchange: v.exchange,
