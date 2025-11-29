@@ -24,7 +24,8 @@ import {
 } from '../../models/simulation-request';
 import {AuthService} from '../../../../shared/services/authentication.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {ClassicButtonComponent} from '../../../../shared/components/classic-button/classic-button.component'; // ajusta la ruta según tu proyecto
+import {ClassicButtonComponent} from '../../../../shared/components/classic-button/classic-button.component';
+import {getAnalyticsUserId} from '@angular/cli/src/analytics/analytics'; // ajusta la ruta según tu proyecto
 
 // TIPOS DE BONOS
 type BonoType = 'NONE' | 'AVN' | 'CSP' | 'MV';
@@ -114,7 +115,7 @@ export class CreditData implements OnInit {
       label: 'Comisión Periódica (%)',
       type: CostType.PERIODIC,
       code: 'COMISION_PERIODICA',
-      calcMode: CostCalcMode.FIXED_AMOUNT, // monto fijo mensual
+      calcMode: CostCalcMode.PERCENTAGE, // monto fijo mensual
       periodNumber: null
     },
     {
@@ -168,7 +169,7 @@ export class CreditData implements OnInit {
   private buildForm(): void {
     this.form = this.fb.group({
       price: [null, [Validators.required, Validators.min(0)]],
-      bono: ['NONE' as BonoType],
+      bono: ['' as BonoType],
       rateType: ['', Validators.required],
       rate: [null, [Validators.required, Validators.min(0)]],
       plazo: [null, [Validators.required, Validators.min(1)]],
@@ -221,42 +222,85 @@ export class CreditData implements OnInit {
     const credithistory = this._selectedClient?.credithistory;  // boolean
     const support       = this._selectedClient?.support;        // boolean
     const monthlyIncome = this._selectedClient?.monthlyIncome;  // número
-    const size          = this._selectedProperty?.size;        // número
+    const size          = this._selectedProperty?.size;         // número
+    const price         = this._selectedProperty?.price;        // número
 
-    if(this._selectedClient == null || this._selectedProperty == null){
+    if (this._selectedClient == null || this._selectedProperty == null) {
       return;
     }
 
-    if (credithistory == false) {
-      this.showError(`El usuario con DNI ${this._selectedClient?.dni} no califica a ningún bono por historial crediticio negativo`);
+    const dni = this._selectedClient.dni;
+
+    // 1) Filtros duros: historial y apoyo previo
+    if (credithistory === false) {
+      this.showError(
+        `El usuario con DNI ${dni} no califica a ningún bono por historial crediticio negativo`
+      );
       this.availableBonos = allowed;
       this.ensureCurrentBonoIsValid(allowed);
       return;
     }
 
-    if (support == true) {
-      this.showError(`El usuario con DNI ${this._selectedClient?.dni} no califica a ningún bono por haber recibido otro bono/ayuda habitacional`);
+    if (support === true) {
+      this.showError(
+        `El usuario con DNI ${dni} no califica a ningún bono por haber recibido otro bono/ayuda habitacional`
+      );
       this.availableBonos = allowed;
       this.ensureCurrentBonoIsValid(allowed);
       return;
     }
 
-    if (size && size< 140) {
-      if (monthlyIncome && monthlyIncome<= 3715) {
-        allowed.add('AVN');
-
-      } else {
-        this.showError(` El usuario con DNI ${this._selectedClient?.dni} no califica al bono AVN por tener un ingreso mensual superior a 3715 soles`);
-      }
-    } else{
-      this.showError(` El usuario con DNI ${this._selectedClient?.dni} no califica al bono AVN por que la vivienda tiene un área mayor o igual a 140 m²`);
+    // Validación básica de datos necesarios
+    if (monthlyIncome == null || size == null || price == null) {
+      this.showError(
+        `No se puede evaluar los bonos para el usuario con DNI ${dni} porque faltan datos (ingreso, área o precio de la vivienda).`
+      );
+      this.availableBonos = allowed;
+      this.ensureCurrentBonoIsValid(allowed);
+      return;
     }
 
-    if (monthlyIncome && monthlyIncome <= 2706) {
+    // ======================
+    // CASO BONO AVN (Techo Propio - Comprar)
+    // ======================
+    //
+    // Backend asume que si llega "AVN" ya se validó:
+    // - monthlyIncome <= 3715
+    // - size <= 140
+    // Opcionalmente puedes verificar que el precio no exceda el tope máximo usado en Techo Propio (136000).
+    //
+
+    const maxTechoPropioPrice = 136000;
+
+    if (size > 140) {
+      this.showError(
+        `El usuario con DNI ${dni} no califica al bono AVN porque la vivienda tiene un área mayor a 140 m²`
+      );
+    } else if (monthlyIncome > 3715) {
+      this.showError(
+        `El usuario con DNI ${dni} no califica al bono AVN por tener un ingreso mensual superior a S/ 3,715`
+      );
+    } else if (price > maxTechoPropioPrice) {
+      // Alineado con el último else del backend: "Precio fuera del rango definido de Techo Propio"
+      this.showError(
+        `El usuario con DNI ${dni} no califica al bono AVN porque la vivienda tiene un precio mayor a S/ ${maxTechoPropioPrice}, fuera del rango de Techo Propio`
+      );
+    } else {
+      // Pasa todas las validaciones mínimas → el backend se encarga de
+      // calcular el monto (46545, 56710, etc.) según price y size.
+      allowed.add('AVN');
+    }
+
+    // ======================
+    // CASO BONO CSP o MV
+    // ======================
+    if (monthlyIncome <= 2706) {
       allowed.add('MV');
       allowed.add('CSP');
-    } else{
-      this.showError(` El usuario con DNI ${this._selectedClient?.dni} no califica a los bonos MV y CSP por tener un ingreso superior a 2706 soles`);
+    } else {
+      this.showError(
+        `El usuario con DNI ${dni} no califica a los bonos MV y CSP por tener un ingreso superior a S/ 2,706`
+      );
     }
 
     this.availableBonos = allowed;
@@ -325,29 +369,24 @@ export class CreditData implements OnInit {
      // mapear el bono a bonusType del backend
      const bono = v.bono as 'NONE' | 'AVN' | 'CSP' | 'MV';
      const bonusType = bono === 'NONE' ? null : bono;
+     const user = this.authService.getUser();
 
-        const request = new SimulationRequest({
+    const request = new SimulationRequest({
+      clientId: this._selectedClient.id!,
+      propertyId: this._selectedProperty.id!,
+      userId: user.id,
 
-          clientId: this._selectedClient.id!,
-          propertyId: this._selectedProperty.id!,
+      initialPayment: v.initialPayment,
+      termYears: v.plazo,
+      frequency: v.frequency,
 
-          initialPayment: v.initialPayment,
-          termYears: v.plazo,
-          frequency: v.frequency,
-          rate: v.rate,
-          rateType: v.rateType,
-          exchange: v.exchange,
+      cokRate: v.cokRate ? Number(v.cokRate) : 0,
+      cokRateType: v.cokRateType ? String(v.cokRateType) : '',
 
-          graceType: v.termtype,
-          term: v.term ? String(v.term) : null,
-          bonusType: v.bono,
-
-          cokRate: v.cokRate ? Number(v.cokRate) : 0,
-          cokRateType: v.cokRateType ? String(v.cokRateType) : '',
-          costs: this.buildCostsArray()
-
-
+      bonusType: bonusType,
+      costs: this.buildCostsArray()
     });
+
 
     this.simulate.emit(request);
   }

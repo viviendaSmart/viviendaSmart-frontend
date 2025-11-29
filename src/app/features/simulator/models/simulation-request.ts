@@ -3,18 +3,17 @@
   PERIODIC = 'PERIODIC'
 }
 
-// Debe ir en el mismo archivo o importarse donde corresponda
 export enum CostCalcMode {
   FIXED_AMOUNT = 'FIXED_AMOUNT',
   PERCENTAGE = 'PERCENTAGE'
 }
 
 export class CostItem {
-  type!: CostType;             // INITIAL o PERIODIC
-  code!: string;               // "NOTARIAL", "REGISTRAL", "DESGRAVAMEN", etc.
-  calcMode!: CostCalcMode;     // FIXED_AMOUNT o PERCENTAGE
-  amount!: number;             // BigDecimal -> number (soles o % según calcMode)
-  periodNumber?: number | null;       // undefined = aplica a todos los periodos (PERIODIC)
+  type!: CostType;              // INITIAL o PERIODIC
+  code!: string;                // "NOTARIAL", "REGISTRAL", "SEGURO_DESGRAVAMEN", etc.
+  calcMode!: CostCalcMode;      // FIXED_AMOUNT o PERCENTAGE
+  amount!: number;              // S/ o % según calcMode
+  periodNumber?: number | null; // null = aplica a todos los periodos (PERIODIC)
 
   constructor(cost: {
     type: CostType;
@@ -27,8 +26,7 @@ export class CostItem {
     this.code = cost.code ?? '';
     this.calcMode = cost.calcMode;
     this.amount = cost.amount ?? 0;
-    this.periodNumber = cost.periodNumber;
-
+    this.periodNumber = cost.periodNumber ?? null;
   }
 }
 
@@ -37,61 +35,50 @@ export class SimulationRequest {
   // IDs básicos
   clientId!: number;
   propertyId!: number;
+  userId!: number;   // 🔹 NUEVO: para poder leer Config en el backend
 
-  // Parámetros del crédito
-  initialPayment!: number;   // cuota inicial en %
-  termYears!: number;       // plazo de pago en meses
-  frequency!: number;       // Frecuencia de pago
-  rate!: number;             // valor de la tasa del préstamo
-  rateType!: string;         // "TEA", "TNA", etc.
-  exchange!: string;         // "PEN", "USD", etc.
-  graceType?: string | null;
-  term?: string | null;      // días de gracia en texto
-  bonusType?: string | null; // "AVN", "CSP", "MV" o null
+  // Parámetros variables del crédito (lo que el usuario mueve)
+  initialPayment!: number;   // % inicial (ej. 10 = 10%)
+  termYears!: number;        // años de plazo
+  frequency!: number;        // días entre cuotas (30, 60, 90, etc.)
 
   // COK (tasa de descuento)
-  cokRate!: number;          // valor de la tasa COK
-  cokRateType!: string;      // "TEA", "TNA", etc. (mismo esquema que rateType)
+  cokRate!: number;          // ej. 0.05 para 5%
+  cokRateType!: string;      // "TEA", "TNA", etc.
 
-  // Lista de costos
+  // Bono (opcional)
+  bonusType?: string | null; // "AVN", "CSP", "MV" o null
+
+  // Lista de costos configurados
   costs: CostItem[] = [];
 
   constructor(sim: {
     clientId: number;
     propertyId: number;
+    userId: number;
 
     initialPayment: number;
     termYears: number;
     frequency: number;
-    rate: number;
-    rateType: string;
-    exchange: string;
-    graceType?: string | null;
-    term?: string | null;
-    bonusType?: string | null;
 
     cokRate: number;
     cokRateType: string;
 
+    bonusType?: string | null;
     costs?: CostItem[];
   }) {
     this.clientId = sim.clientId;
     this.propertyId = sim.propertyId;
+    this.userId = sim.userId;
 
     this.initialPayment = sim.initialPayment ?? 0;
     this.termYears = sim.termYears ?? 0;
     this.frequency = sim.frequency ?? 0;
-    this.rate = sim.rate ?? 0;
-    this.rateType = sim.rateType ?? '';
-    this.exchange = sim.exchange ?? '';
-
-    this.graceType = sim.graceType ?? null;
-    this.term = sim.term ?? null;
-    this.bonusType = sim.bonusType ?? null;
 
     this.cokRate = sim.cokRate ?? 0;
     this.cokRateType = sim.cokRateType ?? '';
 
+    this.bonusType = sim.bonusType ?? null;
     this.costs = sim.costs ?? [];
   }
 }
