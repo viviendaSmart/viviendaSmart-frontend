@@ -1,9 +1,9 @@
-﻿import {inject, Injectable} from '@angular/core';
-import {BaseService} from '../../../shared/services/base.service';
-import {Property} from '../models/property.entity';
+﻿import { inject, Injectable } from '@angular/core';
+import { BaseService } from '../../../shared/services/base.service';
+import { Property } from '../models/property.entity';
 import { AuthService } from '../../../shared/services/authentication.service';
-import {environment} from '../../../../environments/environment';
-import {Observable} from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import { Observable } from 'rxjs';
 
 
 @Injectable({

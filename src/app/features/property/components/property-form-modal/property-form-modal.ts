@@ -3,7 +3,7 @@ import {PropertyService} from '../../services/property.service';
 import {Property} from '../../models/property.entity';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {ClassicButtonComponent} from '../../../../shared/components/classic-button/classic-button.component';
 import {AuthService} from '../../../../shared/services/authentication.service';
 
@@ -12,6 +12,7 @@ import {AuthService} from '../../../../shared/services/authentication.service';
   imports: [
     ReactiveFormsModule,
     NgForOf,
+    NgIf,
     ClassicButtonComponent
   ],
   templateUrl: './property-form-modal.html',
@@ -29,10 +30,10 @@ export class PropertyFormModal implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      address: ['', Validators.required],
-      price: ['', Validators.required],
-      photo: ['string', Validators.required],
-      size: ['', Validators.required],
+      address: ['', [Validators.required, Validators.maxLength(255)]],
+      price: ['', [Validators.required, Validators.min(0.01)]],
+      photo: ['string', [Validators.required, Validators.maxLength(500)]],
+      size: ['', [Validators.required, Validators.min(0.01)]],
     })
   }
 

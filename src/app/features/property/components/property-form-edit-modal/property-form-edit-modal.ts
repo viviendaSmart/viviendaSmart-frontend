@@ -4,13 +4,15 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {PropertyService} from '../../services/property.service';
 import {AuthService} from '../../../../shared/services/authentication.service';
 import {Property} from '../../models/property.entity';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-property-form-edit-modal',
   imports: [
     ClassicButtonComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgIf
   ],
   templateUrl: './property-form-edit-modal.html',
   styleUrl: './property-form-edit-modal.css'
@@ -32,10 +34,10 @@ export class PropertyFormEditModal implements OnInit{
   ngOnInit() {
     //console.log('🧾 Modal cargado con propiedad:', this.property);
     this.form2 = this.fb.group({
-      address: [this.property?.address || '', Validators.required],
-      price: [this.property?.price || '', Validators.required],
-      photo: [this.property?.photo || '', Validators.required],
-      size: [this.property?.size || '', Validators.required],
+      address: [this.property?.address || '', [Validators.required, Validators.maxLength(255)]],
+      price: [this.property?.price || '', [Validators.required, Validators.min(0.01)]],
+      photo: [this.property?.photo || '', [Validators.required, Validators.maxLength(500)]],
+      size: [this.property?.size || '', [Validators.required, Validators.min(0.01)]],
     })
   }
 

@@ -4,18 +4,27 @@
     <h2 class="form-title">Agregar Propiedad</h2>
     <div class="inputs-container">
       <label>
-        <input class="input" type="text" placeholder="" required formControlName="address">
+        <input class="input" type="text" placeholder="" required formControlName="address" maxlength="255" [class.is-invalid]="form.get('address')?.invalid && form.get('address')?.touched">
         <span>Direccion</span>
+        <div class="error-message" *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
+          <small>La dirección de la propiedad es obligatoria.</small>
+        </div>
       </label>
 
       <label>
-        <input class="input" type="text" placeholder="" required formControlName="size">
+        <input class="input" type="number" min="0.01" step="any" placeholder="" required formControlName="size" [class.is-invalid]="form.get('size')?.invalid && form.get('size')?.touched">
         <span>Area</span>
+        <div class="error-message" *ngIf="form.get('size')?.invalid && form.get('size')?.touched">
+          <small>El tamaño (área) de la propiedad debe ser mayor a 0.</small>
+        </div>
       </label>
 
       <label>
-        <input class="input" type="text" placeholder="" required formControlName="price">
+        <input class="input" type="number" min="0.01" step="any" placeholder="" required formControlName="price" [class.is-invalid]="form.get('price')?.invalid && form.get('price')?.touched">
         <span>Precio (soles)</span>
+        <div class="error-message" *ngIf="form.get('price')?.invalid && form.get('price')?.touched">
+          <small>El precio de la propiedad debe ser mayor a 0.</small>
+        </div>
       </label>
     </div>
     <app-classic-button [disabled]="form.invalid" class="submit-button" >Confirmar</app-classic-button>
