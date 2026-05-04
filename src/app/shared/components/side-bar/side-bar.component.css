@@ -45,13 +45,13 @@ hr {
 
 /* 📋 LISTA DE OPCIONES */
 .options,
-.logout{
+.logout {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 16vw;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 1rem;
   padding: 0;
 }
@@ -59,7 +59,7 @@ hr {
 
 /* 🔘 ELEMENTO DE OPCIÓN */
 .option,
-.logout{
+.logout {
   width: 14vw;
   list-style: none;
   border-radius: 0.8vw;
@@ -103,7 +103,8 @@ hr {
 .option button:hover {
   background-color: #eef5ff;
 }
-.logout button:hover{
+
+.logout button:hover {
   background-color: #ffeeee;
 }
 
@@ -132,7 +133,7 @@ hr {
   filter: invert(49%) sepia(73%) saturate(2598%) hue-rotate(164deg) brightness(95%) contrast(101%);
 }
 
-.footer-bar hr{
+.footer-bar hr {
   width: 100%;
 }
 

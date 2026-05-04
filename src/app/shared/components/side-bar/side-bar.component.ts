@@ -23,7 +23,7 @@ export class SideBarComponent {
     { class: 'Inmuebles', link: '/property', src: '/assets/img/edificio.png' },
     { class: 'Configuracion', link: '/config', src: '/assets/img/ajustes.png' },
     { class: 'Simulación', link: '/simulator', src: '/assets/img/computadora.png' },
-    //{ class: 'Reportes', link: '/report', src: '../../assets/img/estadisticas.png' },
+    { class: 'Historial', link: '/log', src: '/assets/img/estadisticas.png' },
   ]
 
   onLeave(){

@@ -1,0 +1,67 @@
+.accordion-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #f9fafb;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.accordion-header:hover {
+  background-color: #f3f4f6;
+}
+
+.header-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.info-value {
+  font-size: 0.95rem;
+  color: #111827;
+  font-weight: 500;
+}
+
+.header-icon {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.accordion-body {
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+::ng-deep .accordion-body .container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+::ng-deep .accordion-body .selection-card {
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
