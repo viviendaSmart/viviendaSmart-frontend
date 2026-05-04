@@ -39,13 +39,21 @@
       <!-- N° Años -->
       <label class="field">
         <span class="field-label">Número de Años</span>
-        <input type="number" class="field-input" formControlName="plazo" />
+        <input type="number" class="field-input" formControlName="plazo" min="1" max="30"
+          [class.is-invalid]="form.get('plazo')?.invalid && form.get('plazo')?.touched" />
+        <div class="error-message" *ngIf="form.get('plazo')?.invalid && form.get('plazo')?.touched">
+          <small>El plazo del préstamo debe ser entre 1 y 30 años.</small>
+        </div>
       </label>
 
       <!-- Frecuencia de pago -->
       <label class="field">
-        <span class="field-label">Frecuencia de pago</span>
-        <input type="number" class="field-input" formControlName="frequency" />
+        <span class="field-label">Frecuencia de pago (días)</span>
+        <input type="number" class="field-input" formControlName="frequency" min="1"
+          [class.is-invalid]="form.get('frequency')?.invalid && form.get('frequency')?.touched" />
+        <div class="error-message" *ngIf="form.get('frequency')?.invalid && form.get('frequency')?.touched">
+          <small>La frecuencia de pago debe ser al menos de 1 día (usualmente 30).</small>
+        </div>
       </label>
 
       <!-- Tipo de Gracia -->
@@ -57,7 +65,7 @@
       <!-- Días de Gracia -->
       <label class="field">
         <span class="field-label">Días de Gracia</span>
-        <input type="number" class="field-input" formControlName="term" readonly/>
+        <input type="number" class="field-input" formControlName="term" readonly />
       </label>
 
       <!-- Moneda -->
@@ -82,7 +90,12 @@
       <!-- Tasa COK -->
       <label class="field">
         <span class="field-label">Tasa COK (%)</span>
-        <input type="number" class="field-input" formControlName="cokRate" />
+        <input type="number" class="field-input" formControlName="cokRate" min="0" step="any"
+          [class.is-invalid]="form.get('cokRate')?.invalid && form.get('cokRate')?.touched" />
+        <div class="error-message" *ngIf="form.get('cokRate')?.invalid && form.get('cokRate')?.touched">
+          <small *ngIf="form.get('cokRate')?.errors?.['required']">La Tasa COK es obligatoria.</small>
+          <small *ngIf="form.get('cokRate')?.errors?.['min']">Debe ser mayor o igual a 0.</small>
+        </div>
       </label>
 
     </div>
@@ -95,21 +108,18 @@
       <!-- Cuota Inicial -->
       <label class="field">
         <span class="field-label">Cuota Inicial (%)</span>
-        <input type="number" class="field-input" min="3" formControlName="initialPayment" />
+        <input type="number" class="field-input" min="0" max="100" step="any" formControlName="initialPayment"
+          [class.is-invalid]="form.get('initialPayment')?.invalid && form.get('initialPayment')?.touched" />
+        <div class="error-message" *ngIf="form.get('initialPayment')?.invalid && form.get('initialPayment')?.touched">
+          <small>El porcentaje de cuota inicial debe estar entre 0% y 100%.</small>
+        </div>
       </label>
       <ng-container formArrayName="initialCosts">
-        <label
-          class="field"
-          *ngFor="let ctrl of initialCostsArray.controls; let i = index"
-        >
+        <label class="field" *ngFor="let ctrl of initialCostsArray.controls; let i = index">
           <span class="field-label">
             {{ initialCostDefinitions[i].label }}
           </span>
-          <input
-            type="number"
-            class="field-input"
-            [formControlName]="i"
-          />
+          <input type="number" min="0" step="any" class="field-input" [formControlName]="i" />
         </label>
       </ng-container>
     </div>
@@ -121,38 +131,23 @@
 
     <div class="loan-card-grid-2">
       <ng-container formArrayName="periodicCosts">
-        <label
-          class="field"
-          *ngFor="let ctrl of periodicCostsArray.controls; let i = index"
-        >
+        <label class="field" *ngFor="let ctrl of periodicCostsArray.controls; let i = index">
           <span class="field-label">
             {{ periodicCostDefinitions[i].label }}
           </span>
-          <input
-            type="number"
-            class="field-input"
-            [formControlName]="i"
-          />
+          <input type="number" min="0" step="any" class="field-input" [formControlName]="i" />
         </label>
       </ng-container>
     </div>
 
-    <app-classic-button
-      type="button"
-      (click)="onSimulate()"
-      [disabled]="form.invalid">
+    <app-classic-button type="button" (click)="onSimulate()" [disabled]="form.invalid">
       Simular crédito
     </app-classic-button>
 
-    <app-classic-button
-      type="button"
-      class="clean-button"
-      (click)="cleanSimulate()"
-    >
+    <app-classic-button type="button" class="clean-button" (click)="cleanSimulate()">
       Limpiar Simulacion
     </app-classic-button>
 
 
   </div>
 </div>
-

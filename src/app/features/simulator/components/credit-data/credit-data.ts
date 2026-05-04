@@ -12,20 +12,20 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { ConfigService } from '../../../config/services/config.service';
 import { Property } from '../../../property/models/property.entity';
-import {Client} from '../../../client/models/client.entity';
+import { Client } from '../../../client/models/client.entity';
 import {
   SimulationRequest,
   CostItem,
   CostType,
   CostCalcMode
 } from '../../models/simulation-request';
-import {AuthService} from '../../../../shared/services/authentication.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ClassicButtonComponent} from '../../../../shared/components/classic-button/classic-button.component';
-import {getAnalyticsUserId} from '@angular/cli/src/analytics/analytics'; // ajusta la ruta según tu proyecto
+import { AuthService } from '../../../../shared/services/authentication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ClassicButtonComponent } from '../../../../shared/components/classic-button/classic-button.component';
+import { getAnalyticsUserId } from '@angular/cli/src/analytics/analytics'; // ajusta la ruta según tu proyecto
 
 // TIPOS DE BONOS
 type BonoType = 'NONE' | 'AVN' | 'CSP' | 'MV';
@@ -37,7 +37,7 @@ interface BonoOption {
 
 @Component({
   selector: 'app-credit-data',
-  imports: [ReactiveFormsModule, NgForOf, ClassicButtonComponent],
+  imports: [ReactiveFormsModule, NgForOf, NgIf, ClassicButtonComponent],
   templateUrl: './credit-data.html',
   styleUrl: './credit-data.css'
 })
@@ -71,10 +71,10 @@ export class CreditData implements OnInit {
   }
 
   bonos: BonoOption[] = [
-    { label: 'No aplica',       value: 'NONE' },
-    { label: 'Comprar (AVN)',   value: 'AVN'  },
-    { label: 'Construir (CSP)', value: 'CSP'  },
-    { label: 'Mejorar (MV)',    value: 'MV'   }
+    { label: 'No aplica', value: 'NONE' },
+    { label: 'Comprar (AVN)', value: 'AVN' },
+    { label: 'Construir (CSP)', value: 'CSP' },
+    { label: 'Mejorar (MV)', value: 'MV' }
   ];
 
   availableBonos = new Set<BonoType>(['NONE']);
@@ -154,7 +154,7 @@ export class CreditData implements OnInit {
     private configService: ConfigService,
     private authService: AuthService,
     private _snackBar: MatSnackBar,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -168,19 +168,19 @@ export class CreditData implements OnInit {
 
   private buildForm(): void {
     this.form = this.fb.group({
-      price: [null, [Validators.required, Validators.min(0)]],
+      price: [null, [Validators.required, Validators.min(0.01)]],
       bono: ['' as BonoType],
       rateType: ['', Validators.required],
-      rate: [null, [Validators.required, Validators.min(0)]],
-      plazo: [null, [Validators.required, Validators.min(1)]],
+      rate: [null, [Validators.required, Validators.min(0.01)]],
+      plazo: [null, [Validators.required, Validators.min(1), Validators.max(30)]],
       termtype: ['', Validators.required],
       term: [null, [Validators.required, Validators.min(0)]],
-      exchange: ['', Validators.required],
-      initialPayment: [null, [Validators.required, Validators.min(0)]],
+      exchange: ['', [Validators.required, Validators.pattern(/^(PEN|USD)$/)]],
+      initialPayment: [null, [Validators.required, Validators.min(0), Validators.max(100)]],
       frequency: [30, [Validators.required, Validators.min(1)]],
 
-      initialCosts: this.fb.array(this.initialCostDefinitions.map(() => this.fb.control(0))),
-      periodicCosts: this.fb.array(this.periodicCostDefinitions.map(() => this.fb.control(0))),
+      initialCosts: this.fb.array(this.initialCostDefinitions.map(() => this.fb.control(0, [Validators.min(0)]))),
+      periodicCosts: this.fb.array(this.periodicCostDefinitions.map(() => this.fb.control(0, [Validators.min(0)]))),
 
       cokRateType: ['', Validators.required],
       cokRate: [null, [Validators.required, Validators.min(0)]],
@@ -205,11 +205,11 @@ export class CreditData implements OnInit {
         if (!config) return;
 
         this.form.patchValue({
-          rateType:  config.rateType,
-          rate:      config.rate,
-          termtype:  config.termtype,
-          term:      config.term,
-          exchange:  config.exchange
+          rateType: config.rateType,
+          rate: config.rate,
+          termtype: config.termtype,
+          term: config.term,
+          exchange: config.exchange === 'SOLES' ? 'PEN' : config.exchange === 'DOLARES' ? 'USD' : config.exchange
         });
       },
       error: err => console.error('Error cargando config para simulador', err)
@@ -220,10 +220,10 @@ export class CreditData implements OnInit {
     const allowed = new Set<BonoType>(['NONE']);
 
     const credithistory = this._selectedClient?.credithistory;  // boolean
-    const support       = this._selectedClient?.support;        // boolean
+    const support = this._selectedClient?.support;        // boolean
     const monthlyIncome = this._selectedClient?.monthlyIncome;  // número
-    const size          = this._selectedProperty?.size;         // número
-    const price         = this._selectedProperty?.price;        // número
+    const size = this._selectedProperty?.size;         // número
+    const price = this._selectedProperty?.price;        // número
 
     if (this._selectedClient == null || this._selectedProperty == null) {
       return;
@@ -308,8 +308,8 @@ export class CreditData implements OnInit {
   }
 
   private ensureCurrentBonoIsValid(allowed: Set<BonoType>): void {
-    const current = this.form.get('bono')?.value as BonoType;
-    if (!allowed.has(current)) {
+    const bono = this.form.get('bono')?.value;
+    if (!allowed.has(bono)) {
       this.form.get('bono')?.setValue('NONE', { emitEvent: false });
     }
   }
@@ -354,22 +354,22 @@ export class CreditData implements OnInit {
 
 
   onSimulate(): void {
-     if (!this.form.valid) {
-       this.form.markAllAsTouched();
-       return;
-     }
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
 
-     if (!this._selectedClient || !this._selectedProperty) {
-       console.warn('Falta seleccionar cliente y propiedad para simular');
-       return;
-     }
+    if (!this._selectedClient || !this._selectedProperty) {
+      console.warn('Falta seleccionar cliente y propiedad para simular');
+      return;
+    }
 
-     const v = this.form.value;
+    const v = this.form.value;
 
-     // mapear el bono a bonusType del backend
-     const bono = v.bono as 'NONE' | 'AVN' | 'CSP' | 'MV';
-     const bonusType = bono === 'NONE' ? null : bono;
-     const user = this.authService.getUser();
+    // mapear el bono a bonusType del backend
+    const bono = v.bono as 'NONE' | 'AVN' | 'CSP' | 'MV';
+    const bonusType = bono === 'NONE' ? null : bono;
+    const user = this.authService.getUser();
 
     const request = new SimulationRequest({
       clientId: this._selectedClient.id!,
@@ -391,11 +391,11 @@ export class CreditData implements OnInit {
     this.simulate.emit(request);
   }
 
-  cleanSimulate(){
+  cleanSimulate() {
     this.clearSimulate.emit();
   }
 
   private showError(message: string): void {
-    this._snackBar.open(message, '', {duration: 5000});
+    this._snackBar.open(message, '', { duration: 5000 });
   }
 }
