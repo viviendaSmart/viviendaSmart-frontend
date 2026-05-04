@@ -54,7 +54,7 @@ export class ConfigFormModal implements OnInit, OnChanges {
       rate: [this.config ? (this.config as any).rate : '', [Validators.required, Validators.min(0)]],
       rateType: [this.config ? (this.config as any).rateType : '', Validators.required],
       exchange: [this.config ? (this.config as any).exchange : '', Validators.required],
-      term: [this.config ? (this.config as any).term : '', [Validators.required, Validators.min(0)]],
+      term: [this.config ? (this.config as any).term : '', [Validators.required, Validators.min(1)]],
       termtype: [this.config ? (this.config as any).termtype : '', Validators.required],
     });
   }
