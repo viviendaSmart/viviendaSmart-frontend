@@ -6,6 +6,8 @@ const SimulatorPage = () => import("./features/simulator/pages/simulator-page/si
 const ConfigPage =() => import("./features/config/pages/config-page/config-page").then(m=>m.ConfigPage);
 import {LoginPage} from './features/IAM/pages/login-page/login-page';
 const RegisterPage = () => import("./features/IAM/pages/register-page/register-page").then(m=>m.RegisterPage);
+const LogPage = () => import("./features/simulator/pages/log-page/log-page").then(m=>m.LogPage);
+
 export const routes: Routes = [
   {path: 'login', component: LoginPage},
   {path:'home',loadComponent:HomePage},
@@ -14,5 +16,6 @@ export const routes: Routes = [
   {path:'simulator',loadComponent:SimulatorPage},
   {path:'config',loadComponent:ConfigPage},
   {path:'register',loadComponent:RegisterPage},
+  {path:'log',loadComponent:LogPage},
   {path:'**',component:LoginPage},
 ];

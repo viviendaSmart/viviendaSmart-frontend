@@ -1,0 +1,25 @@
+<app-side-bar></app-side-bar>
+<app-header-bar
+  [params]="{
+  title: 'Historial de Simulaciones',
+  description: 'Consulta tus simulaciones previas guardadas',
+  name: 'Usuario',
+  aux: false,
+  aux2: false
+}">
+</app-header-bar>
+
+<div class="main-content">
+  <div class="simulations-list" *ngIf="simulations.length > 0; else noSimulations">
+    <app-simulation-log-item
+      *ngFor="let sim of simulations"
+      [simulation]="sim">
+    </app-simulation-log-item>
+  </div>
+  
+  <ng-template #noSimulations>
+    <div class="no-data-card">
+      <p>Aún no tienes simulaciones guardadas.</p>
+    </div>
+  </ng-template>
+</div>
