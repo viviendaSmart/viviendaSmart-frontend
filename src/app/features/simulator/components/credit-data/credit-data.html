@@ -15,7 +15,10 @@
       <label class="field">
         <span class="field-label">Bono (BFH)</span>
         <select class="field-input" formControlName="bono">
-          <option *ngFor="let b of bonos" [ngValue]="b.value" [disabled]="!availableBonos.has(b.value)">
+          <option
+            *ngFor="let b of bonos"
+            [ngValue]="b.value"
+            [disabled]="!availableBonos.has(b.value)">
             {{ b.label }}
           </option>
         </select>
