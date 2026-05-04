@@ -5,47 +5,74 @@
     <div class="inputs-container">
       <div class="inputs-first">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="name">
+          <input class="input" type="text" placeholder="" required formControlName="name" maxlength="100" [class.is-invalid]="form2.get('name')?.invalid && form2.get('name')?.touched">
           <span>Nombres</span>
+          <div class="error-message" *ngIf="form2.get('name')?.invalid && form2.get('name')?.touched">
+            <small>El nombre y apellido son obligatorios.</small>
+          </div>
         </label>
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="surname">
+          <input class="input" type="text" placeholder="" required formControlName="surname" maxlength="100" [class.is-invalid]="form2.get('surname')?.invalid && form2.get('surname')?.touched">
           <span>Apellidos</span>
+          <div class="error-message" *ngIf="form2.get('surname')?.invalid && form2.get('surname')?.touched">
+            <small>El nombre y apellido son obligatorios.</small>
+          </div>
         </label>
       </div>
       <div class="inputs-second">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="dni">
+          <input class="input" type="text" minlength="8" maxlength="8" pattern="\d{8}" placeholder="" required formControlName="dni" [class.is-invalid]="form2.get('dni')?.invalid && form2.get('dni')?.touched">
           <span>Dni</span>
+          <div class="error-message" *ngIf="form2.get('dni')?.invalid && form2.get('dni')?.touched">
+            <small>El DNI es obligatorio y debe contener exactamente 8 dígitos numéricos.</small>
+          </div>
         </label>
         <label>
-          <input class="input" type="number" value="0.0" step="any" pattern="[0-9,.]+" placeholder="" required formControlName="monthlyIncome">
+          <input class="input" type="number" min="0.01" step="any" placeholder="" required formControlName="monthlyIncome" [class.is-invalid]="form2.get('monthlyIncome')?.invalid && form2.get('monthlyIncome')?.touched">
           <span>Ingreso mensual (soles)</span>
+          <div class="error-message" *ngIf="form2.get('monthlyIncome')?.invalid && form2.get('monthlyIncome')?.touched">
+            <small>El ingreso mensual es obligatorio y debe ser mayor a 0.</small>
+          </div>
         </label>
       </div>
       <div class="inputs-third">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="ocupation">
+          <input class="input" type="text" placeholder="" required formControlName="ocupation" maxlength="100" [class.is-invalid]="form2.get('ocupation')?.invalid && form2.get('ocupation')?.touched">
           <span>Ocupacion</span>
+          <div class="error-message" *ngIf="form2.get('ocupation')?.invalid && form2.get('ocupation')?.touched">
+            <small>La ocupación es obligatoria.</small>
+          </div>
         </label>
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="business">
+          <input class="input" type="text" placeholder="" required formControlName="business" maxlength="100" [class.is-invalid]="form2.get('business')?.invalid && form2.get('business')?.touched">
           <span>Empresa/Negocio</span>
+          <div class="error-message" *ngIf="form2.get('business')?.invalid && form2.get('business')?.touched">
+            <small>El rubro o negocio es obligatorio.</small>
+          </div>
         </label>
       </div>
       <div class="inputs-fourth">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="phoneNumber">
+          <input class="input" type="text" placeholder="" required formControlName="phoneNumber" maxlength="15" pattern="\+?\d+" [class.is-invalid]="form2.get('phoneNumber')?.invalid && form2.get('phoneNumber')?.touched">
           <span>Celular</span>
+          <div class="error-message" *ngIf="form2.get('phoneNumber')?.invalid && form2.get('phoneNumber')?.touched">
+            <small>El número de teléfono debe ser válido (solo números y opcionalmente el código de área).</small>
+          </div>
         </label>
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="earningtype">
+          <input class="input" type="text" placeholder="" required formControlName="earningtype" [class.is-invalid]="form2.get('earningtype')?.invalid && form2.get('earningtype')?.touched">
           <span>Tipo de ingreso</span>
+          <div class="error-message" *ngIf="form2.get('earningtype')?.invalid && form2.get('earningtype')?.touched">
+            <small>El tipo de ingreso es obligatorio.</small>
+          </div>
         </label>
       </div>
       <label>
-        <input class="input" type="text" placeholder="" required formControlName="address">
+        <input class="input" type="text" placeholder="" required formControlName="address" maxlength="255" [class.is-invalid]="form2.get('address')?.invalid && form2.get('address')?.touched">
         <span>Direccion</span>
+        <div class="error-message" *ngIf="form2.get('address')?.invalid && form2.get('address')?.touched">
+          <small>La dirección es obligatoria.</small>
+        </div>
       </label>
       <label>
         <p>¿Tiene historial crediticio positivo?</p>

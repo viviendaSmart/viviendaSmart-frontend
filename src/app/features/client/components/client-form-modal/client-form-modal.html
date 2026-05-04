@@ -5,47 +5,83 @@
     <div class="inputs-container">
       <div class="inputs-first">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="name">
+          <input class="input" type="text" placeholder="" required formControlName="name" maxlength="100"
+                 [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
           <span>Nombres</span>
+          <div class="error-message" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+            <small>El nombre y apellido son obligatorios.</small>
+          </div>
         </label>
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="surname">
+          <input class="input" type="text" placeholder="" required formControlName="surname" maxlength="100"
+                 [class.is-invalid]="form.get('surname')?.invalid && form.get('surname')?.touched">
           <span>Apellidos</span>
+          <div class="error-message" *ngIf="form.get('surname')?.invalid && form.get('surname')?.touched">
+            <small>El nombre y apellido son obligatorios.</small>
+          </div>
         </label>
       </div>
       <div class="inputs-second">
         <label>
-          <input class="input" type="text" maxlength="8" placeholder="" required formControlName="dni">
+          <input class="input" type="text" minlength="8" maxlength="8" pattern="\d{8}" placeholder="" required formControlName="dni"
+                 [class.is-invalid]="form.get('dni')?.invalid && form.get('dni')?.touched">
           <span>Dni</span>
+          <div class="error-message" *ngIf="form.get('dni')?.invalid && form.get('dni')?.touched">
+            <small>El DNI es obligatorio y debe contener exactamente 8 dígitos numéricos.</small>
+          </div>
         </label>
         <label>
-          <input class="input" type="number" value="0.0" step="any" pattern="[0-9,.]+" placeholder="" required formControlName="monthlyIncome">
+          <input class="input" type="number" min="0.01" step="any" placeholder="" required formControlName="monthlyIncome"
+                 [class.is-invalid]="form.get('monthlyIncome')?.invalid && form.get('monthlyIncome')?.touched">
           <span>Ingreso mensual (soles)</span>
+          <div class="error-message" *ngIf="form.get('monthlyIncome')?.invalid && form.get('monthlyIncome')?.touched">
+            <small>El ingreso mensual es obligatorio y debe ser mayor a 0.</small>
+          </div>
         </label>
       </div>
       <div class="inputs-third">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="ocupation">
+          <input class="input" type="text" placeholder="" required formControlName="ocupation" maxlength="100"
+                 [class.is-invalid]="form.get('ocupation')?.invalid && form.get('ocupation')?.touched">
           <span>Ocupacion</span>
+          <div class="error-message" *ngIf="form.get('ocupation')?.invalid && form.get('ocupation')?.touched">
+            <small>La ocupación es obligatoria.</small>
+          </div>
         </label>
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="business">
+          <input class="input" type="text" placeholder="" required formControlName="business" maxlength="100"
+                 [class.is-invalid]="form.get('business')?.invalid && form.get('business')?.touched">
           <span>Empresa/Negocio</span>
+          <div class="error-message" *ngIf="form.get('business')?.invalid && form.get('business')?.touched">
+            <small>El rubro o negocio es obligatorio.</small>
+          </div>
         </label>
       </div>
       <div class="inputs-fourth">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="phoneNumber">
+          <input class="input" type="text" placeholder="" required formControlName="phoneNumber" maxlength="15" pattern="\+?\d+"
+                 [class.is-invalid]="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched">
           <span>Celular</span>
+          <div class="error-message" *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched">
+            <small>El número de teléfono debe ser válido (solo números y opcionalmente el código de área).</small>
+          </div>
         </label>
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="earningtype">
+          <input class="input" type="text" placeholder="" required formControlName="earningtype"
+                 [class.is-invalid]="form.get('earningtype')?.invalid && form.get('earningtype')?.touched">
           <span>Tipo de ingreso</span>
+          <div class="error-message" *ngIf="form.get('earningtype')?.invalid && form.get('earningtype')?.touched">
+            <small>El tipo de ingreso es obligatorio.</small>
+          </div>
         </label>
       </div>
       <label>
-        <input class="input" type="text" placeholder="" required formControlName="address">
+        <input class="input" type="text" placeholder="" required formControlName="address" maxlength="255"
+               [class.is-invalid]="form.get('address')?.invalid && form.get('address')?.touched">
         <span>Direccion</span>
+        <div class="error-message" *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
+          <small>La dirección es obligatoria.</small>
+        </div>
       </label>
       <label>
         <p>¿Tiene historial crediticio positivo?</p>
@@ -79,22 +115,22 @@
         <p>Estado Civil</p>
         <div class="support-label">
           <label class="support-label-1">
-            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="0" />
+            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="'SOLTERO'" />
             <p>Soltero</p>
           </label>
 
           <label class="support-label-1">
-            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="1" />
+            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="'CASADO'" />
             <p>Casado</p>
           </label>
 
           <label class="support-label-1">
-            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="2" />
+            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="'VIUDO'" />
             <p>Viudo</p>
           </label>
 
           <label class="support-label-2">
-            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="3" />
+            <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="'DIVORCIADO'" />
             <p>Divorciado</p>
           </label>
         </div>
