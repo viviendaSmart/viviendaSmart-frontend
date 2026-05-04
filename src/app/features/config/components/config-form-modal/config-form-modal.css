@@ -1,0 +1,155 @@
+.modal {
+  position: fixed;
+  top: 7vw;
+  left: 15vw;
+  display: flex;
+  height: 80vh;
+  width: 75vw;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+
+.form {
+  width: 25vw;
+  height: 75vh;
+  font-weight: 200;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: 30px;
+  background-color: #ffffff;
+  z-index: 2;
+  line-height: 19px;
+  gap: 3rem;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2),
+  0 6px 15px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-title {
+  font-size: 25px;
+  font-weight: 700;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 40px;
+}
+
+.input-title {
+  font-weight: 450;
+  font-size: 10rem;
+}
+
+.inputs-container {
+  flex-direction: column;
+}
+
+.inputs-first,
+.inputs-second,
+.inputs-third {
+  padding: 0.7rem;
+}
+
+.form label {
+  position: relative;
+
+  width: 100%;
+}
+
+.form p {
+  font-size: 13px;
+}
+
+.form label .input {
+  background-color: #F3F3F5;
+  color: #8e8e8e;
+  width: 100%;
+  padding: 20px 0 5px 8px;
+  outline: 0;
+  border: 0;
+  border-radius: 10px;
+
+}
+
+.form label .input + span {
+  color: #8e8e8e;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 1px;
+  font-size: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.form label .input:focus + span,
+.form label .input:valid + span {
+  color: #00A6CF;
+  top: 2px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.input {
+  font-size: 13px;
+}
+
+/* Radios reutilizando el estilo de history/support */
+.radio-row {
+  position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.radio-row-1{
+  display: flex;
+  padding: 0.5rem;
+}
+
+.radio-row-1-5{
+  display: flex;
+  padding: 0.5rem;
+}
+
+.radio-row-2{
+  display: flex;
+  padding: 0.5rem;
+}
+.radio-row-3{
+  display: flex;
+  padding: 0.5rem;
+}
+
+.radio-option {
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+
+.helper-text {
+  font-size: 11px;
+  color: #8e8e8e;
+}
+
+
+/* Botones */
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;      /* separación vertical entre los dos botones */
+  margin-top: 0.8rem; /* espacio entre el texto y los botones */
+}
+
+
+:host ::ng-deep app-classic-button.submit-button button {
+  padding: 0.2rem;
+  font-size: 0.8rem;
+}
