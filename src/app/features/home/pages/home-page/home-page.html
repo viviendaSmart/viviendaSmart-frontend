@@ -2,8 +2,52 @@
 <app-header-bar
   [params]="{
   title: 'Dashboard',
-  description: 'Bienvenido, Juan Pérez (Asesor)',
-  name: 'Juan Pérez',
-  aux: true
+  description: 'Bienvenido, ' + loadFullName(),
+  name: loadFullName(),
+  aux: true,
+  aux2: false
 }">
 </app-header-bar>
+
+<div class="dashboard-container">
+  <div class="welcome-card">
+    <div class="welcome-header">
+      <h2>¿Cómo usar ViviendaSmart?</h2>
+      <p>Sigue estos pasos para realizar una simulación de crédito hipotecario:</p>
+    </div>
+    
+    <div class="steps-container">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Configuración</h3>
+          <p>Ve a la pestaña de "Configuración" para definir las tasas (Tasa Nominal o Efectiva), el plazo en días, la moneda y otros parámetros financieros base.</p>
+        </div>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Clientes</h3>
+          <p>Dirígete a "Clientes" para registrar los datos personales y financieros de los prospectos. Asegúrate de ingresar su historial crediticio y si han recibido apoyo habitacional previo.</p>
+        </div>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Propiedades</h3>
+          <p>En "Propiedades", registra los inmuebles disponibles con su respectiva dirección, área (m²) y precio.</p>
+        </div>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Simulador</h3>
+          <p>Finalmente, ve al "Simulador". Selecciona un cliente y una propiedad. El sistema evaluará si el cliente califica a los bonos de Techo Propio (BFH, AVN, CSP, MV) en base a su sueldo, historial y valor de la propiedad. Completa los costos iniciales/periódicos y simula el crédito.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

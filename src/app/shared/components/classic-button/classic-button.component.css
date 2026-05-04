@@ -1,13 +1,14 @@
 .submit {
-  font-weight: 500;
+  font-weight: 400;
+  font-family: Bahnschrift, sans-serif;
   font-size: 15px;
   color: #fff;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 7px;
+  padding: 6px;
   border: none;
   transition: 400ms;
-  background-color: #00A6CF;
-  outline: 3px #00A6CF solid;
+  background-color: #00a5ce;
+  outline: 3px #00a5ce solid;
   cursor:pointer;
   margin: 5px 0;
   display: flex;
@@ -17,5 +18,5 @@
 
 .submit:hover {
   background-color: transparent;
-  color: #00A6CF;
+  color: #00a5ce;
 }
