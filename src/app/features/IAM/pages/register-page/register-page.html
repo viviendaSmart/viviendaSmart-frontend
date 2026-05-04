@@ -1,35 +1,46 @@
-<div class="div-fondo">
-  <img src="/assets/img/layout.jpg" class="bg-img">
+<div class="register-layout">
+  <img ngSrc="/assets/img/layout.jpg" class="bg-img" height="1994" width="3000" alt="auth-background">
 
-  <div class="form" [formGroup]="form">
+  <div class="register-card" [formGroup]="form">
 
-    <div class="form-header">
-      <img src="/assets/img/logo.png">
+    <div class="register-card-header">
+      <img ngSrc="/assets/img/logo.png" height="512" width="512" alt="logo">
       <h1>ViviendaSmart</h1>
       <p>Plataforma de gestión inmobiliaria</p>
     </div>
 
-    <div class="form-body">
-      <div class="name">
+    <div class="register-card-body">
+      <div class="register-field-name">
         <p>Nombres</p>
         <input formControlName="firstName" placeholder="Juan Alberto">
+        <span *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched" class="error-msg">
+          El nombre es obligatorio y debe tener al menos 2 caracteres.
+        </span>
       </div>
-      <div class="surname">
+      <div class="register-field-surname">
         <p>Apellidos</p>
         <input formControlName="lastName" placeholder="Perez Roman">
+        <span *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched" class="error-msg">
+          El apellido es obligatorio y debe tener al menos 2 caracteres.
+        </span>
       </div>
-      <div class="email">
+      <div class="register-field-email">
         <p>Correo</p>
         <input formControlName="email" type="email" placeholder="usuario@ejemplo.com">
+        <span *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-msg">
+          El correo electrónico es obligatorio y debe tener un formato válido.
+        </span>
       </div>
-      <div class="password">
+      <div class="register-field-password">
         <p>Contraseña</p>
         <input formControlName="password" type="password" placeholder="**********">
+        <span *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error-msg">
+          La contraseña debe tener al menos 8 caracteres.
+        </span>
       </div>
     </div>
 
-    <div class="form-footer">
-      <!-- ✅ Llama al método register() -->
+    <div class="register-card-footer">
       <button (click)="register()" [disabled]="loading || form.invalid">
         Registrarse
       </button>
