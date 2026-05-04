@@ -1,0 +1,34 @@
+<div class="modal-backdrop" (click)="close()"></div>
+<div class="modal">
+  <form class="form" [formGroup]="form2" (ngSubmit)="editForm($event)" >
+    <h2 class="form-title">Editar Propiedad</h2>
+    <div class="inputs-container">
+      <label>
+        <input class="input" type="text" placeholder="" required formControlName="address" maxlength="255" [class.is-invalid]="form2.get('address')?.invalid && form2.get('address')?.touched">
+        <span>Direccion</span>
+        <div class="error-message" *ngIf="form2.get('address')?.invalid && form2.get('address')?.touched">
+          <small>La dirección de la propiedad es obligatoria.</small>
+        </div>
+      </label>
+
+      <label>
+        <input class="input" type="number" min="0.01" step="any" placeholder="" required formControlName="size" [class.is-invalid]="form2.get('size')?.invalid && form2.get('size')?.touched">
+        <span>Area</span>
+        <div class="error-message" *ngIf="form2.get('size')?.invalid && form2.get('size')?.touched">
+          <small>El tamaño (área) de la propiedad debe ser mayor a 0.</small>
+        </div>
+      </label>
+
+      <label>
+        <input class="input" type="number" min="0.01" step="any" placeholder="" required formControlName="price" [class.is-invalid]="form2.get('price')?.invalid && form2.get('price')?.touched">
+        <span>Precio (soles)</span>
+        <div class="error-message" *ngIf="form2.get('price')?.invalid && form2.get('price')?.touched">
+          <small>El precio de la propiedad debe ser mayor a 0.</small>
+        </div>
+      </label>
+    </div>
+      <app-classic-button [disabled]="form2.invalid" class="edit-button">Editar</app-classic-button>
+      <app-classic-button (click)="close()" type="button" class="cancel-button">Cancelar</app-classic-button>
+      <app-classic-button (click)="deleteForm($event)" class="delete-button" type="button">Eliminar</app-classic-button>
+  </form>
+</div>
