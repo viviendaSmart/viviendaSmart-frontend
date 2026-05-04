@@ -1,53 +1,90 @@
-.card{
-  text-align: center;
-  background: linear-gradient(to bottom, #FAF9FD, #f5f5f6);
+.property-cards-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.property-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-4px);
 }
 
 .card-header {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.body-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
 }
 
 .body-title {
   margin: 0;
-  font-size: 1.3rem;
-  font-weight: 500;
-  line-height: 37px;
-  color: #080210;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.4;
 }
 
 .body-text {
   margin: 0;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 19px;
-  color: #080210;
-}
-
-.body-img{
-  width: 100%;
-  height: 18vh;
-  object-fit: cover;
-  border-radius: 5%;
-}
-
-.property-cards-container {
-  margin-left: 4rem;
-  width: 95%;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #64748b;
   display: flex;
-  flex-wrap: wrap; /* Esto permite que las tarjetas se ajusten automáticamente */
-  justify-content: center; /* Centra las tarjetas horizontalmente */
-  gap: 2rem; /* Espacio entre las tarjetas */
-  padding-left: 200px;
-  padding-top: 7rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.property-card {
-  width: 16vw;
-  margin: 1vh;
+.card-footer {
+  margin-top: auto;
+  padding: 1.25rem 1.5rem;
+  background-color: #f8fafc;
+  border-top: 1px solid #f1f5f9;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 }
 
+.card-actions {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+:host ::ng-deep app-classic-button button {
+  font-weight: 600 !important;
+  letter-spacing: 0.025em;
+  border-radius: 8px !important;
+}

@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #0f172a;
 }
 
 /* ========== background ========== */
@@ -16,7 +17,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(3px) brightness(75%);
+  filter: blur(4px) brightness(0.6);
   transform: scale(1.1);
   z-index: 1;
 }
@@ -24,121 +25,182 @@
 /* ========== card ========== */
 .register-card {
   position: relative;
-  z-index: 3;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 1rem;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem;
+  border-radius: 24px;
   text-align: center;
-  width: 350px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .register-card-header {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
   align-items: center;
-}
-.register-card-header img{
-  width: 30%;
-  height: 30%;
-}
-.register-card-header p {
-  color: #6b6b6b;
+  margin-bottom: 2rem;
 }
 
-.register-card-body{
-  margin: 1vh;
+.register-card-header img {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.register-card-header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+.register-card-header p {
+  color: #64748b;
+  font-weight: 500;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.register-card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.register-field-name,
+.register-field-surname,
+.register-field-email,
+.register-field-password {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-/* ========== fields ========== */
-.register-field-email{
-  width: 100%;
-}
-.register-field-email p{
-  text-align: left;
-  padding: 0.5rem;
-}
-.register-field-email input{
-  width: 100%;
-  border-radius: 5px;
-  background: #F3F3F5;
-  color: #6b6b6b;
-  padding: 1.2vh;
-  text-align: left;
-  border: none;
+.register-field-email,
+.register-field-password {
+  grid-column: span 2;
 }
 
-.register-field-password{
-  width: 100%;
-}
-.register-field-password p{
-  text-align: left;
-  padding: 0.5rem;
-}
-.register-field-password input{
-  width: 100%;
-  border-radius: 5px;
-  background: #F3F3F5;
-  color: #6b6b6b;
-  padding: 1.2vh;
-  text-align: left;
-  border: none;
+.register-card-body p {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+  padding-left: 0.25rem;
 }
 
-.register-field-name{
+.register-card-body input {
   width: 100%;
-}
-.register-field-name p{
-  text-align: left;
-  padding: 0.5rem;
-}
-.register-field-name input{
-  width: 100%;
-  border-radius: 5px;
-  background: #F3F3F5;
-  color: #6b6b6b;
-  padding: 1.2vh;
-  text-align: left;
-  border: none;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #475569;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
-.register-field-surname{
-  width: 100%;
-}
-.register-field-surname input{
-  width: 100%;
-  border-radius: 5px;
-  background: #F3F3F5;
-  color: #6b6b6b;
-  padding: 1.2vh;
-  text-align: left;
-  border: none;
-}
-.register-field-surname p{
-  text-align: left;
-  padding: 0.5rem;
+.register-card-body input:focus {
+  background: #ffffff;
+  border-color: #00a5ce;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
-.register-card-footer{
-  padding: 1rem;
+.error-msg {
+  color: #ef4444;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+/* ========== footer ========== */
+.register-card-footer {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.25rem;
 }
-.register-card-footer button{
+
+.register-card-footer button {
   width: 100%;
-  padding: 0.8rem;
-  border-radius: 0.5rem;
-  background: #0591C4;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #00a5ce;
   color: white;
   border: none;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.5s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
 }
-.register-card-footer button:hover{
-  background: #0aa2da;
-  transform: scale(1.03);
+
+.register-card-footer button:hover:not(:disabled) {
+  background: #00a5ce;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
+}
+
+.register-card-footer button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.register-card-footer a {
+  color: #00a5ce;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.register-card-footer a:hover {
+  color: #00a5ce;
+  text-decoration: underline;
+}
+
+@media (max-width: 540px) {
+  .register-card {
+    padding: 2.5rem 1.5rem;
+    border-radius: 0;
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 100%;
+  }
+
+  .register-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  .register-field-name,
+  .register-field-surname,
+  .register-field-email,
+  .register-field-password {
+    grid-column: span 1;
+  }
 }

@@ -1,68 +1,105 @@
-.card{
-  text-align: center;
-  background: linear-gradient(to bottom, #FAF9FD, #f5f5f6);
-}
-
-.card-header {
-  display: flex;
-  flex-direction: row;
-  gap: 1vw;
-  align-items: center;
-}
-
-.img-wrapper{
-  background-color: #c3c3c3;
-  border-radius: 100%;
-  margin-top: 0.5vw;
-  filter: invert(100);
-}
-
-.body-title {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 37px;
-  color: #080210;
-}
-
-.body-text {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 19px;
-  color: #080210;
-}
-
-.body-img{
-  width: 100%;
-  height: 10vh;
-  padding: 1rem;
-  border-radius: 5%;
-}
-
 .client-cards-container {
-  margin-left: 4rem;
-  width: 95%;
-  display: flex;
-  flex-wrap: wrap; /* Esto permite que las tarjetas se ajusten automáticamente */
-  justify-content: center; /* Centra las tarjetas horizontalmente */
-  gap: 2rem; /* Espacio entre las tarjetas */
-  padding-left: 200px;
-  padding-top: 7rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .client-card {
-  width: 20vw;
-  margin: 1vh;
   display: flex;
   flex-direction: column;
 }
 
-:host ::ng-deep app-classic-button.look-button button{
-  font-size: 0.8rem;
-  padding: 0.5rem 1rem 0.1rem;
+.card {
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-:host ::ng-deep app-classic-button.delete-button button:hover{
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-4px);
+}
 
+.card-header {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.img-wrapper {
+  background-color: #f1f5f9;
+  border-radius: 50%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  transition: background-color 0.2s;
+}
+
+.card:hover .img-wrapper {
+  background-color: #e2e8f0;
+}
+
+.body-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.body-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.body-text {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.card-footer {
+  padding: 1.25rem 1.5rem;
+  background-color: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: center;
+}
+
+.card-actions {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+:host ::ng-deep app-classic-button button {
+  font-weight: 600 !important;
+  letter-spacing: 0.025em;
+  border-radius: 8px !important;
 }

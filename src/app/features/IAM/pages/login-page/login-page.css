@@ -2,105 +2,189 @@
 .login-layout {
   position: relative;
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-color: #0f172a;
 }
 
 /* ========== background ========== */
 .login-bg-img {
   position: absolute;
-  filter: blur(3px) brightness(75%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(4px) brightness(0.6);
   transform: scale(1.1);
   object-fit: cover;
+  z-index: 1;
 }
 
 /* ========== card ========== */
 .login-card {
   position: relative;
-  z-index: 3;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 1rem;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 3rem 2.5rem;
+  border-radius: 24px;
   text-align: center;
-  width: 350px;
-
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.login-card-header img{
-  width: 30%;
-  height: 30%;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 .login-card-header {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-}
-.login-card-header p {
-  color: #6b6b6b;
+  margin-bottom: 2.5rem;
 }
 
-.login-card-body{
-  margin: 1vh;
+.login-card-header img {
+  width: 72px;
+  height: 72px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.login-card-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+.login-card-header p {
+  color: #64748b;
+  font-weight: 500;
+  margin: 0;
+}
+
+.login-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ========== fields ========== */
+.login-field-email,
+.login-field-password {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.login-card-footer{
-  padding: 1rem;
+.login-field-email p,
+.login-field-password p {
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+  padding-left: 0.25rem;
+}
+
+.login-field-email input,
+.login-field-password input {
+  width: 100%;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 1px solid #475569;
+  color: #0f172a;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.login-field-email input:focus,
+.login-field-password input:focus {
+  background: #ffffff;
+  border-color: #00a5ce;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.login-field-email input.is-invalid,
+.login-field-password input.is-invalid {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.error-message {
+  text-align: left;
+  color: #ef4444;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+/* ========== footer ========== */
+.login-card-footer {
+  margin-top: 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.25rem;
 }
-.login-card-footer button{
+
+.login-card-footer button {
   width: 100%;
-  padding: 0.8rem;
-  border-radius: 0.5rem;
-  background: #0591C4;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #00a5ce;
   color: white;
   border: none;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.5s ease, transform 0.3s ease;
-}
-.login-card-footer button:hover{
-  background: #0aa2da;
-  transform: scale(1.03);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
 }
 
-/* ========== fields ========== */
-.login-field-email{
-  width: 100%;
-}
-.login-field-email p{
-  text-align: left;
-  padding: 0.5rem;
-}
-.login-field-email input{
-  width: 100%;
-  border-radius: 5px;
-  background: #F3F3F5;
-  color: #6b6b6b;
-  padding: 1.2vh;
-  text-align: left;
-  border: none;
+.login-card-footer button:hover {
+  background: #00a5ce;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
 }
 
-.login-field-password{
-  width: 100%;
-}
-.login-field-password p{
-  text-align: left;
-  padding: 0.5rem;
-}
-.login-field-password input{
-  width: 100%;
-  border-radius: 5px;
-  background: #F3F3F5;
-  color: #6b6b6b;
-  padding: 1.2vh;
-  text-align: left;
-  border: none;
+.login-card-footer a {
+  color: #00a5ce;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color 0.2s;
 }
 
+.login-card-footer a:hover {
+  color: #00a5ce;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2.5rem 1.5rem;
+    border-radius: 0;
+    height: 100vh;
+    max-width: 100%;
+  }
+}

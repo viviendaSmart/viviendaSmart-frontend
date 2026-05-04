@@ -1,0 +1,46 @@
+app-side-bar {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.main-content {
+  margin-left: 320px;
+  padding: 8rem 2rem 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+.simulations-list {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.no-data-card {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 2px dashed #e2e8f0;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 2rem;
+}
+
+.no-data-card p {
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

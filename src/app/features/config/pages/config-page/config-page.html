@@ -8,7 +8,10 @@
   aux2: false
 }">
 </app-header-bar>
-<app-config-form-modal
-  [config]="selectedConfig"
-  (formSubmitted)="onFormSubmittedOrEdited($event)"
-></app-config-form-modal>
+
+<div class="main-content">
+  <app-config-form-modal
+    [config]="selectedConfig"
+    (formSubmitted)="onFormSubmittedOrEdited($event)"
+  ></app-config-form-modal>
+</div>

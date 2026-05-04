@@ -11,10 +11,12 @@
 >
 </app-header-bar>
 
-<app-client-list
-  [clients]=clients
-  (editClient)="openEditModal($event)"
-/>
+<div class="main-content">
+  <app-client-list
+    [clients]=clients
+    (editClient)="openEditModal($event)"
+  />
+</div>
 
 <app-client-form-modal
   *ngIf="showModal"
@@ -29,6 +31,5 @@
   (onDelete)="onDeleteClient($event)"
   [client]="selectedClient"
   (formEdited)="onFormEdited($event)"
-
 >
 </app-client-form-edit-modal>
