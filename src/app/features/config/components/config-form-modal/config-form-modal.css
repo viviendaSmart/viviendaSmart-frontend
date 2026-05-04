@@ -23,7 +23,7 @@
   line-height: 19px;
   gap: 3rem;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2),
-  0 6px 15px 0 rgba(0, 0, 0, 0.19);
+    0 6px 15px 0 rgba(0, 0, 0, 0.19);
 }
 
 .form-title {
@@ -48,12 +48,11 @@
 .inputs-first,
 .inputs-second,
 .inputs-third {
-  padding: 0.7rem;
+  padding: 1rem;
 }
 
 .form label {
   position: relative;
-
   width: 100%;
 }
 
@@ -72,24 +71,24 @@
 
 }
 
-.form label .input + span {
+.form label .input+span {
   color: #8e8e8e;
   position: absolute;
   left: 10px;
-  top: 10px;
+  top: 1px;
   cursor: text;
   transition: 0.3s ease;
 }
 
-.form label .input:placeholder-shown + span {
+.form label .input:placeholder-shown+span {
   top: 1px;
   font-size: 12px;
   justify-content: center;
   align-items: center;
 }
 
-.form label .input:focus + span,
-.form label .input:valid + span {
+.form label .input:focus+span,
+.form label .input:valid+span {
   color: #00A6CF;
   top: 2px;
   font-size: 11px;
@@ -107,21 +106,22 @@
   flex-wrap: wrap;
 }
 
-.radio-row-1{
+.radio-row-1 {
   display: flex;
   padding: 0.5rem;
 }
 
-.radio-row-1-5{
+.radio-row-1-5 {
   display: flex;
   padding: 0.5rem;
 }
 
-.radio-row-2{
+.radio-row-2 {
   display: flex;
   padding: 0.5rem;
 }
-.radio-row-3{
+
+.radio-row-3 {
   display: flex;
   padding: 0.5rem;
 }
@@ -144,8 +144,10 @@
 .buttons-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;      /* separación vertical entre los dos botones */
-  margin-top: 0.8rem; /* espacio entre el texto y los botones */
+  gap: 0.5rem;
+  /* separación vertical entre los dos botones */
+  margin-top: 0.8rem;
+  /* espacio entre el texto y los botones */
 }
 
 

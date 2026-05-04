@@ -7,29 +7,22 @@
     <hr>
   </div>
   <ul class="options">
-      @for (option of options; track option.class) {
-        <li class="option">
-          <button
-            [routerLink]="option.link"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <img [src]="option.src" alt="">
-            <p>{{ option.class }}</p>
-          </button>
-        </li>
-      }
-    <div class="footer-bar">
-      <hr>
-      <li class="logout">
-        <button
-          (click)="onLeave()"
-          routerLinkActive="active"
-        >
-          <img src="/assets/img/salida.svg">
-          <p>Cerrar Sesión</p>
-        </button>
-      </li>
-    </div>
+    @for (option of options; track option.class) {
+    <li class="option">
+      <button [routerLink]="option.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <img [src]="option.src" alt="">
+        <p>{{ option.class }}</p>
+      </button>
+    </li>
+    }
   </ul>
+  <div class="footer-bar">
+    <hr>
+    <li class="logout">
+      <button (click)="onLeave()" routerLinkActive="active">
+        <img src="/assets/img/salida.svg">
+        <p>Cerrar Sesión</p>
+      </button>
+    </li>
+  </div>
 </nav>

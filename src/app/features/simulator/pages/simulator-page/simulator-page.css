@@ -16,14 +16,16 @@ app-side-bar {
 /* CONTENEDOR DE LA SECCIÓN DE SIMULACIÓN */
 .main-content {
   margin-left: 320px;
-  padding-top: 7rem;
+  padding: 8rem 2rem 4rem 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 1.5rem;
-  padding-bottom: 1.5rem;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
   box-sizing: border-box;
+  gap: 2rem;
 }
 
 

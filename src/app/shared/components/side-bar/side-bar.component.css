@@ -1,54 +1,54 @@
 /* 📑 SIDEBAR CONTAINER */
 .side-bar {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  width: 16vw;
+  width: 240px;
   position: fixed;
-  height: 100vh;
-  border-right: 1px solid #C4C4C4;
-  z-index: 10;
+  border-right: 1px solid #e2e8f0;
+  z-index: 100;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  margin-bottom: 6000;
 }
 
 
 /* 🧭 NAVBAR GENERAL */
-.header-bar {
-  width: 100%;
-}
 
 .header-title {
-  font-size: large;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1vw;
-  padding: 1vw;
+  gap: 12px;
+  padding: 24px;
 }
 
 .header-title img.logo {
-  width: 3.7vw;
+  width: 48px;
+  height: 48px;
 }
 
 .header-title p {
-  font-weight: 500;
-  font-size: 1.2rem;
-  color: #080210;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #0f172a;
   margin: 0;
-  text-align: left;
+  letter-spacing: -0.025em;
 }
 
 hr {
-  width: 100vw;
-  border: 1px solid #C4C4C4;
+  width: 80%;
+  border: 0;
+  border-top: 1px solid #f1f5f9;
+  margin: 0;
 }
-
-
 
 /* 📋 LISTA DE OPCIONES */
 .options,
-.logout {
+.logout{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   width: 16vw;
   gap: 0.5rem;
@@ -56,13 +56,18 @@ hr {
   padding: 0;
 }
 
+.footer-bar {
+  margin-top: 80%;
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+}
 
 /* 🔘 ELEMENTO DE OPCIÓN */
 .option,
 .logout {
   width: 14vw;
   list-style: none;
-  border-radius: 0.8vw;
   display: flex;
   justify-content: center;
 }
@@ -73,71 +78,90 @@ hr {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.8rem;
+  gap: 1rem;
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 1rem 1rem;
   border: none;
   background-color: transparent;
   cursor: pointer;
-  border-radius: 0.6rem;
-  transition: background-color 0.3s ease, color 0.3s ease, filter 0.3s ease;
+  border-radius: 12px;
+  transition: all 0.2s ease;
 }
 
 /* 🖼️ ÍCONO */
 .option button img,
 .logout button img {
-  width: 1.6vw;
-  transition: filter 0.3s ease;
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
 }
 
 /* ✨ TEXTO */
 .option button p,
 .logout button p {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  color: #080210;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #64748b;
+  transition: all 0.2s ease;
 }
 
 /* 🖱️ EFECTO HOVER */
 .option button:hover {
-  background-color: #eef5ff;
+  background-color: #f1f5f9;
 }
 
-.logout button:hover {
+.option button:hover p {
+  color: #0f172a;
+}
+
+.option button:hover img {
+  opacity: 1;
+}
+.logout button:hover{
   background-color: #ffeeee;
 }
 
 .option button:hover img,
 .option button:hover p {
   filter: invert(49%) sepia(73%) saturate(2598%) hue-rotate(164deg) brightness(95%) contrast(101%);
+
+.logout button:hover {
+  background-color: #fef2f2;
 }
 
 .logout button:hover p {
-  color: #f36d6d;
+  color: #ef4444;
 }
 
 .logout button:hover img {
-  filter: invert(57%) sepia(78%) saturate(5243%) hue-rotate(335deg) brightness(104%) contrast(97%);
+  filter: invert(38%) sepia(87%) saturate(4156%) hue-rotate(343deg) brightness(97%) contrast(92%);
+  opacity: 1;
 }
 
 /* 🔵 ESTADO ACTIVO (routerLinkActive) */
 .option button.active {
-  background-color: #eef5ff;
-  color: white;
+  background-color: #eff6ff;
 }
 
-
-.option button.active img,
 .option button.active p {
-  filter: invert(49%) sepia(73%) saturate(2598%) hue-rotate(164deg) brightness(95%) contrast(101%);
+  color: #0591C4;
 }
 
-.footer-bar hr {
+.footer-bar hr{
   width: 100%;
+.option button.active img {
+  filter: invert(41%) sepia(87%) saturate(1476%) hue-rotate(204deg) brightness(99%) contrast(95%);
+  opacity: 1;
 }
 
+@media (max-width: 1024px) {
+  .side-bar {
+    width: 80px;
+  }
 
 .footer-bar {
   margin-top: 12rem
+}
 }

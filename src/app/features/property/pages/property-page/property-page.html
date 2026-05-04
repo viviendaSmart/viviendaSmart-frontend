@@ -1,6 +1,5 @@
 <app-side-bar></app-side-bar>
 
-
 <app-header-bar
     [params]="{
     title: 'Registro de Inmueble',
@@ -11,14 +10,14 @@
   }"
   (openModal)="openModal()"
 >
-
 </app-header-bar>
 
-<app-property-list
-  [properties]=properties
-  (editProperty)="openEditModal($event)"
-
-/>
+<div class="main-content">
+  <app-property-list
+    [properties]=properties
+    (editProperty)="openEditModal($event)"
+  />
+</div>
 
 <app-property-form-edit-modal
   *ngIf="showEditModal"

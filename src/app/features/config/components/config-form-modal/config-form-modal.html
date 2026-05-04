@@ -1,4 +1,3 @@
-
 <div class="modal">
   <form class="form" [formGroup]="form" (ngSubmit)="submitForm($event)">
     <h2 class="form-title">Configuración de crédito</h2>
@@ -65,14 +64,7 @@
         </label>
 
         <label>
-          <input
-            class="input"
-            type="number"
-            step="0.01"
-            placeholder=""
-            required
-            formControlName="rate"
-          >
+          <input class="input" type="number" step="0.01" placeholder="" required formControlName="rate">
           <span>Tasa (%)</span>
         </label>
 
@@ -117,14 +109,7 @@
 
         <label>
 
-          <input
-            class="input"
-            type="number"
-            min="1"
-            placeholder=""
-            required
-            formControlName="term"
-          >
+          <input class="input" type="number" min="1" placeholder="" required formControlName="term">
           <span>Meses de gracia</span>
         </label>
       </div>
@@ -135,10 +120,7 @@
     </div>
 
     <div class="buttons-wrapper">
-      <app-classic-button
-        [disabled]="form.invalid"
-        class="submit-button"
-      >
+      <app-classic-button [disabled]="form.invalid" class="submit-button">
         Guardar configuración
       </app-classic-button>
     </div>
