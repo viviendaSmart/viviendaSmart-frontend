@@ -1,9 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ClassicButtonComponent} from "../../../../shared/components/classic-button/classic-button.component";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Property} from '../../../property/models/property.entity';
 import {Client} from '../../models/client.entity';
 import {PropertyService} from '../../../property/services/property.service';
 import {AuthService} from '../../../../shared/services/authentication.service';
+import {Config} from '../../../config/models/config.entity';
 
 @Component({
   selector: 'app-client-form-edit-modal',

@@ -4,6 +4,33 @@
   title: 'Simulación de Crédito Hipotecario',
   description: 'Calcula y analiza planes de financiamiento',
   name: 'Juan Pérez',
-  aux: false
+  aux: false,
+  aux2: false
 }">
 </app-header-bar>
+
+<div class="main-content">
+  <div class="data-select">
+    <app-input-form-modal
+      [viviendas]="properties"
+      [clientes]="clients"
+      (selectionChange)="onSelectionChange($event)"
+    >
+    </app-input-form-modal>
+  </div>
+
+  <app-credit-data
+    (plazoChange)="onPlazoChange($event)"
+    [selectedProperty]="selectedProperty"
+    [selectedClient]="selectedClient"
+    (simulate)="onSimulate($event)"
+    (clearSimulate)="onCleanSimulate()"
+  >
+
+  </app-credit-data>
+
+  <app-response-form-modal
+    [simulationResult]="simulationResult">
+  ></app-response-form-modal>
+
+</div>

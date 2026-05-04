@@ -1,9 +1,36 @@
 <app-side-bar></app-side-bar>
+
+
 <app-header-bar
-  [params]="{
-  title: 'Registro de Inmueble',
-  description: 'Gestiona la información del inmueble',
-  name: 'Juan Pérez',
-  aux: false
-}">
+    [params]="{
+    title: 'Registro de Inmueble',
+    description: 'Gestiona la información del inmueble',
+    name: 'Juan Pérez',
+    aux: false,
+    aux2: true
+  }"
+  (openModal)="openModal()"
+>
+
 </app-header-bar>
+
+<app-property-list
+  [properties]=properties
+  (editProperty)="openEditModal($event)"
+
+/>
+
+<app-property-form-edit-modal
+  *ngIf="showEditModal"
+  [property]="selectedProperty"
+  (modalClosed)="onModalClosed()"
+  (formEdited)="onFormEdited($event)"
+  (onDelete)="onDeleteProperty($event)"
+></app-property-form-edit-modal>
+
+<app-property-form-modal
+  *ngIf="showModal"
+  (formSubmitted)="onFormSubmitted($event)"
+  (modalClosed)="onModalClosed()"
+></app-property-form-modal>
+

@@ -44,8 +44,8 @@ export class LoginPage {
         this.authService.saveToken(loginResponse.token);
         this.authService.saveUser(loginResponse.user);
 
-        console.log('✅ Token guardado:', this.authService.getToken());
-        console.log('👤 Usuario guardado:', loginResponse.user);
+        //console.log('✅ Token guardado:', this.authService.getToken());
+        //console.log('👤 Usuario guardado:', loginResponse.user);
 
         this.loading = false;
         this.router.navigate(['/home']); // Redirige tras el login

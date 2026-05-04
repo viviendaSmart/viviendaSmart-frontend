@@ -1,3 +1,29 @@
-.p{
+.p {
   color: black;
 }
+
+/* Sidebar: lo dejamos como está */
+app-side-bar {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+/* HEADER si tienes alguna clase general */
+.main-header {
+  flex-shrink: 0;
+}
+
+/* CONTENEDOR DE LA SECCIÓN DE SIMULACIÓN */
+.main-content {
+  margin-left: 320px;
+  padding-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  box-sizing: border-box;
+}
+
+

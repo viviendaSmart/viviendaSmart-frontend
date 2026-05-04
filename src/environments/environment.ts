@@ -5,5 +5,7 @@
   registerEndpointPath:'/users/signup',
   loginEndpointPath:'/users/signin',
   propertyEndpointPath:'/properties',
-  clientEndpointPath:'/clients/by-user-id',
+  clientEndpointPath:'/clients',
+  configEndpointPath:'/config',
+  simulatorEndpointPath:'/simulator'
 };
