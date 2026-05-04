@@ -1,4 +1,5 @@
-.div-fondo {
+/* ========== layout ========== */
+.register-layout {
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -8,7 +9,7 @@
   align-items: center;
 }
 
-/* Imagen de fondo */
+/* ========== background ========== */
 .bg-img {
   position: absolute;
   inset: 0;
@@ -20,8 +21,8 @@
   z-index: 1;
 }
 
-/* Contenedor del formulario */
-.form {
+/* ========== card ========== */
+.register-card {
   position: relative;
   z-index: 3;
   background-color: white;
@@ -29,38 +30,38 @@
   border-radius: 1rem;
   text-align: center;
   width: 350px;
-
 }
 
-.form-header img{
-  width: 30%;
-}
-.form-header {
+.register-card-header {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
 }
-.form-header p {
+.register-card-header img{
+  width: 30%;
+  height: 30%;
+}
+.register-card-header p {
   color: #6b6b6b;
 }
 
-.form-body{
+.register-card-body{
   margin: 1vh;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.email{
+/* ========== fields ========== */
+.register-field-email{
   width: 100%;
 }
-
-.email p{
+.register-field-email p{
   text-align: left;
   padding: 0.5rem;
 }
-.email input{
+.register-field-email input{
   width: 100%;
   border-radius: 5px;
   background: #F3F3F5;
@@ -70,16 +71,14 @@
   border: none;
 }
 
-.password{
+.register-field-password{
   width: 100%;
 }
-
-.password p{
+.register-field-password p{
   text-align: left;
   padding: 0.5rem;
 }
-
-.password input{
+.register-field-password input{
   width: 100%;
   border-radius: 5px;
   background: #F3F3F5;
@@ -89,15 +88,14 @@
   border: none;
 }
 
-.name{
+.register-field-name{
   width: 100%;
 }
-.name p{
+.register-field-name p{
   text-align: left;
   padding: 0.5rem;
 }
-
-.name input{
+.register-field-name input{
   width: 100%;
   border-radius: 5px;
   background: #F3F3F5;
@@ -107,10 +105,10 @@
   border: none;
 }
 
-.surname{
+.register-field-surname{
   width: 100%;
 }
-.surname input{
+.register-field-surname input{
   width: 100%;
   border-radius: 5px;
   background: #F3F3F5;
@@ -119,18 +117,18 @@
   text-align: left;
   border: none;
 }
-.surname p{
+.register-field-surname p{
   text-align: left;
   padding: 0.5rem;
 }
-.form-footer{
+
+.register-card-footer{
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
-
-.form-footer button{
+.register-card-footer button{
   width: 100%;
   padding: 0.8rem;
   border-radius: 0.5rem;
@@ -140,8 +138,7 @@
   cursor: pointer;
   transition: background 0.5s ease, transform 0.3s ease;
 }
-
-.form-footer button:hover{
+.register-card-footer button:hover{
   background: #0aa2da;
   transform: scale(1.03);
 }

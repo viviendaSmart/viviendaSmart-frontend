@@ -3,7 +3,7 @@ import {Router, RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {AuthService} from '../../../../shared/services/authentication.service';
-import {NgIf} from '@angular/common';
+import {NgIf, NgOptimizedImage} from '@angular/common';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {User} from '../../models/user.entity';
 
@@ -12,7 +12,8 @@ import {User} from '../../models/user.entity';
   imports: [
     RouterLink,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    NgOptimizedImage
   ],
   templateUrl: './register-page.html',
   styleUrls: ['./register-page.css']
@@ -28,10 +29,10 @@ export class RegisterPage {
     private router: Router,
   ) {
     this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       requestedRole: ['PROPERTY_MANAGER'],
     }, { });
   }

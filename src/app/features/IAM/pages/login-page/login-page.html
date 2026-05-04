@@ -1,22 +1,31 @@
-<div class="div-fondo">
-  <img src="/assets/img/layout.jpg" class="bg-img">
-  <div class="form" [formGroup]="form">
-    <div class="form-header">
-      <img src="/assets/img/logo.png">
+<div class="login-layout">
+  <img ngSrc="/assets/img/layout.jpg" alt="image-background" fill class="login-bg-img">
+  <div class="login-card" [formGroup]="form">
+    <div class="login-card-header">
+      <img ngSrc="/assets/img/logo.png" alt="image-logo" height="512" width="512" priority>
       <h1>ViviendaSmart</h1>
       <p>Plataforma de gestión inmobiliaria</p>
     </div>
-    <div class="form-body">
-      <div class="email">
+    <div class="login-card-body">
+      <div class="login-field-email">
         <p>Correo</p>
-        <input type="email" formControlName="email" placeholder="usuario@ejemplo.com">
+        <input type="email" formControlName="email" placeholder="usuario@ejemplo.com"
+          [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched">
+        <div class="error-message" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+          <small *ngIf="form.get('email')?.errors?.['required']">El correo es obligatorio.</small>
+          <small *ngIf="form.get('email')?.errors?.['email']">Debe ser un correo válido.</small>
+        </div>
       </div>
-      <div class="password">
+      <div class="login-field-password">
         <p>Contraseña</p>
-        <input type="password" formControlName="password" placeholder="**********">
+        <input type="password" formControlName="password" placeholder="**********"
+          [class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched">
+        <div class="error-message" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+          <small *ngIf="form.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
+        </div>
       </div>
     </div>
-    <div class="form-footer">
+    <div class="login-card-footer">
       <button (click)="login()">
         Iniciar sesión
       </button>

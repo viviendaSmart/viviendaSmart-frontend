@@ -1,27 +1,22 @@
-.div-fondo {
+/* ========== layout ========== */
+.login-layout {
   position: relative;
-  width: 100vw;
   height: 100vh;
   overflow: hidden;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
-/* Imagen de fondo */
-.bg-img {
+/* ========== background ========== */
+.login-bg-img {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   filter: blur(3px) brightness(75%);
   transform: scale(1.1);
-  z-index: 1;
+  object-fit: cover;
 }
 
-/* Contenedor del formulario */
-.form {
+/* ========== card ========== */
+.login-card {
   position: relative;
   z-index: 3;
   background-color: white;
@@ -32,72 +27,34 @@
 
 }
 
-.form-header img{
+.login-card-header img{
   width: 30%;
+  height: 30%;
 }
-.form-header {
+.login-card-header {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
 }
-.form-header p {
+.login-card-header p {
   color: #6b6b6b;
 }
 
-.form-body{
+.login-card-body{
   margin: 1vh;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
 }
 
-.email{
-  width: 100%;
-}
-
-.email p{
-  text-align: left;
-  padding: 0.5rem;
-}
-.email input{
-  width: 100%;
-  border-radius: 5px;
-  background: #F3F3F5;
-  color: #6b6b6b;
-  padding: 1.2vh;
-  text-align: left;
-  border: none;
-}
-
-.password{
-  width: 100%;
-}
-
-.password p{
-  text-align: left;
-  padding: 0.5rem;
-}
-
-.password input{
-  width: 100%;
-  border-radius: 5px;
-  background: #F3F3F5;
-  color: #6b6b6b;
-  padding: 1.2vh;
-  text-align: left;
-  border: none;
-}
-
-.form-footer{
+.login-card-footer{
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
-
-.form-footer button{
+.login-card-footer button{
   width: 100%;
   padding: 0.8rem;
   border-radius: 0.5rem;
@@ -107,8 +64,43 @@
   cursor: pointer;
   transition: background 0.5s ease, transform 0.3s ease;
 }
-
-.form-footer button:hover{
+.login-card-footer button:hover{
   background: #0aa2da;
   transform: scale(1.03);
 }
+
+/* ========== fields ========== */
+.login-field-email{
+  width: 100%;
+}
+.login-field-email p{
+  text-align: left;
+  padding: 0.5rem;
+}
+.login-field-email input{
+  width: 100%;
+  border-radius: 5px;
+  background: #F3F3F5;
+  color: #6b6b6b;
+  padding: 1.2vh;
+  text-align: left;
+  border: none;
+}
+
+.login-field-password{
+  width: 100%;
+}
+.login-field-password p{
+  text-align: left;
+  padding: 0.5rem;
+}
+.login-field-password input{
+  width: 100%;
+  border-radius: 5px;
+  background: #F3F3F5;
+  color: #6b6b6b;
+  padding: 1.2vh;
+  text-align: left;
+  border: none;
+}
+

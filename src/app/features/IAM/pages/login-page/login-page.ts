@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgIf} from '@angular/common';
+import {NgOptimizedImage, NgIf} from '@angular/common';
 import {AuthService} from '../../../../shared/services/authentication.service';
 import {UserService} from '../../services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -11,6 +11,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   imports: [
     RouterLink,
     ReactiveFormsModule,
+    NgOptimizedImage,
     NgIf
   ],
   templateUrl: './login-page.html',
@@ -28,14 +29,16 @@ export class LoginPage {
     private _snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
       password: ['', Validators.required]
     });
   }
 
   login(): void {
-    if (this.form.invalid) return;
-
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     const { email, password } = this.form.value;
     this.loading = true;
 
@@ -44,13 +47,10 @@ export class LoginPage {
         this.authService.saveToken(loginResponse.token);
         this.authService.saveUser(loginResponse.user);
 
-        //console.log('✅ Token guardado:', this.authService.getToken());
-        //console.log('👤 Usuario guardado:', loginResponse.user);
-
         this.loading = false;
-        this.router.navigate(['/home']); // Redirige tras el login
+        this.router.navigate(['/home']).then();
       },
-      error: () => this.showError('Correo o contraseña incorrectos')
+      error: () => this.showError('Credenciales inválidas')
     });
   }
 
