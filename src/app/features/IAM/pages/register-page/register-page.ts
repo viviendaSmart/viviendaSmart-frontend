@@ -29,10 +29,10 @@ export class RegisterPage {
     private router: Router,
   ) {
     this.form = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      email: ['', [Validators.required, Validators.email,Validators.minLength(4), Validators.maxLength(30)]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
       requestedRole: ['PROPERTY_MANAGER'],
     }, { });
   }
@@ -62,5 +62,11 @@ export class RegisterPage {
   private showError(message: string): void {
     this._snackBar.open(message, '', { duration: 3000 });
     this.loading = false;
+  }
+  validarEntrada(event: InputEvent) {
+    const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/;
+    if (event.data && !regex.test(event.data)) {
+      event.preventDefault();
+    }
   }
 }

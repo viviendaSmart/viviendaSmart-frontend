@@ -121,6 +121,7 @@
   font-weight: 500;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  text-align: left;
 }
 
 .register-card-body input:focus {
