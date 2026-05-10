@@ -95,7 +95,6 @@
 
 .login-field-email p,
 .login-field-password p {
-  text-align: left;
   font-size: 0.875rem;
   font-weight: 600;
   color: #475569;
@@ -115,6 +114,7 @@
   font-weight: 500;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  text-align: left;
 }
 
 .login-field-email input:focus,

@@ -29,7 +29,7 @@ export class LoginPage {
     private _snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
       password: ['', Validators.required]
     });
   }
