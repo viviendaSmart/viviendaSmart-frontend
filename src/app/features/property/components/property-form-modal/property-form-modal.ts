@@ -30,10 +30,10 @@ export class PropertyFormModal implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      address: ['', [Validators.required, Validators.maxLength(255)]],
-      price: ['', [Validators.required, Validators.min(0.01)]],
+      address: ['', [Validators.required, Validators.maxLength(30)]],
+      price: ['', [Validators.required, Validators.min(10),  Validators.maxLength(1000000000)]],
       photo: ['string', [Validators.required, Validators.maxLength(500)]],
-      size: ['', [Validators.required, Validators.min(0.01)]],
+      size: ['', [Validators.required, Validators.min(10), Validators.maxLength(50000)]],
     })
   }
 
@@ -49,4 +49,22 @@ export class PropertyFormModal implements OnInit {
     this.modalClosed.emit();
   }
 
+  validarSoloNumeros(event: InputEvent) {
+    const input = event.target as HTMLInputElement;
+    const tecla = event.data;
+
+    // 1. Si no hay tecla (ej. borrar), no hacemos nada
+    if (!tecla) return;
+
+    // 2. Construimos cómo quedaría el texto si aceptamos la tecla
+    const valorFuturo = input.value + tecla;
+
+    // 3. Regex flexible para el tipeo:
+    // Permite números y UN solo punto decimal en cualquier posición mientras escribe
+    const regexTipeo = /^\d*\.?\d*$/;
+
+    if (!regexTipeo.test(valorFuturo)) {
+      event.preventDefault();
+    }
+  }
 }
