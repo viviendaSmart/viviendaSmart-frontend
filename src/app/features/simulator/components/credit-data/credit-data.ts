@@ -398,4 +398,23 @@ export class CreditData implements OnInit {
   private showError(message: string): void {
     this._snackBar.open(message, '', { duration: 5000 });
   }
+
+  validarSoloNumeros(event: InputEvent) {
+    const input = event.target as HTMLInputElement;
+    const tecla = event.data;
+
+    // 1. Si no hay tecla (ej. borrar), no hacemos nada
+    if (!tecla) return;
+
+    // 2. Construimos cómo quedaría el texto si aceptamos la tecla
+    const valorFuturo = input.value + tecla;
+
+    // 3. Regex flexible para el tipeo:
+    // Permite números y UN solo punto decimal en cualquier posición mientras escribe
+    const regexTipeo = /^\d*\.?\d*$/;
+
+    if (!regexTipeo.test(valorFuturo)) {
+      event.preventDefault();
+    }
+  }
 }

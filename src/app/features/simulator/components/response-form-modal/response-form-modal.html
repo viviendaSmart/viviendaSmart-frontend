@@ -32,8 +32,10 @@
       </label>
 
       <label class="field">
-        <span class="field-label">Tasa efectiva mensual (i)</span>
-        <span class="field-input">{{ sim.monthlyRate | percent:'1.4-4' }}</span>
+        <span class="field-label">Tasa efectiva por periodo (%)</span>
+        <span class="field-input">
+          {{ (sim.monthlyRate != null ? sim.monthlyRate : sim.periodRate) | percent:'1.4-10' }}
+        </span>
       </label>
 
       <label class="field">
@@ -153,36 +155,36 @@
     <div class="table-wrapper" *ngIf="sim.schedule?.length">
       <table class="amortization-table">
         <thead>
-        <tr>
-          <th>Periodo</th>
-          <th>P.G.</th>
-          <th>Saldo inicial</th>
-          <th>Interés</th>
-          <th>Amortización</th>
-          <th>Cuota</th>
-          <th>Seguro desgrav.</th>
-          <th>Seguro riesgo</th>
-          <th>Comisión periódica</th>
-          <th>Costos periódicos fijos</th>
-          <th>Saldo final</th>
-          <th>Flujo</th>
-        </tr>
+          <tr>
+            <th>Periodo</th>
+            <th>P.G.</th>
+            <th>Saldo inicial</th>
+            <th>Interés</th>
+            <th>Amortización</th>
+            <th>Cuota</th>
+            <th>Seguro desgrav.</th>
+            <th>Seguro riesgo</th>
+            <th>Comisión periódica</th>
+            <th>Costos periódicos fijos</th>
+            <th>Saldo final</th>
+            <th>Flujo</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let row of sim.schedule">
-          <td>{{ row.period }}</td>
-          <td>{{ row.graceFlag }}</td>
-          <td>{{ row.beginningBalance | number:'1.2-2' }}</td>
-          <td>{{ row.interest | number:'1.2-2' }}</td>
-          <td>{{ row.principal | number:'1.2-2' }}</td>
-          <td>{{ row.installment | number:'1.2-2' }}</td>
-          <td>{{ row.lifeInsurance | number:'1.2-2' }}</td>
-          <td>{{ row.riskInsurance | number:'1.2-2' }}</td>
-          <td>{{ row.periodicCommission | number:'1.2-2' }}</td>
-          <td>{{ row.periodicCosts | number:'1.2-2' }}</td>
-          <td>{{ row.endingBalance | number:'1.2-2' }}</td>
-          <td>{{ row.cashFlow | number:'1.2-2' }}</td>
-        </tr>
+          <tr *ngFor="let row of sim.schedule">
+            <td>{{ row.period }}</td>
+            <td>{{ row.graceFlag }}</td>
+            <td>{{ row.beginningBalance | number:'1.2-2' }}</td>
+            <td>{{ row.interest | number:'1.2-2' }}</td>
+            <td>{{ row.principal | number:'1.2-2' }}</td>
+            <td>{{ row.installment | number:'1.2-2' }}</td>
+            <td>{{ row.lifeInsurance | number:'1.2-2' }}</td>
+            <td>{{ row.riskInsurance | number:'1.2-2' }}</td>
+            <td>{{ row.periodicCommission | number:'1.2-2' }}</td>
+            <td>{{ row.periodicCosts | number:'1.2-2' }}</td>
+            <td>{{ row.endingBalance | number:'1.2-2' }}</td>
+            <td>{{ row.cashFlow | number:'1.2-2' }}</td>
+          </tr>
         </tbody>
       </table>
     </div>

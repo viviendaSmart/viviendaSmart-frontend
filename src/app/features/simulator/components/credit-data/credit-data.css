@@ -64,3 +64,16 @@
   color: #d22626;
   background-color: #F3F3F5;
 }
+
+.field-input.is-invalid {
+  border: 1.5px solid #ef4444;
+  background-color: #fef2f2;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-top: 2px;
+  text-align: center;
+}
