@@ -7,6 +7,7 @@ import {Config} from '../../models/config.entity';
 import {ConfigFormModal} from '../../components/config-form-modal/config-form-modal';
 import {Property} from '../../../property/models/property.entity';
 import {ClientFormModal} from '../../../client/components/client-form-modal/client-form-modal';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-config-page',
   imports: [
@@ -21,7 +22,8 @@ import {ClientFormModal} from '../../../client/components/client-form-modal/clie
 export class ConfigPage implements OnInit {
   selectedConfig: Config| null = null;
   constructor(private authService: AuthService,
-              private configService: ConfigService) {}
+              private configService: ConfigService,
+              private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.loadConfig();
@@ -52,9 +54,13 @@ export class ConfigPage implements OnInit {
         next: (created) => {
           //console.log('✅ Config creada:', created);
           this.selectedConfig = created;   // guarda la nueva config en memoria
+          this._snackBar.open('Configuración guardada correctamente', '', { duration: 3000 });
           this.loadConfig();       // opcional: recargar por si el backend modifica algo
         },
-        error: (err) => console.error('Error al crear configuración', err)
+        error: (err) => {
+          console.error('Error al crear configuración', err);
+          this._snackBar.open('Error al guardar la configuración', '', { duration: 3000 });
+        }
       });
 
     } else {
@@ -68,9 +74,13 @@ export class ConfigPage implements OnInit {
         next: (updated) => {
           //console.log('✅ Config actualizada:', updated);
           this.selectedConfig = updated;
+          this._snackBar.open('Configuración actualizada correctamente', '', { duration: 3000 });
           this.loadConfig();       // opcional
         },
-        error: (err) => console.error('Error al actualizar configuración', err)
+        error: (err) => {
+          console.error('Error al actualizar configuración', err);
+          this._snackBar.open('Error al actualizar la configuración', '', { duration: 3000 });
+        }
       });
     }
 
