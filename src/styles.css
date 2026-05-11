@@ -3,3 +3,14 @@
 html, body { height: 100%;}
 *{padding: 0; margin: 0; box-sizing: border-box;  justify-content: center;text-align: center;}
 body { margin: 0; font-family: Bahnschrift, sans-serif; }
+
+.error-msg {
+  min-height: 18px; /* Reserva espacio para el mensaje */
+  margin-top: 2px;
+}
+
+.error-msg small {
+  color: #ff4d4d;
+  font-size: 11px;
+  display: block;
+}
