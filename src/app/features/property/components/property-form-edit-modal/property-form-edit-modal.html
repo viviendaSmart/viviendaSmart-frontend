@@ -4,25 +4,25 @@
     <h2 class="form-title">Editar Propiedad</h2>
     <div class="inputs-container">
       <label>
-        <input class="input" type="text" placeholder="" required formControlName="address" maxlength="255" [class.is-invalid]="form2.get('address')?.invalid && form2.get('address')?.touched">
+        <input class="input" type="text" placeholder="" required formControlName="address" minlength="1" maxlength="30" [class.is-invalid]="form2.get('address')?.invalid && form2.get('address')?.touched">
         <span>Direccion</span>
-        <div class="error-message" *ngIf="form2.get('address')?.invalid && form2.get('address')?.touched">
+        <div class="error-message" *ngIf="form2.get('address')?.invalid && form2.get('address')?.touched" class="error-msg">
           <small>La dirección de la propiedad es obligatoria.</small>
         </div>
       </label>
 
       <label>
-        <input class="input" type="number" min="0.01" step="any" placeholder="" required formControlName="size" [class.is-invalid]="form2.get('size')?.invalid && form2.get('size')?.touched">
-        <span>Area</span>
-        <div class="error-message" *ngIf="form2.get('size')?.invalid && form2.get('size')?.touched">
-          <small>El tamaño (área) de la propiedad debe ser mayor a 0.</small>
+        <input class="input" type="text" min="10" step="any" maxlength="8" placeholder="" required formControlName="size" (beforeinput)="validarSoloNumeros($event)" [class.is-invalid]="form2.get('size')?.invalid && form2.get('size')?.touched">
+        <span>Área en m2</span>
+        <div class="error-message" *ngIf="form2.get('size')?.invalid && form2.get('size')?.touched" class="error-msg">
+          <small>El tamaño (área) debe ser mayor a 0 y estar en m2.</small>
         </div>
       </label>
 
       <label>
-        <input class="input" type="number" min="0.01" step="any" placeholder="" required formControlName="price" [class.is-invalid]="form2.get('price')?.invalid && form2.get('price')?.touched">
+        <input class="input" type="text" min="10" step="any" maxlength="10" placeholder="" required formControlName="price" (beforeinput)="validarSoloNumeros($event)" [class.is-invalid]="form2.get('price')?.invalid && form2.get('price')?.touched">
         <span>Precio (soles)</span>
-        <div class="error-message" *ngIf="form2.get('price')?.invalid && form2.get('price')?.touched">
+        <div class="error-message" *ngIf="form2.get('price')?.invalid && form2.get('price')?.touched" class="error-msg">
           <small>El precio de la propiedad debe ser mayor a 0.</small>
         </div>
       </label>
