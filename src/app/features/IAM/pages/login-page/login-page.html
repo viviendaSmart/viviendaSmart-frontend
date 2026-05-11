@@ -9,7 +9,7 @@
     <div class="login-card-body">
       <div class="login-field-email">
         <p>Correo</p>
-        <input type="email" formControlName="email" placeholder="usuario@ejemplo.com"
+        <input type="email" formControlName="email" placeholder="usuario@ejemplo.com" maxlength="30" minlength="4"
           [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched">
         <div class="error-message" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
           <small *ngIf="form.get('email')?.errors?.['required']">El correo es obligatorio.</small>
@@ -18,7 +18,7 @@
       </div>
       <div class="login-field-password">
         <p>Contraseña</p>
-        <input type="password" formControlName="password" placeholder="**********"
+        <input type="password" formControlName="password" placeholder="**********" maxlength="30" minlength="8"
           [class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched">
         <div class="error-message" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
           <small *ngIf="form.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>

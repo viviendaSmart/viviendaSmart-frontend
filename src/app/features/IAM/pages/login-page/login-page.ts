@@ -29,8 +29,8 @@ export class LoginPage {
     private _snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(30)]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
     });
   }
 
