@@ -1,41 +1,66 @@
 .modal {
   position: fixed;
-  top: 7vw;
-  left: 15vw;
   display: flex;
-  height: 80vh;
-  width: 75vw;
-  gap: 30px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
 }
 
+
 .form {
-  width: 25vw;
+  z-index: 1;
   height: 80vh;
   font-weight: 200;
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
   border-radius: 30px;
   position: relative;
   background-color: #ffffff;
-  z-index: 0;
   line-height: 19px;
   gap: 10px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  overflow-y: auto;
+  width: 100%;
+  max-width: 500px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  padding: 2.5rem 2rem;
 }
 
+.form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.form::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.form::-webkit-scrollbar-thumb:hover {
+  background: #00bcd4; /* Color de tu botón Confirmar */
+}
 
 .form-title {
   font-size: 25px;
   font-weight: 700;
-  position: relative;
+  position: sticky;
+  margin-bottom: 0rem;
   display: flex;
   justify-content: center;
   text-align: center;
   line-height: 40px;
+  flex-shrink: 0;
+  z-index: 10;
+  background: white;
 }
 
 
@@ -45,28 +70,18 @@
   gap: 2vh;
 }
 
-.inputs-first {
+.inputs-first, .inputs-second, .inputs-third, .inputs-fourth {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  align-items: flex-start;
 }
 
-.inputs-second {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-
-.inputs-third {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-
-.inputs-fourth {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
+/* Asegura que cada label ocupe el 50% de la fila */
+.inputs-first label, .inputs-second label,
+.inputs-third label, .inputs-fourth label {
+  flex: 1;
+  min-width: 0;
 }
 
 .form label {
@@ -121,6 +136,7 @@
   outline: 0;
   border: 0;
   border-radius: 10px;
+  text-align: left;
 }
 
 .form label .input+span {
@@ -135,6 +151,15 @@
 .form label .input:placeholder-shown+span {
   top: 10px;
   font-size: 12px;
+}
+
+form small, .error-text {
+  display: block;
+  color: #ff4d4d;
+  font-size: 10px;
+  line-height: 12px;
+  margin-top: 4px;
+  min-height: 24px;
 }
 
 .form label .input:focus+span,

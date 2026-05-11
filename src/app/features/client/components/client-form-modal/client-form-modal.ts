@@ -27,18 +27,18 @@ export class ClientFormModal implements OnInit {
   constructor(private fb: FormBuilder) {}
   ngOnInit() {
     this.form = this.fb.group({
-      dni: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern(/^\d{8}$/)]],
+      dni: ['', [Validators.required, Validators.minLength(8), Validators.minLength(8), Validators.maxLength(8), Validators.pattern(/^\d{8}$/)]],
       monthlyIncome: [ '', [Validators.required, Validators.min(0.01)]],
-      ocupation: ['', [Validators.required, Validators.maxLength(100)]],
-      name: ['', [Validators.required, Validators.maxLength(100)]],
-      surname: ['', [Validators.required, Validators.maxLength(100)]],
-      business: ['', [Validators.required, Validators.maxLength(100)]],
-      earningtype: ['', Validators.required],
+      ocupation: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
+      name: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
+      surname: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
+      business: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
+      earningtype: ['', [Validators.required, Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
       credithistory: [true, Validators.required],
       support: [false, Validators.required],
-      address: ['', [Validators.required, Validators.maxLength(255)]],
+      address: ['', [Validators.required, Validators.maxLength(30)]],
       maritalStatus: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^\+?\d+$/)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern(/^9[0-9]{8}$/)]],
     })
   }
   submitForm(event: Event): void {
@@ -51,12 +51,34 @@ export class ClientFormModal implements OnInit {
       this.formSubmitted.emit(this.form.value);
     }
   }
-
+  validarEntrada(event: InputEvent) {
+    const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/;
+    if (event.data && !regex.test(event.data)) {
+      event.preventDefault();
+    }
+  }
   close()
   {
     this.modalClosed.emit();
   }
 
+  restringirPrimerDigito(event: InputEvent, type: string) {
+    const input = event.target as HTMLInputElement;
+    const tecla = event.data;
+
+    if (tecla && !/^[0-9]$/.test(tecla)) {
+      event.preventDefault();
+      return;
+    }
+
+    const isCelular = type.toLowerCase() !== 'dni';
+
+    if (isCelular) {
+      if (input.value.length === 0 && tecla !== '9') {
+        event.preventDefault();
+      }
+    }
+  }
 
 
 }
