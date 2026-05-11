@@ -117,3 +117,163 @@
     padding: 2rem 1.5rem;
   }
 }
+
+/* Bonos Section Styles */
+.bonos-section {
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.section-header {
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.section-header h2 {
+  color: #0f172a;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.025em;
+}
+
+.section-header p {
+  color: #64748b;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.bonos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.bono-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.bono-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+  border-color: #cbd5e1;
+}
+
+.bono-header {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.bono-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: white;
+}
+
+.avn .bono-badge { background: #3b82f6; } /* Blue */
+.csp .bono-badge { background: #10b981; } /* Emerald */
+.mv .bono-badge { background: #f59e0b; }  /* Amber */
+
+.bono-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.bono-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+
+.bono-subsection h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bono-subsection ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.bono-subsection li {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.bono-subsection li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #cbd5e1;
+  font-weight: bold;
+}
+
+.bono-subsection strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.bono-info-text {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: -0.25rem 0 0.75rem 0;
+  font-weight: 500;
+}
+
+.bono-tiers > li {
+  font-weight: 600;
+  color: #475569;
+}
+
+.bono-tiers ul {
+  margin-top: 0.4rem;
+  padding-left: 1rem;
+  border-left: 2px solid #f1f5f9;
+}
+
+.bono-tiers ul li {
+  font-size: 0.9rem;
+  padding-left: 0.75rem;
+}
+
+.bono-tiers ul li::before {
+  content: "→";
+  color: #94a3b8;
+}
+
+@media (max-width: 640px) {
+
+  .bonos-container {
+    grid-template-columns: 1fr;
+  }
+}

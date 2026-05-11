@@ -1,6 +1,5 @@
 <app-side-bar></app-side-bar>
-<app-header-bar
-  [params]="{
+<app-header-bar [params]="{
   title: 'Dashboard',
   description: 'Bienvenido, ' + loadFullName(),
   name: loadFullName(),
@@ -16,24 +15,26 @@
         <h2>¿Cómo usar ViviendaSmart?</h2>
         <p>Sigue estos pasos para realizar una simulación de crédito hipotecario:</p>
       </div>
-      
+
       <div class="steps-container">
         <div class="step-card">
           <div class="step-number">1</div>
           <div class="step-content">
             <h3>Configuración</h3>
-            <p>Ve a la pestaña de "Configuración" para definir las tasas (Tasa Nominal o Efectiva), el plazo en días, la moneda y otros parámetros financieros base.</p>
+            <p>Ve a la pestaña de "Configuración" para definir las tasas (Tasa Nominal o Efectiva), el plazo en días, la
+              moneda y otros parámetros financieros base.</p>
           </div>
         </div>
-        
+
         <div class="step-card">
           <div class="step-number">2</div>
           <div class="step-content">
             <h3>Clientes</h3>
-            <p>Dirígete a "Clientes" para registrar los datos personales y financieros de los prospectos. Asegúrate de ingresar su historial crediticio y si han recibido apoyo habitacional previo.</p>
+            <p>Dirígete a "Clientes" para registrar los datos personales y financieros de los prospectos. Asegúrate de
+              ingresar su historial crediticio y si han recibido apoyo habitacional previo.</p>
           </div>
         </div>
-        
+
         <div class="step-card">
           <div class="step-number">3</div>
           <div class="step-content">
@@ -41,12 +42,126 @@
             <p>En "Propiedades", registra los inmuebles disponibles con su respectiva dirección, área (m²) y precio.</p>
           </div>
         </div>
-        
+
         <div class="step-card">
           <div class="step-number">4</div>
           <div class="step-content">
             <h3>Simulador</h3>
-            <p>Finalmente, ve al "Simulador". Selecciona un cliente y una propiedad. El sistema evaluará si el cliente califica a los bonos de Techo Propio (BFH, AVN, CSP, MV) en base a su sueldo, historial y valor de la propiedad. Completa los costos iniciales/periódicos y simula el crédito.</p>
+            <p>Finalmente, ve al "Simulador". Selecciona un cliente y una propiedad. El sistema evaluará si el cliente
+              califica a los bonos de Techo Propio (BFH, AVN, CSP, MV) en base a su sueldo, historial y valor de la
+              propiedad. Completa los costos iniciales/periódicos y simula el crédito.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bonos-section">
+      <div class="section-header">
+        <h2>Condiciones de Bonos Habitacionales</h2>
+        <p>Requisitos mínimos para calificar a los beneficios de Techo Propio (BFH)</p>
+      </div>
+
+      <div class="bonos-container">
+        <!-- AVN Card -->
+        <div class="bono-card avn">
+          <div class="bono-header">
+            <div class="bono-badge">AVN</div>
+            <h3>Adquisición de Vivienda Nueva</h3>
+          </div>
+          <div class="bono-body">
+            <div class="bono-subsection">
+              <h4><i class="user-icon"></i> Requisitos del Usuario</h4>
+              <ul>
+                <li>Ingreso mensual neto hasta <strong>S/ 3,715</strong>.</li>
+                <li>Historial crediticio positivo.</li>
+                <li>No haber recibido apoyo habitacional previo.</li>
+              </ul>
+            </div>
+            <div class="bono-subsection">
+              <h4><i class="home-icon"></i> Requisitos de la Vivienda</h4>
+              <ul>
+                <li>Precio máximo: <strong>S/ 136,000</strong>.</li>
+                <li>Área máxima: <strong>140 m²</strong>.</li>
+                <li>Debe ser una vivienda nueva.</li>
+              </ul>
+            </div>
+            <div class="bono-subsection">
+              <h4><i class="money-icon"></i> Monto del Bono</h4>
+              <p class="bono-info-text">El monto depende del valor y área de la vivienda:</p>
+              <ul class="bono-tiers">
+                <li>Hasta 50 m²: <strong>S/ 46,545</strong></li>
+                <li>Más de 50 m²:
+                  <ul>
+                    <li>Hasta S/ 60,000: <strong>S/ 56,710</strong></li>
+                    <li>S/ 60,001 - S/ 70,000: <strong>S/ 51,895</strong></li>
+                    <li>S/ 70,001 - S/ 109,000: <strong>S/ 50,825</strong></li>
+                    <li>S/ 109,001 - S/ 136,000: <strong>S/ 46,545</strong></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSP Card -->
+        <div class="bono-card csp">
+          <div class="bono-header">
+            <div class="bono-badge">CSP</div>
+            <h3>Construcción en Sitio Propio</h3>
+          </div>
+          <div class="bono-body">
+            <div class="bono-subsection">
+              <h4><i class="user-icon"></i> Requisitos del Usuario</h4>
+              <ul>
+                <li>Ingreso mensual neto hasta <strong>S/ 2,706</strong>.</li>
+                <li>Historial crediticio positivo.</li>
+                <li>No haber recibido apoyo habitacional previo.</li>
+              </ul>
+            </div>
+            <div class="bono-subsection">
+              <h4><i class="home-icon"></i> Requisitos de la Vivienda</h4>
+              <ul>
+                <li>La construcción debe cumplir con las normas técnicas vigentes.</li>
+                <li>El valor de la obra debe estar dentro de los límites de Techo Propio.</li>
+              </ul>
+            </div>
+            <div class="bono-subsection">
+              <h4><i class="money-icon"></i> Monto del Bono</h4>
+              <ul>
+                <li>Monto fijo: <strong>S/ 32,100</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- MV Card -->
+        <div class="bono-card mv">
+          <div class="bono-header">
+            <div class="bono-badge">MV</div>
+            <h3>Mejoramiento de Vivienda</h3>
+          </div>
+          <div class="bono-body">
+            <div class="bono-subsection">
+              <h4><i class="user-icon"></i> Requisitos del Usuario</h4>
+              <ul>
+                <li>Ingreso mensual neto hasta <strong>S/ 2,706</strong>.</li>
+                <li>Historial crediticio positivo.</li>
+                <li>No haber recibido apoyo habitacional previo.</li>
+              </ul>
+            </div>
+            <div class="bono-subsection">
+              <h4><i class="home-icon"></i> Requisitos de la Vivienda</h4>
+              <ul>
+                <li>La vivienda debe requerir mejoras estructurales o de servicios.</li>
+                <li>Costo de mejora según topes establecidos.</li>
+              </ul>
+            </div>
+            <div class="bono-subsection">
+              <h4><i class="money-icon"></i> Monto del Bono</h4>
+              <ul>
+                <li>Monto fijo: <strong>S/ 12,305</strong></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
