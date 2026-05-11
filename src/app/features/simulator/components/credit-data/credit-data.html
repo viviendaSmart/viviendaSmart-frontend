@@ -8,13 +8,13 @@
       <!-- Precio Vivienda -->
       <label class="field">
         <span class="field-label">Precio Vivienda (S/)</span>
-        <input type="number" class="field-input" formControlName="price" readonly />
+        <input type="text" class="field-input" formControlName="price" readonly />
       </label>
 
       <!-- Bono -->
       <label class="field">
         <span class="field-label">Bono (BFH)</span>
-        <select class="field-input" formControlName="bono">
+        <select class="field-input" formControlName="bono" [class.is-invalid]="form.get('bono')?.invalid && form.get('bono')?.touched">
           <option
             *ngFor="let b of bonos"
             [ngValue]="b.value"
@@ -22,6 +22,9 @@
             {{ b.label }}
           </option>
         </select>
+        <div class="error-message" *ngIf="form.get('bono')?.invalid && form.get('bono')?.touched">
+          <small>Seleccione una opción de bono.</small>
+        </div>
       </label>
 
       <!-- Tipo de Tasa -->
@@ -33,13 +36,13 @@
       <!-- Tasa Anual -->
       <label class="field">
         <span class="field-label">Tasa (%)</span>
-        <input type="number" class="field-input" formControlName="rate" readonly />
+        <input type="text" class="field-input" formControlName="rate" readonly />
       </label>
 
       <!-- N° Años -->
       <label class="field">
         <span class="field-label">Número de Años</span>
-        <input type="number" class="field-input" formControlName="plazo" min="1" max="30"
+        <input type="text" class="field-input" formControlName="plazo" minlength="1" maxlength="2" (beforeinput)="validarSoloNumeros($event)"
           [class.is-invalid]="form.get('plazo')?.invalid && form.get('plazo')?.touched" />
         <div class="error-message" *ngIf="form.get('plazo')?.invalid && form.get('plazo')?.touched">
           <small>El plazo del préstamo debe ser entre 1 y 30 años.</small>
@@ -49,7 +52,7 @@
       <!-- Frecuencia de pago -->
       <label class="field">
         <span class="field-label">Frecuencia de pago (días)</span>
-        <input type="number" class="field-input" formControlName="frequency" min="1"
+        <input type="text" class="field-input" formControlName="frequency" minlength="1" maxlength="3" (beforeinput)="validarSoloNumeros($event)"
           [class.is-invalid]="form.get('frequency')?.invalid && form.get('frequency')?.touched" />
         <div class="error-message" *ngIf="form.get('frequency')?.invalid && form.get('frequency')?.touched">
           <small>La frecuencia de pago debe ser al menos de 1 día (usualmente 30).</small>
@@ -65,7 +68,7 @@
       <!-- Días de Gracia -->
       <label class="field">
         <span class="field-label">Días de Gracia</span>
-        <input type="number" class="field-input" formControlName="term" readonly />
+        <input type="text" class="field-input" formControlName="term" readonly />
       </label>
 
       <!-- Moneda -->
@@ -77,7 +80,7 @@
       <!-- Tipo de Tasa COK -->
       <label class="field">
         <span class="field-label">Tipo de Tasa COK</span>
-        <select class="field-input" formControlName="cokRateType">
+        <select class="field-input" formControlName="cokRateType" [class.is-invalid]="form.get('cokRateType')?.invalid && form.get('cokRateType')?.touched">
           <option [ngValue]="null" disabled selected>Seleccione tipo de tasa</option>
           <option value="TEA">TEA</option>
           <option value="TES">TES</option>
@@ -85,12 +88,15 @@
           <option value="TEB">TEB</option>
           <option value="TEM">TEM</option>
         </select>
+        <div class="error-message" *ngIf="form.get('cokRateType')?.invalid && form.get('cokRateType')?.touched">
+          <small>Seleccione el tipo de tasa COK.</small>
+        </div>
       </label>
 
       <!-- Tasa COK -->
       <label class="field">
         <span class="field-label">Tasa COK (%)</span>
-        <input type="number" class="field-input" formControlName="cokRate" min="0" step="any"
+        <input type="text" class="field-input" formControlName="cokRate" maxlength="10" (beforeinput)="validarSoloNumeros($event)"
           [class.is-invalid]="form.get('cokRate')?.invalid && form.get('cokRate')?.touched" />
         <div class="error-message" *ngIf="form.get('cokRate')?.invalid && form.get('cokRate')?.touched">
           <small *ngIf="form.get('cokRate')?.errors?.['required']">La Tasa COK es obligatoria.</small>
@@ -108,7 +114,7 @@
       <!-- Cuota Inicial -->
       <label class="field">
         <span class="field-label">Cuota Inicial (%)</span>
-        <input type="number" class="field-input" min="0" max="100" step="any" formControlName="initialPayment"
+        <input type="text" class="field-input" formControlName="initialPayment" maxlength="10" (beforeinput)="validarSoloNumeros($event)"
           [class.is-invalid]="form.get('initialPayment')?.invalid && form.get('initialPayment')?.touched" />
         <div class="error-message" *ngIf="form.get('initialPayment')?.invalid && form.get('initialPayment')?.touched">
           <small>El porcentaje de cuota inicial debe estar entre 0% y 100%.</small>
@@ -119,7 +125,11 @@
           <span class="field-label">
             {{ initialCostDefinitions[i].label }}
           </span>
-          <input type="number" min="0" step="any" class="field-input" [formControlName]="i" />
+          <input type="text" class="field-input" [formControlName]="i" maxlength="10" (beforeinput)="validarSoloNumeros($event)"
+                 [class.is-invalid]="ctrl.invalid && ctrl.touched" />
+          <div class="error-message" *ngIf="ctrl.invalid && ctrl.touched">
+            <small>Mínimo 0.</small>
+          </div>
         </label>
       </ng-container>
     </div>
@@ -135,7 +145,11 @@
           <span class="field-label">
             {{ periodicCostDefinitions[i].label }}
           </span>
-          <input type="number" min="0" step="any" class="field-input" [formControlName]="i" />
+          <input type="text" class="field-input" [formControlName]="i" maxlength="10" (beforeinput)="validarSoloNumeros($event)"
+                 [class.is-invalid]="ctrl.invalid && ctrl.touched" />
+          <div class="error-message" *ngIf="ctrl.invalid && ctrl.touched">
+            <small>Mínimo 0.</small>
+          </div>
         </label>
       </ng-container>
     </div>

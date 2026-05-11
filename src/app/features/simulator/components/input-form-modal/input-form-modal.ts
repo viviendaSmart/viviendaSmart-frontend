@@ -1,12 +1,13 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {NgForOf} from '@angular/common';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-input-form-modal',
   imports: [
     ReactiveFormsModule,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './input-form-modal.html',
   styleUrl: './input-form-modal.css'
@@ -25,8 +26,8 @@ export class InputFormModal implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      address: [null],
-      dni: [null]
+      address: [null, Validators.required],
+      dni: [null, Validators.required]
     });
 
     this.form.valueChanges.subscribe(value => {

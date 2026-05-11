@@ -11,6 +11,7 @@ export interface SimulationResponse {
   financedBalance: number;
   bonusAmount: number;
   monthlyRate: number;
+  periodRate?: number;
   installmentsPerYear: number;
   totalTerm: number;
   lifeInsuranceRatePeriod: number;
