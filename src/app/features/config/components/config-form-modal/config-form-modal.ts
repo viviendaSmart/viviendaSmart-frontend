@@ -12,13 +12,15 @@ import {ConfigService} from '../../services/config.service';
 import {AuthService} from '../../../../shared/services/authentication.service';
 import {ClassicButtonComponent} from '../../../../shared/components/classic-button/classic-button.component';
 import {Config} from '../../models/config.entity';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-config-form-modal',
   standalone: true,   // si tus otros componentes también usan imports, pon esto
   imports: [
     ReactiveFormsModule,
-    ClassicButtonComponent
+    ClassicButtonComponent,
+    NgIf
   ],
   templateUrl: './config-form-modal.html',
   styleUrl: './config-form-modal.css'
@@ -29,6 +31,9 @@ export class ConfigFormModal implements OnInit, OnChanges {
 
   form!: FormGroup;
   userId!: number;
+  mensaje: string = '';
+  tipoMensaje: 'success' | 'error' | '' = '';
+  isSubmitting: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +44,7 @@ export class ConfigFormModal implements OnInit, OnChanges {
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.userId = user.id;
-
+    this.mensaje = '';
     this.buildForm();
   }
 
@@ -51,11 +56,11 @@ export class ConfigFormModal implements OnInit, OnChanges {
 
   private buildForm() {
     this.form = this.fb.group({
-      rate: [this.config ? (this.config as any).rate : '', [Validators.required, Validators.min(0)]],
-      rateType: [this.config ? (this.config as any).rateType : '', Validators.required],
-      exchange: [this.config ? (this.config as any).exchange : '', Validators.required],
-      term: [this.config ? (this.config as any).term : '', [Validators.required, Validators.min(1)]],
-      termtype: [this.config ? (this.config as any).termtype : '', Validators.required],
+      rate: [this.config ? (this.config as any).rate : '', [Validators.required, Validators.min(0), Validators.max(100)]],
+      rateType: [this.config ? (this.config as any).rateType : 'TEA', Validators.required],
+      exchange: [this.config ? (this.config as any).exchange : 'SOLES', Validators.required],
+      term: [this.config ? (this.config as any).term : '', [Validators.required, Validators.min(1), Validators.max(999)]],
+      termtype: [this.config ? (this.config as any).termtype : 'PARCIAL', Validators.required],
     });
   }
 
@@ -71,8 +76,45 @@ export class ConfigFormModal implements OnInit, OnChanges {
 
   submitForm(event: Event) {
     event.preventDefault();
-    if (this.form.valid) {
-      this.formSubmitted.emit(this.form.value);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    this.isSubmitting = true;
+    this.mensaje = '';
+    this.formSubmitted.emit(this.form.value);
+  }
+
+  validarSoloNumeros(event: InputEvent) {
+    const input = event.target as HTMLInputElement;
+    const tecla = event.data;
+
+    // 1. Si no hay tecla (ej. borrar), no hacemos nada
+    if (!tecla) return;
+
+    // 2. Construimos cómo quedaría el texto si aceptamos la tecla
+    const valorFuturo = input.value + tecla;
+
+    // 3. Regex flexible para el tipeo:
+    // Permite números y UN solo punto decimal en cualquier posición mientras escribe
+    const regexTipeo = /^\d*\.?\d*$/;
+
+    if (!regexTipeo.test(valorFuturo)) {
+      event.preventDefault();
     }
   }
+
+  validarSoloEnteros(event: InputEvent) {
+    const input = event.target as HTMLInputElement;
+    const tecla = event.data;
+
+    if (!tecla) return;
+    const valorFuturo = input.value + tecla;
+    const regexTipeo = /^[0-9]+$/;
+
+    if (!regexTipeo.test(valorFuturo)) {
+      event.preventDefault();
+    }
+  }
+
 }

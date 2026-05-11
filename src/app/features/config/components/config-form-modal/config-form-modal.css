@@ -13,7 +13,7 @@
 
 .form {
   width: 25vw;
-  height: 75vh;
+  height: 80vh;
   font-weight: 200;
   flex-direction: column;
   padding: 1.5rem;
@@ -68,7 +68,6 @@
   outline: 0;
   border: 0;
   border-radius: 10px;
-
 }
 
 .form label .input+span {
@@ -154,4 +153,22 @@
 :host ::ng-deep app-classic-button.submit-button button {
   padding: 0.2rem;
   font-size: 0.8rem;
+}
+
+/* ========== VALIDATION STYLES ========== */
+.input.is-invalid {
+  border: 1.5px solid #ef4444 !important;
+  background: #fef2f2 !important;
+}
+
+.error-message {
+  text-align: left;
+  color: #ef4444;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.error-message small {
+  display: block;
 }
