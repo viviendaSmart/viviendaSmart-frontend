@@ -1,0 +1,42 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Términos y Condiciones de Uso</h2>
+      <button class="close-button" (click)="onClose()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <h3>ViviendaSmart</h3>
+      <p>Bienvenido a ViviendaSmart. Antes de iniciar sesión, por favor revisa las condiciones que rigen el uso de nuestra plataforma de simulación financiera inmobiliaria.</p>
+
+      <h4>1. Sobre el servicio y los resultados</h4>
+      <p>Te otorgamos un derecho de uso limitado sobre nuestra plataforma SaaS. Ten en cuenta que los resultados financieros generados son exclusivamente referenciales y en ningún caso sustituyen la asesoría profesional, legal, bancaria o contable.</p>
+
+      <h4>2. Requisitos Técnicos Obligatorios</h4>
+      <p>Para garantizar el funcionamiento de la plataforma, debes acceder utilizando:</p>
+      <ul>
+        <li><strong>Sistema Operativo:</strong> Windows 11.</li>
+        <li><strong>Navegador:</strong> Google Chrome actualizado.</li>
+        <li><strong>Configuración:</strong> JavaScript, cookies y almacenamiento local habilitados, junto con una conexión a internet estable.</li>
+      </ul>
+      <p class="warning"><strong>Importante:</strong> ViviendaSmart no garantiza el correcto funcionamiento ni se responsabiliza por errores si utilizas sistemas, navegadores o dispositivos distintos a los recomendados.</p>
+
+      <h4>3. Tus responsabilidades y restricciones</h4>
+      <p>Al utilizar el sistema te comprometes a ingresar información verídica y proteger tus credenciales de acceso. Queda estrictamente prohibido:</p>
+      <ul>
+        <li>Copiar, modificar, revender o sublicenciar la plataforma.</li>
+        <li>Descompilar, manipular el sistema, automatizar accesos no autorizados o alterar los resultados.</li>
+        <li>Realizar acciones que vulneren el funcionamiento o la seguridad del sistema.</li>
+      </ul>
+      <p>El incumplimiento de estas normas puede generar la suspensión o cancelación inmediata de tu acceso.</p>
+
+      <h4>4. Nuestra responsabilidad y actualizaciones</h4>
+      <p>ViviendaSmart se compromete a brindarte acceso al sistema, proteger tu información conforme a la ley y aplicar medidas razonables de seguridad. Nos reservamos el derecho de realizar actualizaciones técnicas o funcionales para mejorar tu experiencia. No somos responsables por fallas derivadas de tu equipo, red, proveedor de internet o el ingreso de datos incorrectos.</p>
+
+      <h4>5. Aceptación del acuerdo</h4>
+      <p>Al registrarte, iniciar sesión o utilizar ViviendaSmart, declaras haber leído, comprendido y aceptado en su totalidad este Acuerdo de Servicio SaaS, incluyendo sus requisitos técnicos y descargos de responsabilidad.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="accept-button" (click)="onClose()">Entendido</button>
+    </div>
+  </div>
+</div>

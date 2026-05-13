@@ -6,6 +6,7 @@ import {AuthService} from '../../../../shared/services/authentication.service';
 import {NgIf, NgOptimizedImage} from '@angular/common';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {User} from '../../models/user.entity';
+import {TermsModalComponent} from '../../../../shared/components/terms-modal/terms-modal.component';
 
 @Component({
   selector: 'app-register-page',
@@ -13,7 +14,8 @@ import {User} from '../../models/user.entity';
     RouterLink,
     ReactiveFormsModule,
     NgIf,
-    NgOptimizedImage
+    NgOptimizedImage,
+    TermsModalComponent
   ],
   templateUrl: './register-page.html',
   styleUrls: ['./register-page.css']
@@ -21,6 +23,7 @@ import {User} from '../../models/user.entity';
 export class RegisterPage {
   form: FormGroup;
   loading = false;
+  showTermsModal = false;
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -34,11 +37,18 @@ export class RegisterPage {
       email: ['', [Validators.required, Validators.email,Validators.minLength(4), Validators.maxLength(30)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
       requestedRole: ['PROPERTY_MANAGER'],
+      termsAccepted: [false, Validators.requiredTrue]
     }, { });
   }
 
   register() {
-    if (this.form.invalid || this.loading) return;
+    if (this.form.invalid || this.loading) {
+      if (this.form.get('termsAccepted')?.invalid) {
+        this.showError('Debe aceptar los Términos y Condiciones');
+      }
+      this.form.markAllAsTouched();
+      return;
+    }
     this.loading = true;
     const { firstName, lastName, email, password, requestedRole } = this.form.value;
 
@@ -68,5 +78,9 @@ export class RegisterPage {
     if (event.data && !regex.test(event.data)) {
       event.preventDefault();
     }
+  }
+
+  toggleTermsModal(): void {
+    this.showTermsModal = !this.showTermsModal;
   }
 }

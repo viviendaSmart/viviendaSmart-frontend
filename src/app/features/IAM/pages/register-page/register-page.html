@@ -33,19 +33,28 @@
       </div>
       <div class="register-field-password">
         <p>Contraseña</p>
-        <input formControlName="password" type="password" placeholder="**********" maxlength="30" minlength="8">
-        <span *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error-msg">
-          La contraseña debe tener al menos 8 caracteres.
-        </span>
+        <input type="password" formControlName="password" placeholder="**********" maxlength="30" minlength="8"
+               [class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched">
+        <div class="error-message" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+          <small *ngIf="form.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
+          <small *ngIf="form.get('password')?.errors?.['minlength']">Mínimo 8 caracteres.</small>
+        </div>
+      </div>
+      <div class="terms-field">
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="terms" formControlName="termsAccepted">
+          <label for="terms">He leído y acepto los <a (click)="toggleTermsModal(); $event.preventDefault()" href="#">Términos y Condiciones</a></label>
+        </div>
       </div>
     </div>
 
     <div class="register-card-footer">
-      <button (click)="register()" [disabled]="loading || form.invalid">
-        Registrarse
+      <button (click)="register()" [disabled]="loading">
+        {{ loading ? 'Registrando...' : 'Registrarse' }}
       </button>
-      <a [routerLink]="['/login']">¿Ya tienes cuenta?</a>
+      <a [routerLink]="['/login']">¿Ya tienes una cuenta?</a>
     </div>
 
   </div>
+  <app-terms-modal *ngIf="showTermsModal" (close)="toggleTermsModal()"></app-terms-modal>
 </div>

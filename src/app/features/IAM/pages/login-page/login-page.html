@@ -24,12 +24,19 @@
           <small *ngIf="form.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
         </div>
       </div>
+      <div class="terms-field">
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="terms" formControlName="termsAccepted">
+          <label for="terms">He leído y acepto los <a (click)="toggleTermsModal(); $event.preventDefault()" href="#">Términos y Condiciones</a></label>
+        </div>
+      </div>
     </div>
     <div class="login-card-footer">
-      <button (click)="login()">
-        Iniciar sesión
+      <button (click)="login()" [disabled]="loading">
+        {{ loading ? 'Cargando...' : 'Iniciar sesión' }}
       </button>
       <a [routerLink]="['/register']">¿No estás registrado?</a>
     </div>
   </div>
+  <app-terms-modal *ngIf="showTermsModal" (close)="toggleTermsModal()"></app-terms-modal>
 </div>
