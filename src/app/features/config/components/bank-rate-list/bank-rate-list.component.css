@@ -1,0 +1,115 @@
+.bank-list-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.bank-list-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.bank-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.bank-card {
+  flex: 1 1 calc(16.666% - 1rem); /* Roughly 6 cards per row max */
+  min-width: 140px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.bank-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.05);
+  border-color: var(--active-border, #007bff);
+}
+
+.bank-card.selected {
+  border-color: var(--active-border, #007bff);
+  background-color: var(--hover-surface);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.bank-logo-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.bank-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bank-logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.bank-info {
+  text-align: center;
+  width: 100%;
+}
+
+.bank-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bank-rate {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--active-text, #28a745);
+  margin: 0;
+}
+
+.bank-rate-custom {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .bank-card {
+    flex: 1 1 calc(33.333% - 1rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .bank-card {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
