@@ -5,8 +5,8 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background-color: #f8fafc;
-  background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+  background-color: var(--bg-base);
+  background-image: radial-gradient(var(--border-color) 0.5px, transparent 0.5px);
   background-size: 24px 24px;
   box-sizing: border-box;
 }
@@ -21,5 +21,12 @@
   .main-content {
     margin-left: 0;
     padding: 6rem 1rem 2rem 1rem;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 80px;
   }
 }
