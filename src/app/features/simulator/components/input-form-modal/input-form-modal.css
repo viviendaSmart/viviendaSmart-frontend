@@ -8,7 +8,7 @@
 .selection-card {
   width: 100%;
   border-radius: 10px;
-  background: linear-gradient(to bottom, #4fb5cd, #0590c3);
+  background: linear-gradient(to bottom, var(--active-text), var(--active-text));
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: column;
@@ -50,21 +50,21 @@
   width: 100%;
   padding: 0.55rem 0.75rem;
   border-radius: 10px;
-  border: 1px solid #c0dfee;
+  border: 1px solid var(--border-color);
   font-size: 0.9rem;
   outline: none;
   font-family: Bahnschrift, sans-serif;
-  background: #ffffff;
+  background: var(--bg-surface);
 }
 
 .field-input:focus {
-  border-color: #00A6CF;
+  border-color: var(--active-text);
   box-shadow: 0 0 0 2px rgba(0, 166, 207, 0.2);
 }
 
 .field-input.is-invalid {
-  border: 2px solid #ffcccc;
-  background-color: #fff0f0;
+  border: 2px solid var(--danger-surface-hover);
+  background-color: var(--danger-surface-hover);
 }
 
 .error-message {
