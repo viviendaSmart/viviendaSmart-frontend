@@ -1,6 +1,6 @@
 ﻿export const environment = {
   production: true,
-  serverBaseUrl: 'https://vivendasmart-backend-production.up.railway.app/api/v1',
+  serverBaseUrl: 'http://localhost:8080/api/v1',
   usersEndpointPath: '/users',
   registerEndpointPath: '/users/signup',
   loginEndpointPath: '/users/signin',

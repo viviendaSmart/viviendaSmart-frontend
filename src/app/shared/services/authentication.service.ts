@@ -10,33 +10,33 @@ export class AuthService {
   constructor() {}
 
   public saveToken(token: string): void {
-    localStorage.setItem(TOKEN_KEY, token);
+    sessionStorage.setItem(TOKEN_KEY, token);
   }
 
   public getToken(): string | null {
-    return localStorage.getItem(TOKEN_KEY);
+    return sessionStorage.getItem(TOKEN_KEY);
   }
 
   public removeToken(): void {
-    localStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(TOKEN_KEY);
   }
 
   public saveUser(username: any): void {
-    localStorage.setItem(USER_KEY, JSON.stringify(username));
+    sessionStorage.setItem(USER_KEY, JSON.stringify(username));
   }
 
   public getUser(): any {
-    const user = localStorage.getItem(USER_KEY);
+    const user = sessionStorage.getItem(USER_KEY);
     try {
       return user ? JSON.parse(user) : null;
     } catch (e) {
-      console.error('❌ Error al parsear el usuario desde localStorage:', e);
+      console.error('❌ Error al parsear el usuario desde sessionStorage:', e);
       return null;
     }
   }
 
   public removeUser(): void {
-    localStorage.removeItem(USER_KEY);
+    sessionStorage.removeItem(USER_KEY);
   }
 
   public logout(): void {

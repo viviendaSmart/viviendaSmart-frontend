@@ -1,19 +1,17 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ClassicButtonComponent} from "../../../../shared/components/classic-button/classic-button.component";
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Property} from '../../../property/models/property.entity';
-import {Client} from '../../models/client.entity';
-import {PropertyService} from '../../../property/services/property.service';
-import {AuthService} from '../../../../shared/services/authentication.service';
-import {Config} from '../../../config/models/config.entity';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ClassicButtonComponent } from "../../../../shared/components/classic-button/classic-button.component";
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { NgIf } from "@angular/common";
+import { Client } from '../../models/client.entity';
 
 @Component({
   selector: 'app-client-form-edit-modal',
-    imports: [
-        ClassicButtonComponent,
-        FormsModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    ClassicButtonComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    NgIf
+  ],
   templateUrl: './client-form-edit-modal.html',
   styleUrl: './client-form-edit-modal.css'
 })
@@ -21,11 +19,9 @@ export class ClientFormEditModal implements OnInit {
   @Output() formEdited = new EventEmitter<any>();
   @Output() modalClosed = new EventEmitter<void>();
   @Output() onDelete = new EventEmitter<any>();
-  @Input() client: Client| null = null;
+  @Input() client: Client | null = null;
   form2!: FormGroup;
-  constructor(private fb: FormBuilder,
-              private propertyService: PropertyService,
-              private authService: AuthService,) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.buildForm()
@@ -36,11 +32,11 @@ export class ClientFormEditModal implements OnInit {
     this.form2 = this.fb.group({
       dni: [this.client ? (this.client as any).dni : '', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern(/^\d{8}$/)]],
       monthlyIncome: [this.client ? (this.client as any).monthlyIncome : '', [Validators.required, Validators.min(0.01)]],
-      ocupation: [this.client ? (this.client as any).ocupation : '', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
-      business: [this.client ? (this.client as any).business : '', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
-      name: [this.client ? (this.client as any).name : '', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
-      surname: [this.client ? (this.client as any).surname : '', [Validators.required, Validators.maxLength(30),  Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
-      earningtype: [this.client ? (this.client as any).earningtype : '', [Validators.required, Validators.maxLength(30),  Validators.pattern(/^[a-zA-Z<UNK> ]*$/)]],
+      ocupation: [this.client ? (this.client as any).ocupation : '', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/)]],
+      business: [this.client ? (this.client as any).business : '', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/)]],
+      name: [this.client ? (this.client as any).name : '', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/)]],
+      surname: [this.client ? (this.client as any).surname : '', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/)]],
+      earningtype: [this.client ? (this.client as any).earningtype : '', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$/)]],
       credithistory: [this.client ? (this.client as any).credithistory : '', [Validators.required, Validators.maxLength(30)]],
       support: [this.client ? (this.client as any).support : '', Validators.required],
       address: [this.client ? (this.client as any).address : '', [Validators.required, Validators.maxLength(30)]],
@@ -63,8 +59,7 @@ export class ClientFormEditModal implements OnInit {
     }
   }
 
-  close()
-  {
+  close() {
     this.modalClosed.emit();
   }
 
@@ -90,6 +85,12 @@ export class ClientFormEditModal implements OnInit {
       if (input.value.length === 0 && tecla !== '9') {
         event.preventDefault();
       }
+    }
+  }
+
+  blockScientificNotation(event: KeyboardEvent) {
+    if (['e', 'E', '+', '-'].includes(event.key)) {
+      event.preventDefault();
     }
   }
 

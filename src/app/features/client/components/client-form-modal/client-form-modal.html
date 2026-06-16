@@ -1,85 +1,99 @@
 <div class="modal-backdrop" (click)="close()"></div>
 <div class="modal">
-  <form class="form" [formGroup]="form" (ngSubmit)="submitForm($event)" >
+  <form class="form" [formGroup]="form" (ngSubmit)="submitForm($event)">
     <h2 class="form-title">Agregar Cliente</h2>
     <div class="inputs-container">
       <div class="inputs-first">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="name" maxlength="30" minlength="2" (beforeinput)="validarEntrada($event)"
-                 [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
+          <input class="input" type="text" placeholder="" required formControlName="name" maxlength="30" minlength="2"
+            (beforeinput)="validarEntrada($event)"
+            [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
           <span>Nombres</span>
           <div class="error-message" *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-msg">
             <small>Los nombres son obligatorios.</small>
           </div>
         </label>
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="surname" maxlength="30" minlength="2" (beforeinput)="validarEntrada($event)"
-                 [class.is-invalid]="form.get('surname')?.invalid && form.get('surname')?.touched">
+          <input class="input" type="text" placeholder="" required formControlName="surname" maxlength="30"
+            minlength="2" (beforeinput)="validarEntrada($event)"
+            [class.is-invalid]="form.get('surname')?.invalid && form.get('surname')?.touched">
           <span>Apellidos</span>
-          <div class="error-message" *ngIf="form.get('surname')?.invalid && form.get('surname')?.touched" class="error-msg">
+          <div class="error-message" *ngIf="form.get('surname')?.invalid && form.get('surname')?.touched"
+            class="error-msg">
             <small>Los apellidos son obligatorios.</small>
           </div>
         </label>
       </div>
       <div class="inputs-second">
         <label>
-          <input class="input" type="text" minlength="8" maxlength="8" placeholder="" required formControlName="dni" (beforeinput)="restringirPrimerDigito($event, 'dni')"
-                 [class.is-invalid]="form.get('dni')?.invalid && form.get('dni')?.touched">
+          <input class="input" type="text" minlength="8" maxlength="8" placeholder="" required formControlName="dni"
+            (beforeinput)="restringirPrimerDigito($event, 'dni')"
+            [class.is-invalid]="form.get('dni')?.invalid && form.get('dni')?.touched">
           <span>Dni</span>
           <div class="error-message" *ngIf="form.get('dni')?.invalid && form.get('dni')?.touched" class="error-msg">
             <small>El DNI es obligatorio y debe contener exactamente 8 dígitos numéricos.</small>
           </div>
         </label>
         <label>
-          <input class="input" type="number" min="0.01" step="any" placeholder="" required formControlName="monthlyIncome"
-                 [class.is-invalid]="form.get('monthlyIncome')?.invalid && form.get('monthlyIncome')?.touched">
+          <input class="input" type="number" min="0.01" step="any" placeholder="" required
+            formControlName="monthlyIncome" (keydown)="blockScientificNotation($event)"
+            [class.is-invalid]="form.get('monthlyIncome')?.invalid && form.get('monthlyIncome')?.touched">
           <span>Ingreso mensual (soles)</span>
-          <div class="error-message" *ngIf="form.get('monthlyIncome')?.invalid && form.get('monthlyIncome')?.touched" class="error-msg">
+          <div class="error-message" *ngIf="form.get('monthlyIncome')?.invalid && form.get('monthlyIncome')?.touched"
+            class="error-msg">
             <small>El ingreso mensual es obligatorio, debe ser mayor a 0 y los decimales separados por coma.</small>
           </div>
         </label>
       </div>
       <div class="inputs-third">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="ocupation" maxlength="30" (beforeinput)="validarEntrada($event)"
-                 [class.is-invalid]="form.get('ocupation')?.invalid && form.get('ocupation')?.touched">
+          <input class="input" type="text" placeholder="" required formControlName="ocupation" maxlength="30"
+            (beforeinput)="validarEntrada($event)"
+            [class.is-invalid]="form.get('ocupation')?.invalid && form.get('ocupation')?.touched">
           <span>Ocupacion</span>
-          <div class="error-message" *ngIf="form.get('ocupation')?.invalid && form.get('ocupation')?.touched" class="error-msg">
+          <div class="error-message" *ngIf="form.get('ocupation')?.invalid && form.get('ocupation')?.touched"
+            class="error-msg">
             <small>La ocupación es obligatoria.</small>
           </div>
         </label>
         <label>
           <input class="input" type="text" placeholder="" required formControlName="business" maxlength="30"
-                 [class.is-invalid]="form.get('business')?.invalid && form.get('business')?.touched">
+            [class.is-invalid]="form.get('business')?.invalid && form.get('business')?.touched">
           <span>Empresa/Negocio</span>
-          <div class="error-message" *ngIf="form.get('business')?.invalid && form.get('business')?.touched" class="error-msg">
+          <div class="error-message" *ngIf="form.get('business')?.invalid && form.get('business')?.touched"
+            class="error-msg">
             <small>El rubro o negocio es obligatorio.</small>
           </div>
         </label>
       </div>
       <div class="inputs-fourth">
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="phoneNumber" minlength="9" maxlength="9" pattern="\+?\d+" (beforeinput)="restringirPrimerDigito($event, 'phone')"
-                 [class.is-invalid]="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched">
+          <input class="input" type="text" placeholder="" required formControlName="phoneNumber" minlength="9"
+            maxlength="9" pattern="\+?\d+" (beforeinput)="restringirPrimerDigito($event, 'phone')"
+            [class.is-invalid]="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched">
           <span>Celular</span>
-          <div class="error-message" *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched" class="error-msg">
+          <div class="error-message" *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched"
+            class="error-msg">
             <small>El número de teléfono debe ser válido de Perú (solo números).</small>
           </div>
         </label>
         <label>
-          <input class="input" type="text" placeholder="" required formControlName="earningtype" (beforeinput)="validarEntrada($event)"
-                 [class.is-invalid]="form.get('earningtype')?.invalid && form.get('earningtype')?.touched">
+          <input class="input" type="text" placeholder="" required formControlName="earningtype"
+            (beforeinput)="validarEntrada($event)"
+            [class.is-invalid]="form.get('earningtype')?.invalid && form.get('earningtype')?.touched">
           <span>Tipo de ingreso</span>
-          <div class="error-message" *ngIf="form.get('earningtype')?.invalid && form.get('earningtype')?.touched" class="error-msg">
+          <div class="error-message" *ngIf="form.get('earningtype')?.invalid && form.get('earningtype')?.touched"
+            class="error-msg">
             <small>El tipo de ingreso es obligatorio.</small>
           </div>
         </label>
       </div>
       <label>
         <input class="input" type="text" placeholder="" required formControlName="address" maxlength="30"
-               [class.is-invalid]="form.get('address')?.invalid && form.get('address')?.touched">
+          [class.is-invalid]="form.get('address')?.invalid && form.get('address')?.touched">
         <span>Direccion</span>
-        <div class="error-message" *ngIf="form.get('address')?.invalid && form.get('address')?.touched" class="error-msg">
+        <div class="error-message" *ngIf="form.get('address')?.invalid && form.get('address')?.touched"
+          class="error-msg">
           <small>La dirección es obligatoria.</small>
         </div>
       </label>
@@ -98,18 +112,18 @@
         </div>
       </label>
       <label>
-          <p>¿Ha recibido otro bono/apoyo habitacional?</p>
-          <div class="support-label">
-            <label class="support-label-1">
-              <input type="radio" formControlName="support" [value]="true" />
-              <p>Sí</p>
-            </label>
+        <p>¿Ha recibido otro bono/apoyo habitacional?</p>
+        <div class="support-label">
+          <label class="support-label-1">
+            <input type="radio" formControlName="support" [value]="true" />
+            <p>Sí</p>
+          </label>
 
-            <label class="support-label-2">
-              <input type="radio" formControlName="support" [value]="false" />
-              <p>No</p>
-            </label>
-          </div>
+          <label class="support-label-2">
+            <input type="radio" formControlName="support" [value]="false" />
+            <p>No</p>
+          </label>
+        </div>
       </label>
       <label>
         <p>Estado Civil</p>
@@ -136,7 +150,7 @@
         </div>
       </label>
     </div>
-    <app-classic-button [disabled]="form.invalid" class="submit-button" >Confirmar</app-classic-button>
-    <app-classic-button (click)="close()" class="cancel-button" type="button" >Cancelar</app-classic-button>
+    <app-classic-button [disabled]="form.invalid" class="submit-button">Confirmar</app-classic-button>
+    <app-classic-button (click)="close()" class="cancel-button" type="button">Cancelar</app-classic-button>
   </form>
 </div>
