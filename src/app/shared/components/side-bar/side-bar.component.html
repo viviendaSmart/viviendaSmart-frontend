@@ -17,6 +17,12 @@
     }
   </ul>
   <div class="footer-bar">
+    <li class="option">
+      <button (click)="toggleTheme()">
+        <img [src]="isDarkMode ? '/assets/img/sol.svg' : '/assets/img/luna.svg'" alt="Toggle Theme">
+        <p>{{ isDarkMode ? 'Modo Claro' : 'Modo Oscuro' }}</p>
+      </button>
+    </li>
     <hr>
     <li class="logout">
       <button (click)="onLeave()" routerLinkActive="active">

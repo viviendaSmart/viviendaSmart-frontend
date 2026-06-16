@@ -5,11 +5,11 @@
   align-items: center;
   width: 240px;
   position: fixed;
-  border-right: 1px solid #e2e8f0;
+  border-right: 1px solid var(--border-color);
   z-index: 100;
-  background-color: #ffffff;
+  background-color: var(--bg-surface);
   transition: all 0.3s ease;
-  margin-bottom: 6000;
+  height: 100vh;
 }
 
 
@@ -32,7 +32,7 @@
 .header-title p {
   font-weight: 800;
   font-size: 1.25rem;
-  color: #0f172a;
+  color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.025em;
 }
@@ -40,7 +40,7 @@
 hr {
   width: 80%;
   border: 0;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--border-light);
   margin: 0;
 }
 
@@ -57,7 +57,7 @@ hr {
 }
 
 .footer-bar {
-  margin-top: 80%;
+  margin-top: auto;
   width: 100%;
   padding: 12px;
   box-sizing: border-box;
@@ -93,7 +93,7 @@ hr {
 .logout button img {
   width: 20px;
   height: 20px;
-  opacity: 0.7;
+  filter: var(--icon-filter-default);
   transition: all 0.2s ease;
 }
 
@@ -103,56 +103,57 @@ hr {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-secondary);
   transition: all 0.2s ease;
 }
 
 /* 🖱️ EFECTO HOVER */
 .option button:hover {
-  background-color: #f1f5f9;
+  background-color: var(--hover-surface);
 }
 
 .option button:hover p {
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 .option button:hover img {
   opacity: 1;
 }
 .logout button:hover{
-  background-color: #ffeeee;
+  background-color: var(--danger-surface-hover);
 }
 
-.option button:hover img,
-.option button:hover p {
-  filter: invert(49%) sepia(73%) saturate(2598%) hue-rotate(164deg) brightness(95%) contrast(101%);
+.option button:hover img {
+  filter: var(--icon-filter-hover);
+}
 
 .logout button:hover {
-  background-color: #fef2f2;
+  background-color: var(--danger-surface-hover);
 }
 
 .logout button:hover p {
-  color: #ef4444;
+  color: var(--danger-text);
 }
 
 .logout button:hover img {
-  filter: invert(38%) sepia(87%) saturate(4156%) hue-rotate(343deg) brightness(97%) contrast(92%);
+  filter: var(--icon-filter-danger-hover);
   opacity: 1;
 }
 
 /* 🔵 ESTADO ACTIVO (routerLinkActive) */
 .option button.active {
-  background-color: #eff6ff;
+  background-color: var(--active-surface);
 }
 
 .option button.active p {
-  color: #0591C4;
+  color: var(--active-text);
 }
 
 .footer-bar hr{
   width: 100%;
+}
 .option button.active img {
-  filter: invert(41%) sepia(87%) saturate(1476%) hue-rotate(204deg) brightness(99%) contrast(95%);
+  filter: var(--icon-filter-active);
   opacity: 1;
 }
 
@@ -160,8 +161,4 @@ hr {
   .side-bar {
     width: 80px;
   }
-
-.footer-bar {
-  margin-top: 12rem
-}
 }
