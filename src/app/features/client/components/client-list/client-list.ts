@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {ClassicButtonComponent} from '../../../../shared/components/classic-button/classic-button.component';
@@ -9,6 +10,7 @@ import {Client} from '../../models/client.entity';
 @Component({
   selector: 'app-client-list',
   imports: [
+    TranslateModule,
     ClassicButtonComponent,
     MatCard,
     MatCardActions,

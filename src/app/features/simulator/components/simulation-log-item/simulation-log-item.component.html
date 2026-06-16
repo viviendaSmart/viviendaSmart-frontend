@@ -2,15 +2,15 @@
   <div class="accordion-header" (click)="toggle()">
     <div class="header-info">
       <div class="info-group">
-        <span class="info-label">Fecha de Creación:</span>
+        <span class="info-label">{{ 'SIMULATION_LOG_ITEM_FECHA_DE_CREACI_N' | translate }}</span>
         <span class="info-value">{{ simulation.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
       </div>
       <div class="info-group">
-        <span class="info-label">DNI Cliente:</span>
+        <span class="info-label">{{ 'SIMULATION_LOG_ITEM_DNI_CLIENTE' | translate }}</span>
         <span class="info-value">{{ simulation.clientDni }}</span>
       </div>
       <div class="info-group">
-        <span class="info-label">Dirección Inmueble:</span>
+        <span class="info-label">{{ 'SIMULATION_LOG_ITEM_DIRECCI_N_INMUEBLE' | translate }}</span>
         <span class="info-value">{{ simulation.propertyAddress }}</span>
       </div>
     </div>

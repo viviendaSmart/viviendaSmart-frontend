@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ClassicButtonComponent } from "../../../../shared/components/classic-button/classic-button.component";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -7,6 +8,7 @@ import { Client } from '../../models/client.entity';
 @Component({
   selector: 'app-client-form-edit-modal',
   imports: [
+    TranslateModule,
     ClassicButtonComponent,
     FormsModule,
     ReactiveFormsModule,

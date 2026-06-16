@@ -1,19 +1,19 @@
 <div class="container">
   <div class="loan-card" [formGroup]="form">
     <div class="loan-card-header">
-      <span class="loan-card-title">DATOS DEL CRÉDITO</span>
+      <span class="loan-card-title">{{ 'CREDIT_DATA_DATOS_DEL_CR_DITO' | translate }}</span>
     </div>
 
     <div class="loan-card-grid">
       <!-- Precio Vivienda -->
       <label class="field">
-        <span class="field-label">Precio Vivienda (S/)</span>
+        <span class="field-label">{{ 'CREDIT_DATA_PRECIO_VIVIENDA_S' | translate }}</span>
         <input type="text" class="field-input" formControlName="price" readonly />
       </label>
 
       <!-- Bono -->
       <label class="field">
-        <span class="field-label">Bono (BFH)</span>
+        <span class="field-label">{{ 'CREDIT_DATA_BONO_BFH' | translate }}</span>
         <select class="field-input" formControlName="bono" [class.is-invalid]="form.get('bono')?.invalid && form.get('bono')?.touched">
           <option
             *ngFor="let b of bonos"
@@ -23,101 +23,101 @@
           </option>
         </select>
         <div class="error-message" *ngIf="form.get('bono')?.invalid && form.get('bono')?.touched">
-          <small>Seleccione una opción de bono.</small>
+          <small>{{ 'CREDIT_DATA_SELECCIONE_UNA_OPCI' | translate }}</small>
         </div>
       </label>
 
       <!-- Tipo de Tasa -->
       <label class="field">
-        <span class="field-label">Tipo de Tasa</span>
+        <span class="field-label">{{ 'CREDIT_DATA_TIPO_DE_TASA' | translate }}</span>
         <input class="field-input" formControlName="rateType" readonly>
       </label>
 
       <!-- Tasa Anual -->
       <label class="field">
-        <span class="field-label">Tasa (%)</span>
+        <span class="field-label">{{ 'CREDIT_DATA_TASA' | translate }}</span>
         <input type="text" class="field-input" formControlName="rate" readonly />
       </label>
 
       <!-- N° Años -->
       <label class="field">
-        <span class="field-label">Número de Años</span>
+        <span class="field-label">{{ 'CREDIT_DATA_N_MERO_DE_A_OS' | translate }}</span>
         <input type="text" class="field-input" formControlName="plazo" minlength="1" maxlength="2" (beforeinput)="validarSoloNumeros($event)"
           [class.is-invalid]="form.get('plazo')?.invalid && form.get('plazo')?.touched" />
         <div class="error-message" *ngIf="form.get('plazo')?.invalid && form.get('plazo')?.touched">
-          <small>El plazo del préstamo debe ser entre 1 y 30 años.</small>
+          <small>{{ 'CREDIT_DATA_EL_PLAZO_DEL_PR_STAM' | translate }}</small>
         </div>
       </label>
 
       <!-- Frecuencia de pago -->
       <label class="field">
-        <span class="field-label">Frecuencia de pago (días)</span>
+        <span class="field-label">{{ 'CREDIT_DATA_FRECUENCIA_DE_PAGO' | translate }}</span>
         <input type="text" class="field-input" formControlName="frequency" minlength="1" maxlength="3" (beforeinput)="validarSoloNumeros($event)"
           [class.is-invalid]="form.get('frequency')?.invalid && form.get('frequency')?.touched" />
         <div class="error-message" *ngIf="form.get('frequency')?.invalid && form.get('frequency')?.touched">
-          <small>La frecuencia de pago debe ser al menos de 1 día (usualmente 30).</small>
+          <small>{{ 'CREDIT_DATA_LA_FRECUENCIA_DE_PAG' | translate }}</small>
         </div>
       </label>
 
       <!-- Tipo de Gracia -->
       <label class="field">
-        <span class="field-label">Tipo de Gracia</span>
+        <span class="field-label">{{ 'CREDIT_DATA_TIPO_DE_GRACIA' | translate }}</span>
         <input class="field-input" formControlName="termtype" readonly>
       </label>
 
       <!-- Días de Gracia -->
       <label class="field">
-        <span class="field-label">Días de Gracia</span>
+        <span class="field-label">{{ 'CREDIT_DATA_D_AS_DE_GRACIA' | translate }}</span>
         <input type="text" class="field-input" formControlName="term" readonly />
       </label>
 
       <!-- Moneda -->
       <label class="field">
-        <span class="field-label">Moneda</span>
+        <span class="field-label">{{ 'CREDIT_DATA_MONEDA' | translate }}</span>
         <input class="field-input" formControlName="exchange" readonly>
       </label>
 
       <!-- Tipo de Tasa COK -->
       <label class="field">
-        <span class="field-label">Tipo de Tasa COK</span>
+        <span class="field-label">{{ 'CREDIT_DATA_TIPO_DE_TASA_COK' | translate }}</span>
         <select class="field-input" formControlName="cokRateType" [class.is-invalid]="form.get('cokRateType')?.invalid && form.get('cokRateType')?.touched">
-          <option [ngValue]="null" disabled selected>Seleccione tipo de tasa</option>
-          <option value="TEA">TEA</option>
-          <option value="TES">TES</option>
-          <option value="TET">TET</option>
-          <option value="TEB">TEB</option>
-          <option value="TEM">TEM</option>
+          <option [ngValue]="null" disabled selected>{{ 'CREDIT_DATA_SELECCIONE_TIPO_DE_T' | translate }}</option>
+          <option value="TEA">{{ 'CREDIT_DATA_TEA' | translate }}</option>
+          <option value="TES">{{ 'CREDIT_DATA_TES' | translate }}</option>
+          <option value="TET">{{ 'CREDIT_DATA_TET' | translate }}</option>
+          <option value="TEB">{{ 'CREDIT_DATA_TEB' | translate }}</option>
+          <option value="TEM">{{ 'CREDIT_DATA_TEM' | translate }}</option>
         </select>
         <div class="error-message" *ngIf="form.get('cokRateType')?.invalid && form.get('cokRateType')?.touched">
-          <small>Seleccione el tipo de tasa COK.</small>
+          <small>{{ 'CREDIT_DATA_SELECCIONE_EL_TIPO_D' | translate }}</small>
         </div>
       </label>
 
       <!-- Tasa COK -->
       <label class="field">
-        <span class="field-label">Tasa COK (%)</span>
+        <span class="field-label">{{ 'CREDIT_DATA_TASA_COK' | translate }}</span>
         <input type="text" class="field-input" formControlName="cokRate" maxlength="10" (beforeinput)="validarSoloNumeros($event)"
           [class.is-invalid]="form.get('cokRate')?.invalid && form.get('cokRate')?.touched" />
         <div class="error-message" *ngIf="form.get('cokRate')?.invalid && form.get('cokRate')?.touched">
-          <small *ngIf="form.get('cokRate')?.errors?.['required']">La Tasa COK es obligatoria.</small>
-          <small *ngIf="form.get('cokRate')?.errors?.['min']">Debe ser mayor o igual a 0.</small>
+          <small *ngIf="form.get('cokRate')?.errors?.['required']">{{ 'CREDIT_DATA_LA_TASA_COK_ES_OBLIG' | translate }}</small>
+          <small *ngIf="form.get('cokRate')?.errors?.['min']">{{ 'CREDIT_DATA_DEBE_SER_MAYOR_O_IGU' | translate }}</small>
         </div>
       </label>
 
     </div>
 
     <div class="loan-card-header">
-      <span class="loan-card-title">COSTOS INICIALES</span>
+      <span class="loan-card-title">{{ 'CREDIT_DATA_COSTOS_INICIALES' | translate }}</span>
     </div>
 
     <div class="loan-card-grid-2">
       <!-- Cuota Inicial -->
       <label class="field">
-        <span class="field-label">Cuota Inicial (%)</span>
+        <span class="field-label">{{ 'CREDIT_DATA_CUOTA_INICIAL' | translate }}</span>
         <input type="text" class="field-input" formControlName="initialPayment" maxlength="10" (beforeinput)="validarSoloNumeros($event)"
           [class.is-invalid]="form.get('initialPayment')?.invalid && form.get('initialPayment')?.touched" />
         <div class="error-message" *ngIf="form.get('initialPayment')?.invalid && form.get('initialPayment')?.touched">
-          <small>El porcentaje de cuota inicial debe estar entre 0% y 100%.</small>
+          <small>{{ 'CREDIT_DATA_EL_PORCENTAJE_DE_CUO' | translate }}</small>
         </div>
       </label>
       <ng-container formArrayName="initialCosts">
@@ -128,7 +128,7 @@
           <input type="text" class="field-input" [formControlName]="i" maxlength="10" (beforeinput)="validarSoloNumeros($event)"
                  [class.is-invalid]="ctrl.invalid && ctrl.touched" />
           <div class="error-message" *ngIf="ctrl.invalid && ctrl.touched">
-            <small>Mínimo 0.</small>
+            <small>{{ 'CREDIT_DATA_M_NIMO_0' | translate }}</small>
           </div>
         </label>
       </ng-container>
@@ -136,7 +136,7 @@
 
 
     <div class="loan-card-header">
-      <span class="loan-card-title">COSTOS PERIODICOS</span>
+      <span class="loan-card-title">{{ 'CREDIT_DATA_COSTOS_PERIODICOS' | translate }}</span>
     </div>
 
     <div class="loan-card-grid-2">
@@ -148,18 +148,18 @@
           <input type="text" class="field-input" [formControlName]="i" maxlength="10" (beforeinput)="validarSoloNumeros($event)"
                  [class.is-invalid]="ctrl.invalid && ctrl.touched" />
           <div class="error-message" *ngIf="ctrl.invalid && ctrl.touched">
-            <small>Mínimo 0.</small>
+            <small>{{ 'CREDIT_DATA_M_NIMO_0' | translate }}</small>
           </div>
         </label>
       </ng-container>
     </div>
 
     <app-classic-button type="button" (click)="onSimulate()" [disabled]="form.invalid">
-      Simular crédito
+      {{ 'CREDIT_DATA_SIMULAR_CR_DITO' | translate }}
     </app-classic-button>
 
     <app-classic-button type="button" class="clean-button" (click)="cleanSimulate()">
-      Limpiar Simulacion
+      {{ 'CREDIT_DATA_LIMPIAR_SIMULACION' | translate }}
     </app-classic-button>
 
 

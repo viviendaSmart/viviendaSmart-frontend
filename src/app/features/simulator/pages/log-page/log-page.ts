@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SideBarComponent } from '../../../../shared/components/side-bar/side-bar.component';
@@ -11,7 +12,8 @@ import { PropertyService } from '../../../property/services/property.service';
 @Component({
   selector: 'app-log-page',
   standalone: true,
-  imports: [CommonModule, SideBarComponent, HeaderBarComponent, SimulationLogItemComponent],
+  imports: [
+    TranslateModule,CommonModule, SideBarComponent, HeaderBarComponent, SimulationLogItemComponent],
   templateUrl: './log-page.html',
   styleUrl: './log-page.css'
 })

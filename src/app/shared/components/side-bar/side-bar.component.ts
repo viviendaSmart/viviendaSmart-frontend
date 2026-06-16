@@ -1,10 +1,13 @@
-import {Component, Input} from '@angular/core';
-import {Router, RouterLink, RouterLinkActive} from '@angular/router';
-import {AuthService} from '../../services/authentication.service';
-import {ThemeService} from '../../../core/services/theme.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { Component, Input } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/authentication.service';
+import { ThemeService } from '../../../core/services/theme.service';
+
 @Component({
   selector: 'app-side-bar',
   imports: [
+    TranslateModule,
     RouterLink,
     RouterLinkActive
   ],
@@ -14,10 +17,10 @@ import {ThemeService} from '../../../core/services/theme.service';
 export class SideBarComponent {
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router,
     private themeService: ThemeService
-  ) {}
+  ) { }
 
   get isDarkMode(): boolean {
     return this.themeService.isDarkMode();
@@ -28,15 +31,15 @@ export class SideBarComponent {
   }
 
   options = [
-    { class: 'Inicio', link: '/home', src: '../assets/img/hogar.png' },
-    { class: 'Clientes', link: '/client', src: '/assets/img/usuarios.png' },
-    { class: 'Inmuebles', link: '/property', src: '/assets/img/edificio.png' },
-    { class: 'Configuracion', link: '/config', src: '/assets/img/ajustes.png' },
-    { class: 'Simulación', link: '/simulator', src: '/assets/img/computadora.png' },
-    { class: 'Historial', link: '/log', src: '/assets/img/estadisticas.png' },
+    { class: 'SIDEBAR.HOME', link: '/home', src: '../assets/img/hogar.png' },
+    { class: 'SIDEBAR.CLIENTS', link: '/client', src: '/assets/img/usuarios.png' },
+    { class: 'SIDEBAR.PROPERTIES', link: '/property', src: '/assets/img/edificio.png' },
+    { class: 'SIDEBAR.CONFIG', link: '/config', src: '/assets/img/ajustes.png' },
+    { class: 'SIDEBAR.SIMULATOR', link: '/simulator', src: '/assets/img/computadora.png' },
+    { class: 'SIDEBAR.LOGS', link: '/log', src: '/assets/img/estadisticas.png' },
   ]
 
-  onLeave(){
+  onLeave() {
     this.authService.removeToken();
     this.authService.removeUser();
     this.router.navigate(['/login']);

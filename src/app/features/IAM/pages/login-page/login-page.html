@@ -3,32 +3,36 @@
   <div class="login-card" [formGroup]="form">
     <div class="login-card-header">
       <img ngSrc="/assets/img/logo.png" alt="image-logo" height="512" width="512" priority>
-      <h1>ViviendaSmart</h1>
-      <p>Plataforma de gestión inmobiliaria</p>
+      <h1>{{ 'LOGIN_PAGE_VIVIENDASMART' | translate }}</h1>
+      <p>{{ 'LOGIN_PAGE_PLATAFORMA_DE_GESTI' | translate }}</p>
     </div>
     <div class="login-card-body">
       <div class="login-field-email">
-        <p>Correo</p>
+        <p>{{ 'LOGIN_PAGE_CORREO' | translate }}</p>
         <input type="email" formControlName="email" placeholder="usuario@ejemplo.com" maxlength="30" minlength="4"
           [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched">
         <div class="error-message" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
-          <small *ngIf="form.get('email')?.errors?.['required']">El correo es obligatorio.</small>
-          <small *ngIf="form.get('email')?.errors?.['email']">Debe ser un correo válido.</small>
+          <small *ngIf="form.get('email')?.errors?.['required']">{{ 'LOGIN_PAGE_EL_CORREO_ES_OBLIGAT' | translate
+            }}</small>
+          <small *ngIf="form.get('email')?.errors?.['email']">{{ 'LOGIN_PAGE_DEBE_SER_UN_CORREO_V' | translate
+            }}</small>
         </div>
       </div>
       <div class="login-field-password">
-        <p>Contraseña</p>
+        <p>{{ 'LOGIN_PAGE_CONTRASE_A' | translate }}</p>
         <input type="password" formControlName="password" placeholder="**********" maxlength="30" minlength="8"
           [class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched">
         <div class="error-message" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
-          <small *ngIf="form.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
+          <small *ngIf="form.get('password')?.errors?.['required']">{{ 'LOGIN_PAGE_LA_CONTRASE_A_ES_OBL' | translate
+            }}</small>
         </div>
       </div>
       <div class="terms-field">
         <div class="checkbox-wrapper">
           <input type="checkbox" id="terms" formControlName="termsAccepted">
-          <label for="terms">He leído y acepto los <a (click)="toggleTermsModal(); $event.preventDefault()"
-              href="#">Términos y Condiciones</a></label>
+          <label for="terms">{{ 'LOGIN_PAGE_HE_LE_DO_Y_ACEPTO_LO' | translate }} <a
+              (click)="toggleTermsModal(); $event.preventDefault()" href="#">{{ 'LOGIN_PAGE_T_RMINOS_Y_CONDICION' |
+              translate }}</a></label>
         </div>
       </div>
     </div>
@@ -36,7 +40,7 @@
       <button (click)="login()" [disabled]="loading">
         {{ loading ? 'Cargando...' : 'Iniciar sesión' }}
       </button>
-      <a [routerLink]="['/register']">¿No estás registrado?</a>
+      <a [routerLink]="['/register']">{{ 'LOGIN_PAGE_NO_EST_S_REGISTRADO' | translate }}</a>
     </div>
   </div>
   <app-terms-modal *ngIf="showTermsModal" (close)="toggleTermsModal()"></app-terms-modal>

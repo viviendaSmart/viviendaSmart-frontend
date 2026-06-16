@@ -5,7 +5,8 @@
   z-index: 90;
   padding: 1.5rem 2.5rem;
   margin-left: 240px;
-  background-color: var(--bg-surface); opacity: 0.98;
+  background-color: var(--bg-surface);
+  opacity: 0.98;
   backdrop-filter: blur(12px);
   height: 5.5rem;
   border-bottom: 1px solid rgba(226, 232, 240, 0.8);
@@ -113,6 +114,26 @@
     width: calc(100% - 80px);
     padding: 1rem 1.5rem;
   }
+}
+
+.lang-switcher {
+  margin-left: 1rem;
+}
+
+.lang-btn {
+  background-color: var(--hover-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+  background-color: var(--border-color);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {

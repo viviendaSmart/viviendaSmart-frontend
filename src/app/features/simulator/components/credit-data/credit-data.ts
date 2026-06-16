@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import {
   Component,
   EventEmitter,
@@ -37,7 +38,8 @@ interface BonoOption {
 
 @Component({
   selector: 'app-credit-data',
-  imports: [ReactiveFormsModule, NgForOf, NgIf, ClassicButtonComponent],
+  imports: [
+    TranslateModule,ReactiveFormsModule, NgForOf, NgIf, ClassicButtonComponent],
   templateUrl: './credit-data.html',
   styleUrl: './credit-data.css'
 })

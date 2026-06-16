@@ -1,26 +1,26 @@
 <div class="modal-backdrop" (click)="close()"></div>
 <div class="modal">
   <form class="form" [formGroup]="form2" (ngSubmit)="editForm($event)">
-    <h2 class="form-title">Editar Cliente</h2>
+    <h2 class="form-title">{{ 'CLIENT_FORM_EDIT_MODAL_EDITAR_CLIENTE' | translate }}</h2>
     <div class="inputs-container">
       <div class="inputs-first">
         <label>
           <input class="input" type="text" (beforeinput)="validarEntrada($event)" placeholder="" required
             formControlName="name" maxlength="30"
             [class.is-invalid]="form2.get('name')?.invalid && form2.get('name')?.touched">
-          <span>Nombres</span>
+          <span>{{ 'CLIENT_FORM_EDIT_MODAL_NOMBRES' | translate }}</span>
           <div class="error-message" *ngIf="form2.get('name')?.invalid && form2.get('name')?.touched" class="error-msg">
-            <small>Los nombres son obligatorios.</small>
+            <small>{{ 'CLIENT_FORM_EDIT_MODAL_LOS_NOMBRES_SON_OBLI' | translate }}</small>
           </div>
         </label>
         <label>
           <input class="input" type="text" (beforeinput)="validarEntrada($event)" placeholder="" required
             formControlName="surname" maxlength="30"
             [class.is-invalid]="form2.get('surname')?.invalid && form2.get('surname')?.touched">
-          <span>Apellidos</span>
+          <span>{{ 'CLIENT_FORM_EDIT_MODAL_APELLIDOS' | translate }}</span>
           <div class="error-message" *ngIf="form2.get('surname')?.invalid && form2.get('surname')?.touched"
             class="error-msg">
-            <small>Los apellidos son obligatorios.</small>
+            <small>{{ 'CLIENT_FORM_EDIT_MODAL_LOS_APELLIDOS_SON_OB' | translate }}</small>
           </div>
         </label>
       </div>
@@ -29,19 +29,19 @@
           <input class="input" type="text" minlength="8" maxlength="8" placeholder="" required
             (beforeinput)="restringirPrimerDigito($event, 'dni')" formControlName="dni"
             [class.is-invalid]="form2.get('dni')?.invalid && form2.get('dni')?.touched">
-          <span>Dni</span>
+          <span>{{ 'CLIENT_FORM_EDIT_MODAL_DNI' | translate }}</span>
           <div class="error-message" *ngIf="form2.get('dni')?.invalid && form2.get('dni')?.touched" class="error-msg">
-            <small>El DNI es obligatorio y debe contener exactamente 8 dígitos numéricos.</small>
+            <small>{{ 'CLIENT_FORM_EDIT_MODAL_EL_DNI_ES_OBLIGATORI' | translate }}</small>
           </div>
         </label>
         <label>
           <input class="input" type="number" min="0.01" step="any" placeholder="" required maxlength="100000000"
             formControlName="monthlyIncome" (keydown)="blockScientificNotation($event)"
             [class.is-invalid]="form2.get('monthlyIncome')?.invalid && form2.get('monthlyIncome')?.touched">
-          <span>Ingreso mensual (soles)</span>
+          <span>{{ 'CLIENT_FORM_EDIT_MODAL_INGRESO_MENSUAL_SOL' | translate }}</span>
           <div class="error-message" *ngIf="form2.get('monthlyIncome')?.invalid && form2.get('monthlyIncome')?.touched"
             class="error-msg">
-            <small>El ingreso mensual es obligatorio, debe ser mayor a 0 y los decimales separados por coma.</small>
+            <small>{{ 'CLIENT_FORM_EDIT_MODAL_EL_INGRESO_MENSUAL_E' | translate }}</small>
           </div>
         </label>
       </div>
@@ -49,19 +49,19 @@
         <label>
           <input class="input" type="text" placeholder="" required formControlName="ocupation" maxlength="30"
             [class.is-invalid]="form2.get('ocupation')?.invalid && form2.get('ocupation')?.touched">
-          <span>Ocupacion</span>
+          <span>{{ 'CLIENT_FORM_EDIT_MODAL_OCUPACION' | translate }}</span>
           <div class="error-message" *ngIf="form2.get('ocupation')?.invalid && form2.get('ocupation')?.touched"
             class="error-msg">
-            <small>La ocupación es obligatoria.</small>
+            <small>{{ 'CLIENT_FORM_EDIT_MODAL_LA_OCUPACI_N_ES_OBLI' | translate }}</small>
           </div>
         </label>
         <label>
           <input class="input" type="text" placeholder="" required formControlName="business" maxlength="30"
             [class.is-invalid]="form2.get('business')?.invalid && form2.get('business')?.touched">
-          <span>Empresa/Negocio</span>
+          <span>{{ 'CLIENT_FORM_EDIT_MODAL_EMPRESA_NEGOCIO' | translate }}</span>
           <div class="error-message" *ngIf="form2.get('business')?.invalid && form2.get('business')?.touched"
             class="error-msg">
-            <small>El rubro o negocio es obligatorio.</small>
+            <small>{{ 'CLIENT_FORM_EDIT_MODAL_EL_RUBRO_O_NEGOCIO_E' | translate }}</small>
           </div>
         </label>
       </div>
@@ -70,86 +70,86 @@
           <input class="input" type="text" placeholder="" required formControlName="phoneNumber" minlength="9"
             maxlength="9" (beforeinput)="restringirPrimerDigito($event, 'phone' )" pattern="\+?\d+"
             [class.is-invalid]="form2.get('phoneNumber')?.invalid && form2.get('phoneNumber')?.touched">
-          <span>Celular</span>
+          <span>{{ 'CLIENT_FORM_EDIT_MODAL_CELULAR' | translate }}</span>
           <div class="error-message" *ngIf="form2.get('phoneNumber')?.invalid && form2.get('phoneNumber')?.touched"
             class="error-msg">
-            <small>El número de teléfono debe ser válido de Perú (solo números).</small>
+            <small>{{ 'CLIENT_FORM_EDIT_MODAL_EL_N_MERO_DE_TEL_FON' | translate }}</small>
           </div>
         </label>
         <label>
           <input class="input" type="text" placeholder="" required formControlName="earningtype"
             [class.is-invalid]="form2.get('earningtype')?.invalid && form2.get('earningtype')?.touched">
-          <span>Tipo de ingreso</span>
+          <span>{{ 'CLIENT_FORM_EDIT_MODAL_TIPO_DE_INGRESO' | translate }}</span>
           <div class="error-message" *ngIf="form2.get('earningtype')?.invalid && form2.get('earningtype')?.touched"
             class="error-msg">
-            <small>El tipo de ingreso es obligatorio.</small>
+            <small>{{ 'CLIENT_FORM_EDIT_MODAL_EL_TIPO_DE_INGRESO_E' | translate }}</small>
           </div>
         </label>
       </div>
       <label>
         <input class="input" type="text" placeholder="" required formControlName="address" maxlength="30"
           [class.is-invalid]="form2.get('address')?.invalid && form2.get('address')?.touched">
-        <span>Direccion</span>
+        <span>{{ 'CLIENT_FORM_EDIT_MODAL_DIRECCION' | translate }}</span>
         <div class="error-message" *ngIf="form2.get('address')?.invalid && form2.get('address')?.touched"
           class="error-msg">
-          <small>La dirección es obligatoria.</small>
+          <small>{{ 'CLIENT_FORM_EDIT_MODAL_LA_DIRECCI_N_ES_OBLI' | translate }}</small>
         </div>
       </label>
       <label class="input-election">
-        <p>¿Tiene historial crediticio positivo?</p>
+        <p>{{ 'CLIENT_FORM_EDIT_MODAL_TIENE_HISTORIAL_CRE' | translate }}</p>
         <div class="history-label">
           <label class="history-label-1">
             <input type="radio" formControlName="credithistory" [value]="true" />
-            <p>Sí</p>
+            <p>{{ 'CLIENT_FORM_EDIT_MODAL_S' | translate }}</p>
           </label>
 
           <label class="history-label-2">
             <input type="radio" formControlName="credithistory" [value]="false" />
-            <p>No</p>
+            <p>{{ 'CLIENT_FORM_EDIT_MODAL_NO' | translate }}</p>
           </label>
         </div>
       </label>
       <label class="input-election">
-        <p>¿Ha recibido otro bono/apoyo habitacional?</p>
+        <p>{{ 'CLIENT_FORM_EDIT_MODAL_HA_RECIBIDO_OTRO_BO' | translate }}</p>
         <div class="support-label">
           <label class="support-label-1">
             <input type="radio" formControlName="support" [value]="true" />
-            <p>Sí</p>
+            <p>{{ 'CLIENT_FORM_EDIT_MODAL_S' | translate }}</p>
           </label>
 
           <label class="support-label-2">
             <input type="radio" formControlName="support" [value]="false" />
-            <p>No</p>
+            <p>{{ 'CLIENT_FORM_EDIT_MODAL_NO' | translate }}</p>
           </label>
         </div>
       </label>
       <label class="input-election">
-        <p>Estado Civil</p>
+        <p>{{ 'CLIENT_FORM_EDIT_MODAL_ESTADO_CIVIL' | translate }}</p>
         <div class="support-label">
           <label class="support-label-1">
             <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="'SOLTERO'" />
-            <p>Soltero</p>
+            <p>{{ 'CLIENT_FORM_EDIT_MODAL_SOLTERO' | translate }}</p>
           </label>
 
           <label class="support-label-1">
             <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="'CASADO'" />
-            <p>Casado</p>
+            <p>{{ 'CLIENT_FORM_EDIT_MODAL_CASADO' | translate }}</p>
           </label>
 
           <label class="support-label-1">
             <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="'VIUDO'" />
-            <p>Viudo</p>
+            <p>{{ 'CLIENT_FORM_EDIT_MODAL_VIUDO' | translate }}</p>
           </label>
 
           <label class="support-label-2">
             <input type="radio" formControlName="maritalStatus" name="maritalStatus" [value]="'DIVORCIADO'" />
-            <p>Divorciado</p>
+            <p>{{ 'CLIENT_FORM_EDIT_MODAL_DIVORCIADO' | translate }}</p>
           </label>
         </div>
       </label>
     </div>
-    <app-classic-button [disabled]="form2.invalid" class="edit-button">Editar</app-classic-button>
-    <app-classic-button (click)="close()" type="button" class="cancel-button">Cancelar</app-classic-button>
-    <app-classic-button (click)="deleteForm($event)" type="button" class="delete-button">Eliminar</app-classic-button>
+    <app-classic-button [disabled]="form2.invalid" class="edit-button">{{ 'CLIENT_FORM_EDIT_MODAL_EDITAR' | translate }}</app-classic-button>
+    <app-classic-button (click)="close()" type="button" class="cancel-button">{{ 'CLIENT_FORM_EDIT_MODAL_CANCELAR' | translate }}</app-classic-button>
+    <app-classic-button (click)="deleteForm($event)" type="button" class="delete-button">{{ 'CLIENT_FORM_EDIT_MODAL_ELIMINAR' | translate }}</app-classic-button>
   </form>
 </div>

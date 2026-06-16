@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatCard, MatCardActions, MatCardContent} from '@angular/material/card';
@@ -9,6 +10,7 @@ import {PropertyFormEditModal} from '../property-form-edit-modal/property-form-e
 @Component({
   selector: 'app-property-list',
   imports: [
+    TranslateModule,
     MatCard,
     NgForOf,
     CommonModule,

@@ -2,17 +2,17 @@
   <div class="selection-card">
     <!-- ENCABEZADO PRINCIPAL -->
     <div class="selection-card-header">
-      <span class="selection-card-title">RESULTADO DE LA SIMULACIÓN</span>
+      <span class="selection-card-title">{{ 'RESPONSE_FORM_MODAL_RESULTADO_DE_LA_SIMU' | translate }}</span>
     </div>
 
     <!-- MENSAJE AMIGABLE SI MONTO A FINANCIAR ES 0 -->
     <div *ngIf="sim.loanAmount <= 0" class="loan-alert">
-      El monto a financiar es cero o negativo porque el bono y la cuota inicial cubren el valor de la propiedad.
+      {{ 'RESPONSE_FORM_MODAL_EL_MONTO_A_FINANCIAR' | translate }}
     </div>
 
     <!-- RESUMEN DEL CRÉDITO -->
     <div class="selection-card-header">
-      <span class="selection-card-title">Resumen del crédito</span>
+      <span class="selection-card-title">{{ 'RESPONSE_FORM_MODAL_RESUMEN_DEL_CR_DITO' | translate }}</span>
     </div>
 
     <div class="selection-card-row">
@@ -22,7 +22,7 @@
       </label>
 
       <label class="field">
-        <span class="field-label">Bono BFH (S/)</span>
+        <span class="field-label">{{ 'RESPONSE_FORM_MODAL_BONO_BFH_S' | translate }}</span>
         <span class="field-input">{{ sim.bonusAmount | number:'1.2-2' }}</span>
       </label>
 
@@ -32,43 +32,43 @@
       </label>
 
       <label class="field">
-        <span class="field-label">Tasa efectiva por periodo (%)</span>
+        <span class="field-label">{{ 'RESPONSE_FORM_MODAL_TASA_EFECTIVA_POR_PE' | translate }}</span>
         <span class="field-input">
           {{ (sim.monthlyRate != null ? sim.monthlyRate : sim.periodRate) | percent:'1.4-10' }}
         </span>
       </label>
 
       <label class="field">
-        <span class="field-label">N° cuotas por año</span>
+        <span class="field-label">{{ 'RESPONSE_FORM_MODAL_N_CUOTAS_POR_A_O' | translate }}</span>
         <span class="field-input">{{ sim.installmentsPerYear }}</span>
       </label>
 
       <label class="field">
-        <span class="field-label">N° total de cuotas</span>
+        <span class="field-label">{{ 'RESPONSE_FORM_MODAL_N_TOTAL_DE_CUOTAS' | translate }}</span>
         <span class="field-input">{{ sim.totalTerm }}</span>
       </label>
     </div>
 
     <!-- TASAS DE SEGUROS -->
     <div class="selection-card-header">
-      <span class="selection-card-title">Tasas de seguros por periodo</span>
+      <span class="selection-card-title">{{ 'RESPONSE_FORM_MODAL_TASAS_DE_SEGUROS_POR' | translate }}</span>
     </div>
 
     <div class="selection-card-row">
       <label class="field">
-        <span class="field-label">Seguro desgravamen período (TSD)</span>
+        <span class="field-label">{{ 'RESPONSE_FORM_MODAL_SEGURO_DESGRAVAMEN_P' | translate }}</span>
         <span class="field-input">{{ sim.lifeInsuranceRatePeriod | percent:'1.4-4' }}</span>
       </label>
 
       <label class="field">
-        <span class="field-label">Seguro riesgo período (TSR)</span>
+        <span class="field-label">{{ 'RESPONSE_FORM_MODAL_SEGURO_RIESGO_PER_OD' | translate }}</span>
         <span class="field-input">{{ sim.riskInsuranceRatePeriod | percent:'1.4-4' }}</span>
       </label>
     </div>
 
     <!-- TOTALES DEL PRÉSTAMO -->
     <div class="selection-card-header">
-      <span class="selection-card-title">Totales del préstamo</span>
+      <span class="selection-card-title">{{ 'RESPONSE_FORM_MODAL_TOTALES_DEL_PR_STAMO' | translate }}</span>
     </div>
 
     <div class="selection-card-row">
@@ -90,7 +90,7 @@
 
     <!-- COSTOS Y GASTOS -->
     <div class="selection-card-header">
-      <span class="selection-card-title">Costos y gastos</span>
+      <span class="selection-card-title">{{ 'RESPONSE_FORM_MODAL_COSTOS_Y_GASTOS' | translate }}</span>
     </div>
 
     <div class="selection-card-row">
@@ -122,12 +122,12 @@
 
     <!-- INDICADORES FINANCIEROS -->
     <div class="selection-card-header">
-      <span class="selection-card-title">Indicadores financieros</span>
+      <span class="selection-card-title">{{ 'RESPONSE_FORM_MODAL_INDICADORES_FINANCIE' | translate }}</span>
     </div>
 
     <div class="selection-card-row">
       <label class="field">
-        <span class="field-label">Tasa descuento por periodo (COK)</span>
+        <span class="field-label">{{ 'RESPONSE_FORM_MODAL_TASA_DESCUENTO_POR_P' | translate }}</span>
         <span class="field-input">{{ sim.discountRatePeriod | percent:'1.4-4' }}</span>
       </label>
 
@@ -137,37 +137,37 @@
       </label>
 
       <label class="field">
-        <span class="field-label">TIR (mensual)</span>
+        <span class="field-label">{{ 'RESPONSE_FORM_MODAL_TIR_MENSUAL' | translate }}</span>
         <span class="field-input">{{ sim.tir | percent:'1.4-4' }}</span>
       </label>
 
       <label class="field">
-        <span class="field-label">TCEA</span>
+        <span class="field-label">{{ 'RESPONSE_FORM_MODAL_TCEA' | translate }}</span>
         <span class="field-input">{{ sim.tcea | percent:'1.4-4' }}</span>
       </label>
     </div>
 
     <!-- TABLA DE AMORTIZACIÓN -->
     <div class="selection-card-header">
-      <span class="selection-card-title">Tabla de amortización</span>
+      <span class="selection-card-title">{{ 'RESPONSE_FORM_MODAL_TABLA_DE_AMORTIZACI' | translate }}</span>
     </div>
 
     <div class="table-wrapper" *ngIf="sim.schedule?.length">
       <table class="amortization-table">
         <thead>
           <tr>
-            <th>Periodo</th>
-            <th>P.G.</th>
-            <th>Saldo inicial</th>
-            <th>Interés</th>
-            <th>Amortización</th>
-            <th>Cuota</th>
-            <th>Seguro desgrav.</th>
-            <th>Seguro riesgo</th>
-            <th>Comisión periódica</th>
-            <th>Costos periódicos fijos</th>
-            <th>Saldo final</th>
-            <th>Flujo</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_PERIODO' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_P_G' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_SALDO_INICIAL' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_INTER_S' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_AMORTIZACI_N' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_CUOTA' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_SEGURO_DESGRAV' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_SEGURO_RIESGO' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_COMISI_N_PERI_DICA' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_COSTOS_PERI_DICOS_FI' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_SALDO_FINAL' | translate }}</th>
+            <th>{{ 'RESPONSE_FORM_MODAL_FLUJO' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -194,10 +194,10 @@
 <div class="container" *ngIf="!simulationResult">
   <div class="selection-card">
     <div class="selection-card-header">
-      <span class="selection-card-title">SIN RESULTADOS</span>
+      <span class="selection-card-title">{{ 'RESPONSE_FORM_MODAL_SIN_RESULTADOS' | translate }}</span>
     </div>
     <div class="loan-alert">
-      Aún no hay una simulación para mostrar. Realiza una simulación primero.
+      {{ 'RESPONSE_FORM_MODAL_A_N_NO_HAY_UNA_SIMUL' | translate }}
     </div>
   </div>
 </div>
