@@ -1,10 +1,12 @@
+import { TranslateModule } from '@ngx-translate/core';
 import {Component, Input, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-response-form-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    TranslateModule,CommonModule],
   templateUrl: './response-form-modal.html',
   styleUrl: './response-form-modal.css'
 })

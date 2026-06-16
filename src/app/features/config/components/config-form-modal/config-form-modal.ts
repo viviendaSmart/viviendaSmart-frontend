@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import {
   Component,
   EventEmitter,
@@ -18,6 +19,7 @@ import {NgIf} from '@angular/common';
   selector: 'app-config-form-modal',
   standalone: true,   // si tus otros componentes también usan imports, pon esto
   imports: [
+    TranslateModule,
     ReactiveFormsModule,
     ClassicButtonComponent,
     NgIf

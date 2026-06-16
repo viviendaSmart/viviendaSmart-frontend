@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PropertyService} from '../../services/property.service';
 import {Property} from '../../models/property.entity';
@@ -10,6 +11,7 @@ import {AuthService} from '../../../../shared/services/authentication.service';
 @Component({
   selector: 'app-property-form-modal',
   imports: [
+    TranslateModule,
     ReactiveFormsModule,
     NgForOf,
     NgIf,

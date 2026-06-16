@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResponseFormModal } from '../response-form-modal/response-form-modal';
@@ -5,7 +6,8 @@ import { ResponseFormModal } from '../response-form-modal/response-form-modal';
 @Component({
   selector: 'app-simulation-log-item',
   standalone: true,
-  imports: [CommonModule, ResponseFormModal],
+  imports: [
+    TranslateModule,CommonModule, ResponseFormModal],
   templateUrl: './simulation-log-item.component.html',
   styleUrl: './simulation-log-item.component.css'
 })

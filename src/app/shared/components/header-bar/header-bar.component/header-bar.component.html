@@ -1,22 +1,32 @@
 <div class="content">
   <div class="header-title">
-    <h1>{{ params.title }}</h1>
-    <p>{{ params.description}}</p>
+    <h1>{{ params.title | translate }}</h1>
+    @if (params.title === 'Dashboard') {
+      <p>{{ 'Bienvenido, ' | translate }}{{ params.name }}</p>
+    } @else {
+      <p>{{ params.description | translate }}</p>
+    }
   </div>
   @if (params.aux){
   <div class="header-aux">
     <div class="aux-description">
       <p class="primary">{{ params.name }}</p>
-      <p class="second">Asesor Inmobiliario</p>
+      <p class="second">{{ 'HEADER_BAR_ASESOR_INMOBILIARIO' | translate }}</p>
     </div>
     <div class="avatar-container">
       <img src="/assets/img/usuario.png">
     </div>
   </div>
   }
+  
+  <div class="lang-switcher">
+    <button (click)="toggleLanguage()" class="lang-btn">
+      {{ currentLang === 'es' ? 'EN' : 'ES' }}
+    </button>
+  </div>
   @if (params.aux2){
     <div class="aux2-wrapper">
-      <app-classic-button (click)="onShowModal()" class="button-aux2">+ Agregar Registro</app-classic-button>
+      <app-classic-button (click)="onShowModal()" class="button-aux2">{{ 'HEADER_BAR_AGREGAR_REGISTRO' | translate }}</app-classic-button>
     </div>
   }
 </div>

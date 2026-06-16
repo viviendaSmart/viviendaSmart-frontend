@@ -1,42 +1,42 @@
 <div class="modal-overlay" (click)="onClose()">
   <div class="modal-container" (click)="$event.stopPropagation()">
     <div class="modal-header">
-      <h2>Términos y Condiciones de Uso</h2>
-      <button class="close-button" (click)="onClose()">&times;</button>
+      <h2>{{ 'TERMS_MODAL_T_RMINOS_Y_CONDICION' | translate }}</h2>
+      <button class="close-button" (click)="onClose()">{{ 'TERMS_MODAL_TIMES' | translate }}</button>
     </div>
     <div class="modal-body">
-      <h3>ViviendaSmart</h3>
-      <p>Bienvenido a ViviendaSmart. Antes de iniciar sesión, por favor revisa las condiciones que rigen el uso de nuestra plataforma de simulación financiera inmobiliaria.</p>
+      <h3>{{ 'TERMS_MODAL_VIVIENDASMART' | translate }}</h3>
+      <p>{{ 'TERMS_MODAL_BIENVENIDO_A_VIVIEND' | translate }}</p>
 
-      <h4>1. Sobre el servicio y los resultados</h4>
-      <p>Te otorgamos un derecho de uso limitado sobre nuestra plataforma SaaS. Ten en cuenta que los resultados financieros generados son exclusivamente referenciales y en ningún caso sustituyen la asesoría profesional, legal, bancaria o contable.</p>
+      <h4>{{ 'TERMS_MODAL_1_SOBRE_EL_SERVICIO' | translate }}</h4>
+      <p>{{ 'TERMS_MODAL_TE_OTORGAMOS_UN_DERE' | translate }}</p>
 
-      <h4>2. Requisitos Técnicos Obligatorios</h4>
-      <p>Para garantizar el funcionamiento de la plataforma, debes acceder utilizando:</p>
+      <h4>{{ 'TERMS_MODAL_2_REQUISITOS_T_CNIC' | translate }}</h4>
+      <p>{{ 'TERMS_MODAL_PARA_GARANTIZAR_EL_F' | translate }}</p>
       <ul>
-        <li><strong>Sistema Operativo:</strong> Windows 11.</li>
-        <li><strong>Navegador:</strong> Google Chrome actualizado.</li>
-        <li><strong>Configuración:</strong> JavaScript, cookies y almacenamiento local habilitados, junto con una conexión a internet estable.</li>
+        <li><strong>{{ 'TERMS_MODAL_SISTEMA_OPERATIVO' | translate }}</strong> {{ 'TERMS_MODAL_WINDOWS_11' | translate }}</li>
+        <li><strong>{{ 'TERMS_MODAL_NAVEGADOR' | translate }}</strong> {{ 'TERMS_MODAL_GOOGLE_CHROME_ACTUAL' | translate }}</li>
+        <li><strong>{{ 'TERMS_MODAL_CONFIGURACI_N' | translate }}</strong> {{ 'TERMS_MODAL_JAVASCRIPT_COOKIES' | translate }}</li>
       </ul>
-      <p class="warning"><strong>Importante:</strong> ViviendaSmart no garantiza el correcto funcionamiento ni se responsabiliza por errores si utilizas sistemas, navegadores o dispositivos distintos a los recomendados.</p>
+      <p class="warning"><strong>{{ 'TERMS_MODAL_IMPORTANTE' | translate }}</strong> {{ 'TERMS_MODAL_VIVIENDASMART_NO_GAR' | translate }}</p>
 
-      <h4>3. Tus responsabilidades y restricciones</h4>
-      <p>Al utilizar el sistema te comprometes a ingresar información verídica y proteger tus credenciales de acceso. Queda estrictamente prohibido:</p>
+      <h4>{{ 'TERMS_MODAL_3_TUS_RESPONSABILID' | translate }}</h4>
+      <p>{{ 'TERMS_MODAL_AL_UTILIZAR_EL_SISTE' | translate }}</p>
       <ul>
-        <li>Copiar, modificar, revender o sublicenciar la plataforma.</li>
-        <li>Descompilar, manipular el sistema, automatizar accesos no autorizados o alterar los resultados.</li>
-        <li>Realizar acciones que vulneren el funcionamiento o la seguridad del sistema.</li>
+        <li>{{ 'TERMS_MODAL_COPIAR_MODIFICAR_R' | translate }}</li>
+        <li>{{ 'TERMS_MODAL_DESCOMPILAR_MANIPUL' | translate }}</li>
+        <li>{{ 'TERMS_MODAL_REALIZAR_ACCIONES_QU' | translate }}</li>
       </ul>
-      <p>El incumplimiento de estas normas puede generar la suspensión o cancelación inmediata de tu acceso.</p>
+      <p>{{ 'TERMS_MODAL_EL_INCUMPLIMIENTO_DE' | translate }}</p>
 
-      <h4>4. Nuestra responsabilidad y actualizaciones</h4>
-      <p>ViviendaSmart se compromete a brindarte acceso al sistema, proteger tu información conforme a la ley y aplicar medidas razonables de seguridad. Nos reservamos el derecho de realizar actualizaciones técnicas o funcionales para mejorar tu experiencia. No somos responsables por fallas derivadas de tu equipo, red, proveedor de internet o el ingreso de datos incorrectos.</p>
+      <h4>{{ 'TERMS_MODAL_4_NUESTRA_RESPONSAB' | translate }}</h4>
+      <p>{{ 'TERMS_MODAL_VIVIENDASMART_SE_COM' | translate }}</p>
 
-      <h4>5. Aceptación del acuerdo</h4>
-      <p>Al registrarte, iniciar sesión o utilizar ViviendaSmart, declaras haber leído, comprendido y aceptado en su totalidad este Acuerdo de Servicio SaaS, incluyendo sus requisitos técnicos y descargos de responsabilidad.</p>
+      <h4>{{ 'TERMS_MODAL_5_ACEPTACI_N_DEL_AC' | translate }}</h4>
+      <p>{{ 'TERMS_MODAL_AL_REGISTRARTE_INIC' | translate }}</p>
     </div>
     <div class="modal-footer">
-      <button class="accept-button" (click)="onClose()">Entendido</button>
+      <button class="accept-button" (click)="onClose()">{{ 'TERMS_MODAL_ENTENDIDO' | translate }}</button>
     </div>
   </div>
 </div>

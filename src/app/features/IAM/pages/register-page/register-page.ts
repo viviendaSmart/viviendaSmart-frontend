@@ -1,16 +1,18 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component } from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {UserService} from '../../services/user.service';
-import {AuthService} from '../../../../shared/services/authentication.service';
-import {NgIf, NgOptimizedImage} from '@angular/common';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {User} from '../../models/user.entity';
-import {TermsModalComponent} from '../../../../shared/components/terms-modal/terms-modal.component';
+import { Router, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { AuthService } from '../../../../shared/services/authentication.service';
+import { NgIf, NgOptimizedImage } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from '../../models/user.entity';
+import { TermsModalComponent } from '../../../../shared/components/terms-modal/terms-modal.component';
 
 @Component({
   selector: 'app-register-page',
   imports: [
+    TranslateModule,
     RouterLink,
     ReactiveFormsModule,
     NgIf,
@@ -34,11 +36,11 @@ export class RegisterPage {
     this.form = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-      email: ['', [Validators.required, Validators.email,Validators.minLength(4), Validators.maxLength(30)]],
+      email: ['', [Validators.required, Validators.email, Validators.minLength(4), Validators.maxLength(30)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
       requestedRole: ['PROPERTY_MANAGER'],
       termsAccepted: [false, Validators.requiredTrue]
-    }, { });
+    }, {});
   }
 
   register() {
@@ -56,10 +58,10 @@ export class RegisterPage {
       .subscribe({
         next: () => {
           // ahora sí, login
-          this.userService.login({email, password}).subscribe({
+          this.userService.login({ email, password }).subscribe({
             next: (loginResponse) => {
               this.authService.saveToken(loginResponse.token);
-              this.authService.saveUser({username: loginResponse.user});
+              this.authService.saveUser({ username: loginResponse.user });
               this.router.navigate(['/login']);
               this.loading = false;
             },

@@ -1,62 +1,62 @@
 <div class="modal">
   <form class="form" [formGroup]="form" (ngSubmit)="submitForm($event)">
-    <h2 class="form-title">Configuración de crédito</h2>
+    <h2 class="form-title">{{ 'CONFIG_FORM_MODAL_CONFIGURACI_N_DE_CR' | translate }}</h2>
 
     <div class="inputs-container">
       <!-- Fila 1: Tasa y tipo de tasa -->
       <div class="inputs-first">
-        <p class="input-title">Tipo de tasa</p>
+        <p class="input-title">{{ 'CONFIG_FORM_MODAL_TIPO_DE_TASA' | translate }}</p>
         <label>
           <div class="radio-row-1">
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TEA'">
-              <p>TEA</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TEA' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TES'">
-              <p>TES</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TES' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TET'">
-              <p>TET</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TET' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TEB'">
-              <p>TEB</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TEB' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TEM'">
-              <p>TEM</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TEM' | translate }}</p>
             </label>
           </div>
           <div class="radio-row-1-5">
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TNA'">
-              <p>TNA</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TNA' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TNS'">
-              <p>TNS</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TNS' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TNT'">
-              <p>TNT</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TNT' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TNB'">
-              <p>TNB</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TNB' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="rateType" [value]="'TNM'">
-              <p>TNM</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TNM' | translate }}</p>
             </label>
           </div>
 
@@ -66,11 +66,11 @@
         <label>
           <input class="input" type="text" placeholder="" required formControlName="rate" (beforeinput)="validarSoloNumeros($event)" maxlength="10" minlength="1"
                  [class.is-invalid]="form.get('rate')?.invalid && form.get('rate')?.touched">
-          <span>Tasa (%)</span>
+          <span>{{ 'CONFIG_FORM_MODAL_TASA' | translate }}</span>
           <div class="error-message" *ngIf="form.get('rate')?.invalid && form.get('rate')?.touched">
-            <small *ngIf="form.get('rate')?.errors?.['required']">La tasa es obligatoria.</small>
-            <small *ngIf="form.get('rate')?.errors?.['min']">Mínimo 0.</small>
-            <small *ngIf="form.get('rate')?.errors?.['max']">Máximo 100.</small>
+            <small *ngIf="form.get('rate')?.errors?.['required']">{{ 'CONFIG_FORM_MODAL_LA_TASA_ES_OBLIGATOR' | translate }}</small>
+            <small *ngIf="form.get('rate')?.errors?.['min']">{{ 'CONFIG_FORM_MODAL_M_NIMO_0' | translate }}</small>
+            <small *ngIf="form.get('rate')?.errors?.['max']">{{ 'CONFIG_FORM_MODAL_M_XIMO_100' | translate }}</small>
           </div>
         </label>
 
@@ -80,16 +80,16 @@
       <!-- Fila 2: Moneda -->
       <div class="inputs-second">
         <label>
-          <p class="input-title">Moneda</p>
+          <p class="input-title">{{ 'CONFIG_FORM_MODAL_MONEDA' | translate }}</p>
           <div class="radio-row-2">
             <label class="radio-option">
               <input type="radio" formControlName="exchange" [value]="'SOLES'">
-              <p>Soles (PEN)</p>
+              <p>{{ 'CONFIG_FORM_MODAL_SOLES_PEN' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="exchange" [value]="'DOLARES'">
-              <p>Dólares (USD)</p>
+              <p>{{ 'CONFIG_FORM_MODAL_D_LARES_USD' | translate }}</p>
             </label>
 
           </div>
@@ -99,16 +99,16 @@
       <!-- Fila 3: Plazo y tipo de plazo -->
       <div class="inputs-third">
         <label>
-          <p class="input-title">Periodo de Gracia</p>
+          <p class="input-title">{{ 'CONFIG_FORM_MODAL_PERIODO_DE_GRACIA' | translate }}</p>
           <div class="radio-row-3">
             <label class="radio-option">
               <input type="radio" formControlName="termtype" [value]="'PARCIAL'">
-              <p>Parcial</p>
+              <p>{{ 'CONFIG_FORM_MODAL_PARCIAL' | translate }}</p>
             </label>
 
             <label class="radio-option">
               <input type="radio" formControlName="termtype" [value]="'TOTAL'">
-              <p>Total</p>
+              <p>{{ 'CONFIG_FORM_MODAL_TOTAL' | translate }}</p>
             </label>
           </div>
         </label>
@@ -116,22 +116,22 @@
         <label>
           <input class="input" type="text" placeholder="" required formControlName="term" (beforeinput)="validarSoloEnteros($event)" maxlength="3" minlength="1"
                  [class.is-invalid]="form.get('term')?.invalid && form.get('term')?.touched">
-          <span>Meses de gracia</span>
+          <span>{{ 'CONFIG_FORM_MODAL_MESES_DE_GRACIA' | translate }}</span>
           <div class="error-message" *ngIf="form.get('term')?.invalid && form.get('term')?.touched">
-            <small *ngIf="form.get('term')?.errors?.['required']">El plazo es obligatorio.</small>
-            <small *ngIf="form.get('term')?.errors?.['min']">Mínimo 1 mes.</small>
-            <small *ngIf="form.get('term')?.errors?.['max']">Máximo 999 meses.</small>
+            <small *ngIf="form.get('term')?.errors?.['required']">{{ 'CONFIG_FORM_MODAL_EL_PLAZO_ES_OBLIGATO' | translate }}</small>
+            <small *ngIf="form.get('term')?.errors?.['min']">{{ 'CONFIG_FORM_MODAL_M_NIMO_1_MES' | translate }}</small>
+            <small *ngIf="form.get('term')?.errors?.['max']">{{ 'CONFIG_FORM_MODAL_M_XIMO_999_MESES' | translate }}</small>
           </div>
         </label>
       </div>
 
       <small class="helper-text">
-        * Esta configuración se aplica solo a tu usuario y se usa para la simulación de crédito. *
+        {{ 'CONFIG_FORM_MODAL_ESTA_CONFIGURACI_N' | translate }}
       </small>
     </div>
     <div class="buttons-wrapper">
       <app-classic-button [disabled]="form.invalid" class="submit-button">
-        Guardar configuración
+        {{ 'CONFIG_FORM_MODAL_GUARDAR_CONFIGURACI' | translate }}
       </app-classic-button>
     </div>
 

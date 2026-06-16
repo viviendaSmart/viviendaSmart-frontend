@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
@@ -5,6 +6,7 @@ import {NgForOf, NgIf} from '@angular/common';
 @Component({
   selector: 'app-input-form-modal',
   imports: [
+    TranslateModule,
     ReactiveFormsModule,
     NgForOf,
     NgIf

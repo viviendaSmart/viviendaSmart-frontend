@@ -1,15 +1,17 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component } from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgOptimizedImage, NgIf} from '@angular/common';
-import {AuthService} from '../../../../shared/services/authentication.service';
-import {UserService} from '../../services/user.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {TermsModalComponent} from '../../../../shared/components/terms-modal/terms-modal.component';
+import { Router, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgOptimizedImage, NgIf } from '@angular/common';
+import { AuthService } from '../../../../shared/services/authentication.service';
+import { UserService } from '../../services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TermsModalComponent } from '../../../../shared/components/terms-modal/terms-modal.component';
 
 @Component({
   selector: 'app-login-page',
   imports: [
+    TranslateModule,
     RouterLink,
     ReactiveFormsModule,
     NgOptimizedImage,

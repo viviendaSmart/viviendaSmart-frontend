@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import {Component, OnInit} from '@angular/core';
 import {SideBarComponent} from '../../../../shared/components/side-bar/side-bar.component';
 import {HeaderBarComponent} from "../../../../shared/components/header-bar/header-bar.component/header-bar.component";
@@ -6,6 +7,7 @@ import {AuthService} from '../../../../shared/services/authentication.service';
 @Component({
   selector: 'app-home-page',
   imports: [
+    TranslateModule,
     SideBarComponent,
     HeaderBarComponent
   ],

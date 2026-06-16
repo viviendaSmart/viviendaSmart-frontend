@@ -1,34 +1,34 @@
 <div class="modal-backdrop" (click)="close()"></div>
 <div class="modal">
   <form class="form" [formGroup]="form2" (ngSubmit)="editForm($event)" >
-    <h2 class="form-title">Editar Propiedad</h2>
+    <h2 class="form-title">{{ 'PROPERTY_FORM_EDIT_MODAL_EDITAR_PROPIEDAD' | translate }}</h2>
     <div class="inputs-container">
       <label>
         <input class="input" type="text" placeholder="" required formControlName="address" minlength="1" maxlength="30" [class.is-invalid]="form2.get('address')?.invalid && form2.get('address')?.touched">
-        <span>Direccion</span>
+        <span>{{ 'PROPERTY_FORM_EDIT_MODAL_DIRECCION' | translate }}</span>
         <div class="error-message" *ngIf="form2.get('address')?.invalid && form2.get('address')?.touched" class="error-msg">
-          <small>La dirección de la propiedad es obligatoria.</small>
+          <small>{{ 'PROPERTY_FORM_EDIT_MODAL_LA_DIRECCI_N_DE_LA_P' | translate }}</small>
         </div>
       </label>
 
       <label>
         <input class="input" type="text" min="10" step="any" maxlength="8" placeholder="" required formControlName="size" (beforeinput)="validarSoloNumeros($event)" [class.is-invalid]="form2.get('size')?.invalid && form2.get('size')?.touched">
-        <span>Área en m2</span>
+        <span>{{ 'PROPERTY_FORM_EDIT_MODAL_REA_EN_M2' | translate }}</span>
         <div class="error-message" *ngIf="form2.get('size')?.invalid && form2.get('size')?.touched" class="error-msg">
-          <small>El tamaño (área) debe ser mayor a 0 y estar en m2.</small>
+          <small>{{ 'PROPERTY_FORM_EDIT_MODAL_EL_TAMA_O_REA_DEB' | translate }}</small>
         </div>
       </label>
 
       <label>
         <input class="input" type="text" min="10" step="any" maxlength="10" placeholder="" required formControlName="price" (beforeinput)="validarSoloNumeros($event)" [class.is-invalid]="form2.get('price')?.invalid && form2.get('price')?.touched">
-        <span>Precio (soles)</span>
+        <span>{{ 'PROPERTY_FORM_EDIT_MODAL_PRECIO_SOLES' | translate }}</span>
         <div class="error-message" *ngIf="form2.get('price')?.invalid && form2.get('price')?.touched" class="error-msg">
-          <small>El precio de la propiedad debe ser mayor a 0.</small>
+          <small>{{ 'PROPERTY_FORM_EDIT_MODAL_EL_PRECIO_DE_LA_PROP' | translate }}</small>
         </div>
       </label>
     </div>
-      <app-classic-button [disabled]="form2.invalid" class="edit-button">Editar</app-classic-button>
-      <app-classic-button (click)="close()" type="button" class="cancel-button">Cancelar</app-classic-button>
-      <app-classic-button (click)="deleteForm($event)" class="delete-button" type="button">Eliminar</app-classic-button>
+      <app-classic-button [disabled]="form2.invalid" class="edit-button">{{ 'PROPERTY_FORM_EDIT_MODAL_EDITAR' | translate }}</app-classic-button>
+      <app-classic-button (click)="close()" type="button" class="cancel-button">{{ 'PROPERTY_FORM_EDIT_MODAL_CANCELAR' | translate }}</app-classic-button>
+      <app-classic-button (click)="deleteForm($event)" class="delete-button" type="button">{{ 'PROPERTY_FORM_EDIT_MODAL_ELIMINAR' | translate }}</app-classic-button>
   </form>
 </div>

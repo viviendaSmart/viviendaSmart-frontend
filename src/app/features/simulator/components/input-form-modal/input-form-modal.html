@@ -1,37 +1,37 @@
 <div class="container">
   <div class="selection-card" [formGroup]="form">
     <div class="selection-card-header">
-      <span class="selection-card-title">SELECCIÓN DE DATOS</span>
+      <span class="selection-card-title">{{ 'INPUT_FORM_MODAL_SELECCI_N_DE_DATOS' | translate }}</span>
     </div>
 
     <div class="selection-card-row">
       <!-- Vivienda seleccionada -->
       <label class="field">
-        <span class="field-label">Inmueble seleccionado 🏠</span>
+        <span class="field-label">{{ 'INPUT_FORM_MODAL_INMUEBLE_SELECCIONAD' | translate }}</span>
         <select class="field-input" formControlName="address"
           [class.is-invalid]="form.get('address')?.invalid && form.get('address')?.touched">
-          <option [ngValue]="null">-- Selecciona una vivienda --</option>
+          <option [ngValue]="null">{{ 'INPUT_FORM_MODAL_SELECCIONA_UNA_VI' | translate }}</option>
           <option *ngFor="let v of viviendas" [ngValue]="v.address">
             {{ v.address }}
           </option>
         </select>
         <div class="error-message" *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
-          <small>Seleccione una propiedad.</small>
+          <small>{{ 'INPUT_FORM_MODAL_SELECCIONE_UNA_PROPI' | translate }}</small>
         </div>
       </label>
 
       <!-- Cliente seleccionado -->
       <label class="field">
-        <span class="field-label">Cliente seleccionado 👤</span>
+        <span class="field-label">{{ 'INPUT_FORM_MODAL_CLIENTE_SELECCIONADO' | translate }}</span>
         <select class="field-input" formControlName="dni"
           [class.is-invalid]="form.get('dni')?.invalid && form.get('dni')?.touched">
-          <option [ngValue]="null">-- Selecciona un cliente --</option>
+          <option [ngValue]="null">{{ 'INPUT_FORM_MODAL_SELECCIONA_UN_CLI' | translate }}</option>
           <option *ngFor="let c of clientes" [ngValue]="c.dni">
             {{ c.dni }}
           </option>
         </select>
         <div class="error-message" *ngIf="form.get('dni')?.invalid && form.get('dni')?.touched">
-          <small>Seleccione un cliente.</small>
+          <small>{{ 'INPUT_FORM_MODAL_SELECCIONE_UN_CLIENT' | translate }}</small>
         </div>
       </label>
     </div>
