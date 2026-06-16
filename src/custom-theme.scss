@@ -18,18 +18,54 @@ html {
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
   color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
+  background-color: var(--bg-base, var(--mat-sys-surface));
+  color: var(--text-primary, var(--mat-sys-on-surface));
   font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
   margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 🎨 VARIABLES GLOBALES DEL TEMA */
+:root {
+  --bg-base: #f8fafc;
+  --bg-surface: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  --hover-surface: #f1f5f9;
+  --active-surface: #eff6ff;
+  --active-text: #0591C4;
+  --danger-surface-hover: #fef2f2;
+  --danger-text: #ef4444;
+  
+  /* Filtros para íconos en modo claro */
+  --icon-filter-default: opacity(0.7);
+  --icon-filter-hover: invert(49%) sepia(73%) saturate(2598%) hue-rotate(164deg) brightness(95%) contrast(101%);
+  --icon-filter-active: invert(41%) sepia(87%) saturate(1476%) hue-rotate(204deg) brightness(99%) contrast(95%);
+  --icon-filter-danger-hover: invert(38%) sepia(87%) saturate(4156%) hue-rotate(343deg) brightness(97%) contrast(92%);
+}
+
+body.dark-theme {
+  --bg-base: #0f172a;
+  --bg-surface: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+  --border-light: #475569;
+  --hover-surface: #334155;
+  --active-surface: #020617;
+  --active-text: #38bdf8;
+  --danger-surface-hover: #450a0a;
+  --danger-text: #f87171;
+  
+  /* Ajuste de color scheme para inputs y scrollbars nativos */
+  color-scheme: dark;
+
+  /* Filtros para íconos en modo oscuro (para que resalten sobre fondos oscuros) */
+  --icon-filter-default: invert(70%) sepia(10%) saturate(400%) hue-rotate(180deg) brightness(90%) contrast(90%);
+  --icon-filter-hover: invert(80%) sepia(20%) saturate(1000%) hue-rotate(180deg) brightness(110%) contrast(100%);
+  --icon-filter-active: invert(70%) sepia(30%) saturate(1500%) hue-rotate(190deg) brightness(100%) contrast(105%);
+  --icon-filter-danger-hover: invert(50%) sepia(80%) saturate(3000%) hue-rotate(340deg) brightness(100%) contrast(100%);
 }

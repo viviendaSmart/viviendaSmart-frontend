@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0f172a;
+  background-color: var(--text-primary);
 }
 
 /* ========== background ========== */
@@ -69,13 +69,13 @@
 .register-card-header h1 {
   font-size: 1.75rem;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.025em;
 }
 
 .register-card-header p {
-  color: #64748b;
+  color: var(--text-secondary);
   font-weight: 500;
   margin: 0;
   font-size: 0.9rem;
@@ -113,8 +113,8 @@
 .register-card-body input {
   width: 100%;
   border-radius: 12px;
-  background: #f1f5f9;
-  color: #0f172a;
+  background: var(--hover-surface);
+  color: var(--text-primary);
   border: 1px solid #475569;
   padding: 0.75rem 1rem;
   font-size: 0.95rem;
@@ -125,14 +125,14 @@
 }
 
 .register-card-body input:focus {
-  background: #ffffff;
+  background: var(--bg-surface);
   border-color: #00a5ce;
   outline: none;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
 .error-message {
-  color: #ef4444;
+  color: var(--danger-text);
   font-size: 0.75rem;
   font-weight: 600;
   margin-top: 0.25rem;
@@ -158,7 +158,7 @@
 
 .checkbox-wrapper label {
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--text-secondary);
   cursor: pointer;
 }
 

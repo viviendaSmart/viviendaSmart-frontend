@@ -10,7 +10,7 @@ body { margin: 0; font-family: Bahnschrift, sans-serif; }
 }
 
 .error-msg small {
-  color: #ff4d4d;
+  color: var(--danger-text);
   font-size: 11px;
   display: block;
 }

@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {AuthService} from '../../services/authentication.service';
-
+import {ThemeService} from '../../../core/services/theme.service';
 @Component({
   selector: 'app-side-bar',
   imports: [
@@ -13,8 +13,18 @@ import {AuthService} from '../../services/authentication.service';
 })
 export class SideBarComponent {
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private themeService: ThemeService
+  ) {}
 
+  get isDarkMode(): boolean {
+    return this.themeService.isDarkMode();
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
   }
 
   options = [

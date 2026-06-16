@@ -1,15 +1,15 @@
 
-.modal{
+.modal {
   position: fixed;
-  top: 7vw;
-  left: 15vw;
   display: flex;
-  height: 80vh;
-  width: 75vw;
-  gap: 30px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 .form {
@@ -20,7 +20,7 @@
   padding: 2rem;
   border-radius: 30px;
   position: relative;
-  background-color: #ffffff;
+  background-color: var(--bg-surface);
   z-index: 0;
   line-height: 19px;
   gap: 10px;
@@ -51,9 +51,9 @@
 }
 
 .form label .input {
-  background-color: #F3F3F5;
-  color: #8e8e8e;
-  width: 17vw;
+  background-color: var(--hover-surface);
+  color: var(--text-secondary);
+  width: 100%;
   padding: 20px 0 05px 10px;
   outline: 0;
   border: 0;
@@ -63,7 +63,7 @@
 }
 
 .form label .input + span {
-  color: #8e8e8e;
+  color: var(--text-secondary);
   position: absolute;
   left: 10px;
   top: 10px;
@@ -77,7 +77,7 @@
 }
 
 .form label .input:focus + span,.form label .input:valid + span {
-  color: #00A6CF;
+  color: var(--active-text);
   top: 3px;
   font-size: 11px;
   font-weight: 600;
@@ -89,11 +89,11 @@
 
 
 :host ::ng-deep app-classic-button.cancel-button button {
-  background-color: #026d95;
-  outline: 3px #026d95 solid;
+  background-color: var(--active-text);
+  outline: 3px var(--active-text) solid;
 }
 
 :host ::ng-deep app-classic-button.cancel-button button:hover{
-  color: #026d95;
-  background-color: #F3F3F5;
+  color: var(--active-text);
+  background-color: var(--hover-surface);
 }
