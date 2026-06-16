@@ -7,7 +7,7 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
 
@@ -17,7 +17,7 @@
   font-weight: 200;
   border-radius: 30px;
   position: relative;
-  background-color: #ffffff;
+  background-color: var(--bg-surface);
   line-height: 19px;
   gap: 10px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
@@ -43,7 +43,6 @@
   line-height: 40px;
   flex-shrink: 0;
   z-index: 10;
-  background: white;
 }
 
 
@@ -122,8 +121,8 @@
 }
 
 .form label .input {
-  background-color: #F3F3F5;
-  color: #8e8e8e;
+  background-color: var(--hover-surface);
+  color: var(--text-secondary);
   width: 100%;
   padding: 20px 0 05px 8px;
   outline: 0;
@@ -133,7 +132,7 @@
 }
 
 .form label .input+span {
-  color: #8e8e8e;
+  color: var(--text-secondary);
   position: absolute;
   left: 10px;
   top: 10px;
@@ -148,7 +147,7 @@
 
 .form label .input:focus+span,
 .form label .input:valid+span {
-  color: #00A6CF;
+  color: var(--active-text);
   top: 2px;
   font-size: 11px;
   font-weight: 600;
@@ -161,15 +160,15 @@
 :host ::ng-deep app-classic-button.cancel-button button {
   padding: 0.2rem;
   font-size: 0.8rem;
-  background-color: #026d95;
-  outline: 3px #026d95 solid;
+  background-color: var(--active-text);
+  outline: 3px var(--active-text) solid;
 }
 
 :host ::ng-deep app-classic-button.cancel-button button:hover {
   padding: 0.2rem;
   font-size: 0.8rem;
-  color: #026d95;
-  background-color: #F3F3F5;
+  color: var(--active-text);
+  background-color: var(--hover-surface);
 }
 
 :host ::ng-deep app-classic-button.edit-button button {
@@ -181,7 +180,7 @@
   padding: 0.2rem;
   font-size: 0.8rem;
   color: #d22626;
-  background-color: #F3F3F5;
+  background-color: var(--hover-surface);
 }
 
 :host ::ng-deep app-classic-button.delete-button button {

@@ -14,11 +14,11 @@
 
 .card {
   border-radius: 16px;
-  background: #ffffff;
+  background: var(--bg-surface);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -39,7 +39,7 @@
 }
 
 .img-wrapper {
-  background-color: #f1f5f9;
+  background-color: var(--hover-surface);
   border-radius: 50%;
   padding: 1rem;
   display: flex;
@@ -51,7 +51,7 @@
 }
 
 .card:hover .img-wrapper {
-  background-color: #e2e8f0;
+  background-color: var(--border-color);
 }
 
 .body-img {
@@ -71,14 +71,14 @@
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 .body-text {
   margin: 0;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,8 +87,8 @@
 
 .card-footer {
   padding: 1.25rem 1.5rem;
-  background-color: #f8fafc;
-  border-top: 1px solid #f1f5f9;
+  background-color: var(--bg-base);
+  border-top: 1px solid var(--hover-surface);
   display: flex;
   justify-content: center;
 }
