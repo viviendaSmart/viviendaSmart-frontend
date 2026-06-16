@@ -8,13 +8,16 @@ import {ConfigFormModal} from '../../components/config-form-modal/config-form-mo
 import {Property} from '../../../property/models/property.entity';
 import {ClientFormModal} from '../../../client/components/client-form-modal/client-form-modal';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {BankRateListComponent} from '../../components/bank-rate-list/bank-rate-list.component';
+
 @Component({
   selector: 'app-config-page',
   imports: [
     SideBarComponent,
     HeaderBarComponent,
     ConfigFormModal,
-    ClientFormModal
+    ClientFormModal,
+    BankRateListComponent
   ],
   templateUrl: './config-page.html',
   styleUrl: './config-page.css'
@@ -84,5 +87,21 @@ export class ConfigPage implements OnInit {
       });
     }
 
+  }
+
+  onBankSelected(banco: any) {
+    const rateToSet = banco.tasa !== null ? banco.tasa : '';
+    const rateTypeToSet = banco.tipoTasa !== null ? banco.tipoTasa : 'TEA';
+    const current = (this.selectedConfig as any) || {};
+
+    this.selectedConfig = {
+      ...current,
+      rate: rateToSet,
+      rateType: rateTypeToSet,
+      exchange: current.exchange || 'SOLES',
+      termtype: current.termtype || 'PARCIAL',
+      term: current.term || '',
+      userId: current.userId || this.authService.getUser().id
+    };
   }
 }

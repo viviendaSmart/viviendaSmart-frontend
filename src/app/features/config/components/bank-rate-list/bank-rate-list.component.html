@@ -1,0 +1,22 @@
+<div class="bank-list-container">
+  <h3 class="bank-list-title">Selecciona un banco con tasas predefinidas</h3>
+  <div class="bank-cards-wrapper">
+    <div 
+      class="bank-card" 
+      *ngFor="let banco of listaBancos; let i = index"
+      [class.selected]="selectedBankIndex === i"
+      (click)="selectBank(banco, i)">
+      
+      <div class="bank-logo-placeholder">
+        <img *ngIf="banco.logo" [src]="banco.logo" alt="Logo de {{ banco.nombre }}" class="bank-logo">
+        <span *ngIf="!banco.logo" class="bank-logo-text">{{ banco.nombre.charAt(0) }}</span>
+      </div>
+      
+      <div class="bank-info">
+        <p class="bank-name">{{ banco.nombre }}</p>
+        <p class="bank-rate" *ngIf="banco.tasa !== null">{{ banco.tasa }}% {{ banco.tipoTasa }}</p>
+        <p class="bank-rate-custom" *ngIf="banco.tasa === null">Definir manualmente</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,7 @@
 </app-header-bar>
 
 <div class="main-content">
+  <app-bank-rate-list (bankSelected)="onBankSelected($event)"></app-bank-rate-list>
   <app-config-form-modal
     [config]="selectedConfig"
     (formSubmitted)="onFormSubmittedOrEdited($event)"
