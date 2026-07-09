@@ -8,4 +8,5 @@
   clientEndpointPath: '/clients',
   configEndpointPath: '/config',
   simulatorEndpointPath: '/simulator'
+  
 };
