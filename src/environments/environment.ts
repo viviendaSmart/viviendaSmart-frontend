@@ -1,6 +1,6 @@
-﻿export const environment = {
+export const environment = {
   production: true,
-  serverBaseUrl: 'https://viviendasmart-backend-byd0b3gud9heagdx.mexicocentral-01.azurewebsites.net/api/v1',
+  serverBaseUrl: 'http://localhost:8080/api/v1',
   usersEndpointPath: '/users',
   registerEndpointPath: '/users/signup',
   loginEndpointPath: '/users/signin',
@@ -8,5 +8,4 @@
   clientEndpointPath: '/clients',
   configEndpointPath: '/config',
   simulatorEndpointPath: '/simulator'
-  
 };
